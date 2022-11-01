@@ -13,9 +13,11 @@ function App() {
 
   return (
     <div className = "App">
+      <img src="/images/Logo.png" alt=""/>
       {
         currentForm === "login" ? <Login onFormSwitch={toggleForm}/> : <Sign_Up onFormSwitch={toggleForm}/>
       }
+      <img src="/images/grup_logo.jpeg" alt=""/>
     </div>
   );
 }
