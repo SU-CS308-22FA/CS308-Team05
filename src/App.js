@@ -17,7 +17,7 @@ function App() {
       {
         currentForm === "login" ? <Login onFormSwitch={toggleForm}/> : <Sign_Up onFormSwitch={toggleForm}/>
       }
-      <img src="/images/grup_logo.jpeg" alt=""/>
+      <img src="/images/rate12.png" alt=""/>
     </div>
   );
 }
