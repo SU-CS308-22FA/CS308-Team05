@@ -11,6 +11,8 @@ function App() {
     setCurrentForm(formName);
   }
 
+  global.fullname = "";
+
   return (
     <div className = "App">
       {
