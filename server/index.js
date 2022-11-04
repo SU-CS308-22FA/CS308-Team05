@@ -33,10 +33,10 @@ app.use(session({
 }));
 
 const db = mysql.createConnection({
-  user: "root",
-  host: "localhost",
-  password: "password",
-  database: "CS308",
+  user: "rCufPgLcUG",
+  host: "remotemysql.com",
+  password: "TXThb2LUsl",
+  database: "rCufPgLcUG",
 });
 
 app.post("/signup", (req, res) => {
