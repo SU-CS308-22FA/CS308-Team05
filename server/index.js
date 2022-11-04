@@ -96,93 +96,77 @@ app.post ("/login", (req, res) => {
   );
 });
 
-app.post ("/settings", (req, res) => {
-  const identification = req.body.identification;
-  const oldvariable = req.body.oldvariable;
-  const newvariable = req.body.newvariable;
-  const index = req.body.index;
+app.post("/updateusername", (req, res) => {
+  const id = req.body.id;
+  const username = req.body.username;
 
-  if (index == 1){
+  db.query(
+    "UPDATE Users SET UserName = ? WHERE FullName = ?;", 
+    [username, id], 
+    (err, result) => {
+    if (err) {
+      console.log(err);
+      res.send({message: "An error occured"});
+    } else {
+      res.send(result);
+    }
+  });
+});
+
+app.post("/updateemail", (req, res) => {
+  const id = req.body.id;
+  const email = req.body.email;
+
+  db.query(
+    "UPDATE Users SET Email = ? WHERE FullName = ?;", 
+    [email, id], 
+    (err, result) => {
+    if (err) {
+      console.log(err);
+      res.send({message: "An error occured"});
+    } else {
+      res.send(result);
+    }
+  });
+});
+
+app.post("/updatepassword", (req, res) => {
+  const id = req.body.id;
+  const password = req.body.password;
+
+  bcrypt.hash(password, SaltRounds, (err, hash) => {
+    if (err){
+      console.log(err);
+    }
+
     db.query(
-      "SELECT * FROM Users WHERE FullName = ?;",
-      identification,
+      "UPDATE Users SET Password = ? WHERE FullName = ?;", 
+      [hash, id], 
       (err, result) => {
-        if (err){
-          res.send({err: err});
-        }
-        if (result.length > 0){
-          if (oldvariable == result[0].UserName){
-            db.query(
-              "UPDATE Users SET UserName = ? WHERE FullName = ?;"
-              [newvariable, identification]
-            );
-          } else {
-            res.send({message: "Wrong full name/email combination"});
-          }
-        } else {
-          res.send({message: "Full name doesn't exist"});
-        }
-      }
-    );
-  }
-
-  if (index == 2){
-    db.query(
-      "SELECT * FROM Users WHERE FullName = ?;",
-      identification,
-      (err, result) => {
-        if (err){
-          res.send({err: err});
-        }
-        if (result.length > 0){
-          if (oldvariable == result[0].Email){
-            db.query(
-              "UPDATE Users SET Email = ? WHERE FullName = ?;"
-              [newvariable, identification]
-            );
-          } else {
-            res.send({message: "Wrong full name/email combination"});
-          }
-        } else {
-          res.send({message: "Full name doesn't exist"});
-        }
-      }
-    );
-  }
-
-  if (index == 3){
-    bcrypt.hash(newvariable, SaltRounds, (err, hash) => {
-      if (err){
+      if (err) {
         console.log(err);
+        res.send({message: "An error occured"});
+      } else {
+        res.send(result);
       }
+    });
+  })
+});
 
-      db.query(
-        "SELECT * FROM Users WHERE FullName = ?;",
-        identification,
-        (err, result) => {
-          if (err){
-            res.send({err: err});
-          }
-          if (result.length > 0){
-            bcrypt.compare(oldvariable, result[0].Password, (error, response) => {
-              if (response){
-                db.query(
-                  "UPDATE Users SET Password = ? WHERE FullName = ?;"
-                  [hash, identification]
-                );
-              } else {
-                res.send({message: "Wrong full name/password combination"});
-              }
-            });
-          } else {
-            res.send({message: "Full name doesn't exist"});
-          }
-        }
-      );
-    })
-  }
+app.post("/deleteuser", (req, res) => {
+  const id = req.body.id;
 
-  res.send({message: "Error"});
+  db.query(
+    "DELETE FROM Users WHERE FullName = ?", 
+    id,
+    (err, result) => {
+    if (err) {
+      console.log(err);
+      res.send({message: "An error occured"});
+    } else {
+      res.send(result);
+    }
+  });
 });
 
 app.listen(process.env.PORT || 3001, () => {

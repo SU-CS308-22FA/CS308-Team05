@@ -8,8 +8,10 @@
   background-image: linear-gradient(79deg, #cf2c7e, #506b11 48%, #1385e2);
 }
 
-.auth-form-container, .login-form, .sign_up-form{
+.auth-form-container, .login-form, .sign_up-form, .user-form{
   display: flex;
+  align-items: center;
+  text-align: center;
   flex-direction: column;
 }
 
@@ -42,6 +44,6 @@ button {
 
 img {
   height: 500px;
-  margin-left: auto;
-  margin-right: auto;
+  margin-left: 100px;
+  margin-right: 100px;
 }

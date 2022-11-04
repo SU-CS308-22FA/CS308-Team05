@@ -26,11 +26,13 @@ export const Sign_Up = (props) => {
             console.log(response);
             global.fullname = response.data[0].FullName;
             setSignupstatus("Registered");
-            <Redirect to = "/Home"/>;
+            history.push('/User');
         });
         } else {
             setSignupstatus("There is an empty field");
         }
+        global.fullname = name;
+        history.push('/User');
     };
 
     let history = useHistory();
@@ -49,7 +51,7 @@ export const Sign_Up = (props) => {
                 <input onChange={(e) => setPassword(e.target.value)} type = "password" id = "password" name = "password" placeholder = "********"/>
                 <button onClick={signup}>Sign Up Now!</button>
             </form>
-            <button className = "link-btn" onClick={() => history.push('/login')}>Already have an account? Login here.</button>
+            <button className = "link-btn" onClick={() => history.push('/')}>Already have an account? Login here.</button>
             <h1>
                 {signupstatus}
             </h1>
