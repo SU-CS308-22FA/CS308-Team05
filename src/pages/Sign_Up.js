@@ -1,19 +1,22 @@
 import React, {useState} from "react"
 import Axios from 'axios'
-import { useHistory } from "react-router-dom";
+import { useHistory, Redirect } from "react-router-dom";
 
 export const Sign_Up = (props) => {
     const [email, setEmail] = useState("");
     const [pass, setPassword] = useState("");
     const [name, setName] = useState("");
     const [username, setUsername] = useState("");
+    const [signupstatus, setSignupstatus] = useState("");
 
     const handleSubmit = (e) => {
         e.preventDefault();
         console.log(email);
     }
 
+    Axios.defaults.withCredentials = true;
     const signup = () => {
+        if (name !== "" || username !== "" || email !== "" || pass !== "") {
         Axios.post("http://localhost:3001/signup", {
             fullname: name, 
             username: username, 
@@ -21,8 +24,17 @@ export const Sign_Up = (props) => {
             password: pass
         }).then((response)=> {
             console.log(response);
+            global.fullname = response.data[0].FullName;
+            setSignupstatus("Registered");
+            history.push('/User');
         });
+        } else {
+            setSignupstatus("There is an empty field");
+        }
+        global.fullname = name;
+        history.push('/User');
     };
+
     let history = useHistory();
 
     return (
@@ -37,9 +49,12 @@ export const Sign_Up = (props) => {
                 <input onChange={(e) => setEmail(e.target.value)} type = "email" id = "email" name = "email" placeholder = "email@gmail.com"/>
                 <label htmlFor = "password">Password</label>
                 <input onChange={(e) => setPassword(e.target.value)} type = "password" id = "password" name = "password" placeholder = "********"/>
-                <button onClick={() => history.push('/User')}>Sign Up Now!</button>
+                <button onClick={signup}>Sign Up Now!</button>
             </form>
-            <button className = "link-btn" onClick={() => history.push('/login')}>Already have an account? Login here.</button>
+            <button className = "link-btn" onClick={() => history.push('/')}>Already have an account? Login here.</button>
+            <h1>
+                {signupstatus}
+            </h1>
         </div>
-    )
+    );
 }

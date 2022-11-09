@@ -8,25 +8,21 @@ import {BrowserRouter as Router, Switch, Route, Link, NavLink} from "react-route
 
 function App() {
 
+  global.fullname = "";
+
   return (
     <Router>
       <div className="App">
       <img src="/images/Logo.png" alt=""/>
-        <ul>
-          <li>
-    
-          </li>
-          <li>
-         
-          </li>
-        </ul>
-
         <Switch>
-          <Route exact path="/login">
+          <Route exact path="/">
               <Login />
           </Route>
           <Route path="/signup">
             <Sign_Up />
+          </Route>
+          <Route exact path="/user">
+            <User />
           </Route>
         </Switch>
         <img src="/images/rate12.png" alt=""/>
