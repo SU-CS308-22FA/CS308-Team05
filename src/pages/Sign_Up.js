@@ -29,10 +29,10 @@ export const Sign_Up = (props) => {
             history.push('/User');
         });
         } else {
-            setSignupstatus("There is an empty field");
+            setSignupstatus("Missing Required Parameter(s)");
         }
         global.fullname = name;
-        history.push('/User');
+  
     };
 
     let history = useHistory();

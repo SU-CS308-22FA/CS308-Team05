@@ -83,7 +83,7 @@ export const User = (props) => {
               <input onChange={(e) => setEmail(e.target.value)} type = "email" id = "email" name = "email" placeholder = "email@gmail.com"/>
               <button onClick={updateemail}>Change Now!</button>
               <label htmlFor = "password">Password Change</label>
-              <input onChange={(e) => setPassword(e.target.value)} type = "password" id = "password" name = "password" placeholder = "**"/>
+              <input onChange={(e) => setPassword(e.target.value)} type = "password" id = "password" name = "password" placeholder = "********"/>
               <button onClick={updatepassword}>Change Now!</button>
               <label> </label>
               <button onClick={deleteuser} color = "red" >Delete User</button>
