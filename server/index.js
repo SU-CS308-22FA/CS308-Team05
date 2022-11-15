@@ -32,12 +32,38 @@ app.use(session({
   },
 }));
 
-const db = mysql.createConnection({
+var db = mysql.createConnection({
   user: "rCufPgLcUG",
   host: "remotemysql.com",
   password: "TXThb2LUsl",
   database: "rCufPgLcUG",
 });
+
+function handleDisconnect() {
+  db = mysql.createConnection({
+    user: "rCufPgLcUG",
+    host: "remotemysql.com",
+    password: "TXThb2LUsl",
+    database: "rCufPgLcUG",
+  });
+
+  db.connect(function(err) {
+    if(err) {
+      console.log('error when connecting to db:', err);
+      setTimeout(handleDisconnect, 2000);
+    }
+  });
+  db.on('error', function(err) {
+    console.log('db error', err);
+    if(err.code === 'PROTOCOL_CONNECTION_LOST') {
+      handleDisconnect();
+    } else {
+      throw err;
+    }
+  });
+}
+
+handleDisconnect();
 
 app.post("/signup", (req, res) => {
   const fullname = req.body.fullname;

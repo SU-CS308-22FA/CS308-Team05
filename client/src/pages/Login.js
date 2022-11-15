@@ -42,7 +42,7 @@ export const Login = (props) => {
         <div className = "auth-form-container">
             <h2>Login</h2>
             <form className="login-form" onSubmit = {handleSubmit}>
-                <label htmlFor = "email">Username</label>
+                <label htmlFor = "username">Username</label>
                 <input value={identification} onChange={(e) => setID(e.target.value)} type = "text" placeholder = "username" id = "identification" name = "identification"/>
                 <label htmlFor = "password">Password</label>
                 <input value = {pass} onChange={(e) => setPass(e.target.value)} type = "password" placeholder = "********" id = "password" name = "password"/>

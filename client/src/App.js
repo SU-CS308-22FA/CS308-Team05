@@ -4,6 +4,7 @@ import './App.css';
 import { Login } from "./pages/Login";
 import { Sign_Up } from "./pages/Sign_Up";
 import { User } from "./pages/User";
+import { Home } from "./pages/Home";
 import {BrowserRouter as Router, Switch, Route, Link, NavLink} from "react-router-dom";
 
 function App() {
@@ -16,6 +17,9 @@ function App() {
       <img src="/images/Logo.png" alt=""/>
         <Switch>
           <Route exact path="/">
+              <Home />
+          </Route>
+          <Route exact path="/login">
               <Login />
           </Route>
           <Route path="/signup">

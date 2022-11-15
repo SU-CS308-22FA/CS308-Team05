@@ -8,11 +8,12 @@
   background-image: linear-gradient(79deg, #cf2c7e, #506b11 48%, #1385e2);
 }
 
-.auth-form-container, .login-form, .sign_up-form, .user-form{
+.auth-form-container, .login-form, .sign_up-form, .user-form, .home-form{
   display: flex;
   align-items: center;
   text-align: center;
   flex-direction: column;
+  flex: 1;
 }
 
 label {
@@ -40,6 +41,15 @@ button {
   background: none;
   color: white;
   text-decoration: underline;
+}
+
+.homebuttonstyle {
+  background-color: "white";
+  color: black;
+  border-radius: 60;
+  flex: 1;
+  height: 30;
+  width: 30;
 }
 
 img {
