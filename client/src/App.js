@@ -7,6 +7,8 @@ import { User } from "./pages/User";
 import { Home } from "./pages/Home";
 import { AdminLogin } from "./pages/AdminLogin";
 import { ClubLogin } from "./pages/ClubLogin";
+import { Club } from "./pages/Club";
+import { Admin } from "./pages/Admin";
 import {BrowserRouter as Router, Switch, Route, Link, NavLink} from "react-router-dom";
 
 function App() {
@@ -35,6 +37,12 @@ function App() {
           </Route>
           <Route exact path="/user">
             <User />
+          </Route>
+          <Route exact path="/admin">
+            <Admin />
+          </Route>
+          <Route exact path="/club">
+            <Club />
           </Route>
         </Switch>
         <img src="/images/rate12.png" alt=""/>

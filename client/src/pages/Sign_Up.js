@@ -16,7 +16,7 @@ export const Sign_Up = (props) => {
 
     Axios.defaults.withCredentials = true;
     const signup = () => {
-        if (name !== "" || username !== "" || email !== "" || pass !== "") {
+        if (name !== "" && username !== "" && email !== "" && pass !== "") {
             Axios.post("http://localhost:3001/signup", {
                 fullname: name, 
                 username: username, 

@@ -15,28 +15,24 @@ export const ClubLogin = (props) => {
     }
 
     const login = () => {
-        Axios.post("http://localhost:3001/clublogin", {
-            identification: identification,  
-            password: pass,
-        }).then((response)=> {
-            if (response.data.message){
-                setLoginstatus(response.data.message);
-            } else {
-                global.fullname = response.data[0].FullName;
-                history.push('/User');
-            }
-        });
+        if (identification !== "" && pass !== "") {
+            Axios.post("http://localhost:3001/clublogin", {
+                identification: identification,  
+                password: pass,
+            }).then((response)=> {
+                if (response.data.message){
+                    setLoginstatus(response.data.message);
+                } else {
+                    global.fullname = response.data[0].Name;
+                    history.push('/Club');
+                }
+            });
+        } else {
+            setLoginstatus("Missing Required Parameter(s)");
+        }
     };
 
     let history = useHistory();
-
-    useEffect (() => {
-        Axios.get("http://localhost:3001/clublogin").then((response) => {
-            if (response.data.loggedIn === true){
-                setLoginstatus("");
-            }
-        });
-    }, []);
 
     return (
         <div className = "auth-form-container">

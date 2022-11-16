@@ -198,3 +198,105 @@ app.post("/deleteuser", (req, res) => {
 app.listen(process.env.PORT || 3001, () => {
   console.log("running server");
 });
+
+app.post ("/clublogin", (req, res) => {
+  const identification = req.body.identification;
+  const password = req.body.password;
+
+  db.query(
+    "SELECT * FROM FootballClubs WHERE Name = ? AND Active = TRUE;",
+    identification,
+    (err, result) => {
+      if (err){
+        res.send({err: err});
+      }
+      if (result.length > 0){
+        bcrypt.compare(password, result[0].Password, (error, response) => {
+          if (response){
+            req.session.user = result;
+            console.log(req.session.user);
+            res.send(result);
+          } else {
+            res.send({message: "Wrong name/password combination"});
+          }
+        });
+      } else {
+        res.send({message: "Football club doesn't exist or the profile isn't active!"});
+      }
+    }
+  );
+});
+
+app.post("/clubupdatepassword", (req, res) => {
+  const id = req.body.id;
+  const password = req.body.password;
+
+  bcrypt.hash(password, SaltRounds, (err, hash) => {
+    if (err){
+      console.log(err);
+    }
+
+    db.query(
+      "UPDATE FootballClubs SET Password = ? WHERE Name = ?;", 
+      [hash, id], 
+      (err, result) => {
+      if (err) {
+        console.log(err);
+        res.send({message: "An error occured"});
+      } else {
+        res.send(result);
+      }
+    });
+  })
+});
+
+app.post ("/adminlogin", (req, res) => {
+  const identification = req.body.identification;
+  const password = req.body.password;
+
+  db.query(
+    "SELECT * FROM Admins WHERE Username = ?",
+    identification,
+    (err, result) => {
+      if (err){
+        res.send({err: err});
+      }
+      if (result.length > 0){
+        bcrypt.compare(password, result[0].Password, (error, response) => {
+          if (response){
+            req.session.user = result;
+            console.log(req.session.user);
+            res.send(result);
+          } else {
+            res.send({message: "Wrong name/password combination"});
+          }
+        });
+      } else {
+        res.send({message: "Username doesn't exist"});
+      }
+    }
+  );
+});
+
+app.post("/adminupdatepassword", (req, res) => {
+  const id = req.body.id;
+  const password = req.body.password;
+
+  bcrypt.hash(password, SaltRounds, (err, hash) => {
+    if (err){
+      console.log(err);
+    }
+
+    db.query(
+      "UPDATE FootballClubs SET Password = ? WHERE Username = ?;", 
+      [hash, id], 
+      (err, result) => {
+      if (err) {
+        console.log(err);
+        res.send({message: "An error occured"});
+      } else {
+        res.send(result);
+      }
+    });
+  })
+});

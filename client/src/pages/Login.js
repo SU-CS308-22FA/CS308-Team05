@@ -15,7 +15,7 @@ export const Login = (props) => {
     }
 
     const login = () => {
-        if (identification !== "" || pass !== "") {
+        if (identification !== "" && pass !== "") {
             Axios.post("http://localhost:3001/login", {
                 identification: identification,  
                 password: pass,
