@@ -17,7 +17,7 @@ export const Sign_Up = (props) => {
     Axios.defaults.withCredentials = true;
     const signup = () => {
         if (name !== "" || username !== "" || email !== "" || pass !== "") {
-        Axios.post("http://localhost:3001/signup", {
+        Axios.post("https://cs308sprint1.herokuapp.com/signup", {
             fullname: name, 
             username: username, 
             email: email, 
