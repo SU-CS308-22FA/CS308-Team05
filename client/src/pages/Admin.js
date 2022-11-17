@@ -5,7 +5,8 @@ import Popup  from "./Popup";
 
 export const Admin = (props) => {
   const [pass, setPassword] = useState("");
-  const [loginstatus, setLoginstatus] = useState("");
+  const [status, setStatus] = useState("");
+
   const [addclubpopup, setAddclubpopup] = useState(false);
   const [deleteclubpopup, setDeleteclubpopup] = useState(false);
   const [activateclubpopup, setActivateclubpopup] = useState(false);
@@ -13,9 +14,13 @@ export const Admin = (props) => {
   const [activateuserpopup, setActivateuserpopup] = useState(false);
   const [deactivateuserpopup, setDeactivateuserpopup] = useState(false);
 
+  const [clubpass, setClubpassword] = useState("");
+  const [clubname, setClubname] = useState("");
+  const [username, setUsername] = useState("");
+
   const handleSubmit = (e) => {
       e.preventDefault();
-      console.log(loginstatus);
+      console.log(status);
   }
 
   const updatepassword = () => {
@@ -24,30 +29,152 @@ export const Admin = (props) => {
         password: pass,
     }).then((response)=> {
         if (response.data.message){
-            setLoginstatus(response.data.message);
+            setStatus(response.data.message);
         } else {
-            setLoginstatus(response.data[0].Name);
+            setStatus(response.data[0].Name);
             global.fullname = response.data[0].Username;
         }
     });
   };
 
   const addclub = () => {
+    if (clubname !== "" && clubpass !== "") {
+        Axios.post("http://localhost:3001/addclub", {
+            name: clubname, 
+            password: clubpass, 
+            active: "false"
+        }).then((response)=> {
+            console.log(response);
+            setStatus("Registered");
+        });
+    } else {
+        setStatus("Missing Required Parameter(s)");
+    }
   };  
 
   const deleteclub = () => {
+    Axios.post("http://localhost:3001/deleteclub", {
+        name: clubname,  
+    }).then((response)=> {
+        if (response.data.message){
+            setStatus(response.data.message);
+        } else {
+            setStatus("Deleted");
+        }
+    });
   };
 
   const activateclub = () => {
+    Axios.post("http://localhost:3001/activateclub", {
+        name: clubname,
+    }).then((response)=> {
+        if (response.data.message){
+            setStatus(response.data.message);
+        } else {
+            setStatus(response.data[0].Name);
+        }
+    });
   };
 
   const deactivateclub = () => {
+    Axios.post("http://localhost:3001/deactivateclub", {
+        name: clubname,
+    }).then((response)=> {
+        if (response.data.message){
+            setStatus(response.data.message);
+        } else {
+            setStatus(response.data[0].Name);
+        }
+    });
   };
 
   const activateuser = () => {
+    Axios.post("http://localhost:3001/activateuser", {
+        name: username,
+    }).then((response)=> {
+        if (response.data.message){
+            setStatus(response.data.message);
+        } else {
+            setStatus(response.data[0].Username);
+        }
+    });
   };
 
   const deactivateuser = () => {
+    Axios.post("http://localhost:3001/deactivateuser", {
+        name: username,
+    }).then((response)=> {
+        if (response.data.message){
+            setStatus(response.data.message);
+        } else {
+            setStatus(response.data[0].Username);
+        }
+    });
+  };
+
+  const displayclubs = () => {
+    Axios.get("http://localhost:3001/getclubs").then((response) => {
+        if (response){
+            console.log(response);
+            let clubs = "-";
+            for (var i=0; i<response.data.length; i++){
+                clubs = clubs + response.data[i].Name + "-";
+            }
+            setStatus(clubs);
+        }
+    })
+  };
+
+  const displayinactiveclubs = () => {
+    Axios.get("http://localhost:3001/getinactiveclubs").then((response) => {
+        if (response){
+            console.log(response);
+            let clubs = "-";
+            for (var i=0; i<response.data.length; i++){
+                clubs = clubs + response.data[i].Name + "-";
+            }
+            setStatus(clubs);
+        }
+    })
+  };
+
+  const displayactiveclubs = () => {
+    Axios.get("http://localhost:3001/getactiveclubs").then((response) => {
+        if (response){
+            console.log(response);
+            let clubs = "-";
+            for (var i=0; i<response.data.length; i++){
+                clubs = clubs + response.data[i].Name + "-";
+            }
+            setStatus(clubs);
+        }
+    })
+  };
+
+  const displayinactiveusers = () => {
+    Axios.get("http://localhost:3001/getinactiveusers").then((response) => {
+        if (response){
+            console.log(response);
+            let users = "-";
+            for (var i=0; i<response.data.length; i++){
+                users = users + response.data[i].Username + "-";
+            }
+            setStatus(users);
+        }
+    })
+  };
+
+  const displayactiveusers = () => {
+    Axios.get("http://localhost:3001/getactiveusers").then((response) => {
+        if (response){
+            console.log(response);
+            let users = "-";
+            for (var i=0; i<response.data.length; i++){
+                users = users + response.data[i].Username + "-";
+            }
+            setStatus(users);
+        }
+    })
   };
 
   let history = useHistory();
@@ -59,32 +186,57 @@ export const Admin = (props) => {
               <button onClick={() => setAddclubpopup(true)}>Add a football club</button>
               <Popup trigger={addclubpopup} setTrigger = {setAddclubpopup}>
                 <h3>Add a football club</h3>
-                <p>I worked</p>
+                <label htmlFor = "clubname">Football Club Name</label>
+                <input onChange={(e) => setClubname(e.target.value)} name = "name" id = "name" placeholder = "Football Club Name"/>
+                <label htmlFor = "password">Set a Password</label>
+                <input onChange={(e) => setClubpassword(e.target.value)} type = "password" placeholder = "********" id = "password" name = "password"/>
+                <button onClick={addclub}>Register</button>
+                <h1>{status}</h1>
               </Popup>
               <button onClick={() => setDeleteclubpopup(true)}>Delete a football club</button>
               <Popup trigger={deleteclubpopup} setTrigger = {setDeleteclubpopup}>
                 <h3>Delete a football club</h3>
-                <p>I worked</p>
+                <button onClick={displayclubs}>Display all clubs / Update</button>
+                <p>{status}</p>
+                <label htmlFor = "clubname">Football Club Name</label>
+                <input onChange={(e) => setClubname(e.target.value)} name = "name" id = "name" placeholder = "Football Club Name"/>
+                <p><button onClick={deleteclub}>Delete Football Club</button></p>
               </Popup>
               <button onClick={() => setActivateclubpopup(true)}>Activate a football club</button>
               <Popup trigger={activateclubpopup} setTrigger = {setActivateclubpopup}>
                 <h3>Activate a football club</h3>
-                <p>I worked</p>
+                <button onClick={displayinactiveclubs}>Display all inactive club accounts / Update</button>
+                <p>{status}</p>
+                <label htmlFor = "clubname">Football Club Name</label>
+                <input onChange={(e) => setClubname(e.target.value)} name = "name" id = "name" placeholder = "Football Club Name"/>
+                <p><button onClick={activateclub}>Activate the Football Club's Account</button></p>
               </Popup>
               <button onClick={() => setDeactivateclubpopup(true)}>Deactivate a football club</button>
               <Popup trigger={deactivateclubpopup} setTrigger = {setDeactivateclubpopup}>
                 <h3>Deactivate a football club</h3>
-                <p>I worked</p>
+                <button onClick={displayactiveclubs}>Display all active club accounts / Update</button>
+                <p>{status}</p>
+                <label htmlFor = "clubname">Football Club Name</label>
+                <input onChange={(e) => setClubname(e.target.value)} name = "name" id = "name" placeholder = "Football Club Name"/>
+                <p><button onClick={deactivateclub}>Deactivate the Football Club's Account</button></p>
               </Popup>
               <button onClick={() => setActivateuserpopup(true)}>Activate a user</button>
               <Popup trigger={activateuserpopup} setTrigger = {setActivateuserpopup}>
                 <h3>Activate a user</h3>
-                <p>I worked</p>
+                <button onClick={displayinactiveusers}>Display all inactive users / Update</button>
+                <p>{status}</p>
+                <label htmlFor = "username">Username</label>
+                <input onChange={(e) => setUsername(e.target.value)} name = "name" id = "name" placeholder = "Userame"/>
+                <p><button onClick={activateuser}>Activate the Username's Account</button></p>
               </Popup>
               <button onClick={() => setDeactivateuserpopup(true)}>Deactivate a user</button>
               <Popup trigger={deactivateuserpopup} setTrigger = {setDeactivateuserpopup}>
                 <h3>Deactivate a user</h3>
-                <p>I worked</p>
+                <button onClick={displayactiveusers}>Display all active users / Update</button>
+                <p>{status}</p>
+                <label htmlFor = "username">Username</label>
+                <input onChange={(e) => setUsername(e.target.value)} name = "name" id = "name" placeholder = "Userame"/>
+                <p><button onClick={deactivateuser}>Deactivate the Username's Account</button></p>
               </Popup>
               <label htmlFor = "password">Password Change</label>
               <input onChange={(e) => setPassword(e.target.value)} type = "password" id = "password" name = "password" placeholder = "********"/>
