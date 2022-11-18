@@ -35,7 +35,7 @@ export const Login = (props) => {
     let history = useHistory();
 
     useEffect (() => {
-        Axios.get("http://localhost:3001/login").then((response) => {
+        Axios.get("https://cs308sprint1.herokuapp.com/login").then((response) => {
             if (response.data.loggedIn === true){
                 setLoginstatus("");
             }
