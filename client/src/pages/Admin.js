@@ -6,6 +6,12 @@ import Popup  from "./Popup";
 export const Admin = (props) => {
   const [pass, setPassword] = useState("");
   const [status, setStatus] = useState("");
+  const [addclubstatus, setAddclubstatus] = useState("");
+  const [deleteclubstatus, setDeleteclubstatus] = useState("");
+  const [activateclubstatus, setActivateclubstatus] = useState("");
+  const [deactivateclubstatus, setDeactivateclubstatus] = useState("");
+  const [activateuserstatus, setActivateuserstatus] = useState("");
+  const [deactivateuserstatus, setDeactivateuserstatus] = useState("");
 
   const [addclubpopup, setAddclubpopup] = useState(false);
   const [deleteclubpopup, setDeleteclubpopup] = useState(false);
@@ -45,10 +51,11 @@ export const Admin = (props) => {
             active: "false"
         }).then((response)=> {
             console.log(response);
-            setStatus("Registered");
+            setAddclubstatus("Registered");
         });
+        setAddclubstatus("Registered");
     } else {
-        setStatus("Missing Required Parameter(s)");
+        setAddclubstatus("Missing Required Parameter(s)");
     }
   };  
 
@@ -57,9 +64,9 @@ export const Admin = (props) => {
         name: clubname,  
     }).then((response)=> {
         if (response.data.message){
-            setStatus(response.data.message);
+            setDeleteclubstatus(response.data.message);
         } else {
-            setStatus("Deleted");
+            setDeleteclubstatus("Deleted");
         }
     });
   };
@@ -69,9 +76,9 @@ export const Admin = (props) => {
         name: clubname,
     }).then((response)=> {
         if (response.data.message){
-            setStatus(response.data.message);
+            setActivateclubstatus(response.data.message);
         } else {
-            setStatus(response.data[0].Name);
+            setActivateclubstatus(response.data[0].Name);
         }
     });
   };
@@ -81,9 +88,9 @@ export const Admin = (props) => {
         name: clubname,
     }).then((response)=> {
         if (response.data.message){
-            setStatus(response.data.message);
+            setDeactivateclubstatus(response.data.message);
         } else {
-            setStatus(response.data[0].Name);
+            setDeactivateclubstatus(response.data[0].Name);
         }
     });
   };
@@ -93,9 +100,9 @@ export const Admin = (props) => {
         name: username,
     }).then((response)=> {
         if (response.data.message){
-            setStatus(response.data.message);
+            setActivateuserstatus(response.data.message);
         } else {
-            setStatus(response.data[0].Username);
+            setActivateuserstatus(response.data[0].Username);
         }
     });
   };
@@ -105,9 +112,9 @@ export const Admin = (props) => {
         name: username,
     }).then((response)=> {
         if (response.data.message){
-            setStatus(response.data.message);
+            setDeactivateuserstatus(response.data.message);
         } else {
-            setStatus(response.data[0].Username);
+            setDeactivateuserstatus(response.data[0].Username);
         }
     });
   };
@@ -120,7 +127,7 @@ export const Admin = (props) => {
             for (var i=0; i<response.data.length; i++){
                 clubs = clubs + response.data[i].Name + "-";
             }
-            setStatus(clubs);
+            setDeleteclubstatus(clubs);
         }
     })
   };
@@ -133,7 +140,7 @@ export const Admin = (props) => {
             for (var i=0; i<response.data.length; i++){
                 clubs = clubs + response.data[i].Name + "-";
             }
-            setStatus(clubs);
+            setActivateclubstatus(clubs);
         }
     })
   };
@@ -146,7 +153,7 @@ export const Admin = (props) => {
             for (var i=0; i<response.data.length; i++){
                 clubs = clubs + response.data[i].Name + "-";
             }
-            setStatus(clubs);
+            setDeactivateclubstatus(clubs);
         }
     })
   };
@@ -159,7 +166,7 @@ export const Admin = (props) => {
             for (var i=0; i<response.data.length; i++){
                 users = users + response.data[i].Username + "-";
             }
-            setStatus(users);
+            setActivateuserstatus(users);
         }
     })
   };
@@ -172,7 +179,7 @@ export const Admin = (props) => {
             for (var i=0; i<response.data.length; i++){
                 users = users + response.data[i].Username + "-";
             }
-            setStatus(users);
+            setDeactivateuserstatus(users);
         }
     })
   };
@@ -181,7 +188,7 @@ export const Admin = (props) => {
 
   return (
       <div className = "auth-form-container">
-          <h2>User Settings</h2>
+          <h2>Administrative Tasks</h2>
           <form className="user-form" onSubmit = {handleSubmit}>
               <button onClick={() => setAddclubpopup(true)}>Add a football club</button>
               <Popup trigger={addclubpopup} setTrigger = {setAddclubpopup}>
@@ -190,14 +197,14 @@ export const Admin = (props) => {
                 <input onChange={(e) => setClubname(e.target.value)} name = "name" id = "name" placeholder = "Football Club Name"/>
                 <label htmlFor = "password">Set a Password</label>
                 <input onChange={(e) => setClubpassword(e.target.value)} type = "password" placeholder = "********" id = "password" name = "password"/>
-                <button onClick={addclub}>Register</button>
-                <h1>{status}</h1>
+                <p><button onClick={addclub}>Register</button></p>
+                <p>{addclubstatus}</p>
               </Popup>
               <button onClick={() => setDeleteclubpopup(true)}>Delete a football club</button>
               <Popup trigger={deleteclubpopup} setTrigger = {setDeleteclubpopup}>
                 <h3>Delete a football club</h3>
                 <button onClick={displayclubs}>Display all clubs / Update</button>
-                <p>{status}</p>
+                <p>{deleteclubstatus}</p>
                 <label htmlFor = "clubname">Football Club Name</label>
                 <input onChange={(e) => setClubname(e.target.value)} name = "name" id = "name" placeholder = "Football Club Name"/>
                 <p><button onClick={deleteclub}>Delete Football Club</button></p>
@@ -206,7 +213,7 @@ export const Admin = (props) => {
               <Popup trigger={activateclubpopup} setTrigger = {setActivateclubpopup}>
                 <h3>Activate a football club</h3>
                 <button onClick={displayinactiveclubs}>Display all inactive club accounts / Update</button>
-                <p>{status}</p>
+                <p>{activateclubstatus}</p>
                 <label htmlFor = "clubname">Football Club Name</label>
                 <input onChange={(e) => setClubname(e.target.value)} name = "name" id = "name" placeholder = "Football Club Name"/>
                 <p><button onClick={activateclub}>Activate the Football Club's Account</button></p>
@@ -215,7 +222,7 @@ export const Admin = (props) => {
               <Popup trigger={deactivateclubpopup} setTrigger = {setDeactivateclubpopup}>
                 <h3>Deactivate a football club</h3>
                 <button onClick={displayactiveclubs}>Display all active club accounts / Update</button>
-                <p>{status}</p>
+                <p>{deactivateclubstatus}</p>
                 <label htmlFor = "clubname">Football Club Name</label>
                 <input onChange={(e) => setClubname(e.target.value)} name = "name" id = "name" placeholder = "Football Club Name"/>
                 <p><button onClick={deactivateclub}>Deactivate the Football Club's Account</button></p>
@@ -224,7 +231,7 @@ export const Admin = (props) => {
               <Popup trigger={activateuserpopup} setTrigger = {setActivateuserpopup}>
                 <h3>Activate a user</h3>
                 <button onClick={displayinactiveusers}>Display all inactive users / Update</button>
-                <p>{status}</p>
+                <p>{activateuserstatus}</p>
                 <label htmlFor = "username">Username</label>
                 <input onChange={(e) => setUsername(e.target.value)} name = "name" id = "name" placeholder = "Userame"/>
                 <p><button onClick={activateuser}>Activate the Username's Account</button></p>
@@ -233,11 +240,12 @@ export const Admin = (props) => {
               <Popup trigger={deactivateuserpopup} setTrigger = {setDeactivateuserpopup}>
                 <h3>Deactivate a user</h3>
                 <button onClick={displayactiveusers}>Display all active users / Update</button>
-                <p>{status}</p>
+                <p>{deactivateuserstatus}</p>
                 <label htmlFor = "username">Username</label>
                 <input onChange={(e) => setUsername(e.target.value)} name = "name" id = "name" placeholder = "Userame"/>
                 <p><button onClick={deactivateuser}>Deactivate the Username's Account</button></p>
               </Popup>
+              <h2>User Settings</h2>
               <label htmlFor = "password">Password Change</label>
               <input onChange={(e) => setPassword(e.target.value)} type = "password" id = "password" name = "password" placeholder = "********"/>
               <button onClick={updatepassword}>Change Now!</button>
