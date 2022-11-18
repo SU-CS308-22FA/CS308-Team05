@@ -70,6 +70,7 @@ app.post("/signup", (req, res) => {
   const username = req.body.username;
   const email = req.body.email;
   const password = req.body.password;
+  const active = "true";
 
   bcrypt.hash(password, SaltRounds, (err, hash) => {
     if (err){
@@ -77,8 +78,8 @@ app.post("/signup", (req, res) => {
     }
 
     db.query(
-      "INSERT INTO Users (FullName, Username, Email, Password) VALUES (?,?,?,?)",
-      [fullname, username, email, hash],
+      "INSERT INTO Users (FullName, Username, Email, Password, Active) VALUES (?,?,?,?,?)",
+      [fullname, username, email, hash, active],
       (err, result) => {
         console.log(err);
       }
@@ -99,7 +100,7 @@ app.post ("/login", (req, res) => {
   const password = req.body.password;
 
   db.query(
-    "SELECT * FROM Users WHERE Username = ?;",
+    "SELECT * FROM Users WHERE Username = ? AND Active = TRUE;",
     identification,
     (err, result) => {
       if (err){
@@ -116,7 +117,7 @@ app.post ("/login", (req, res) => {
           }
         });
       } else {
-        res.send({message: "Username doesn't exist"});
+        res.send({message: "Username doesn't exist or your account has been suspended"});
       }
     }
   );
@@ -197,4 +198,271 @@ app.post("/deleteuser", (req, res) => {
 
 app.listen(process.env.PORT || 3001, () => {
   console.log("running server");
+});
+
+app.post ("/clublogin", (req, res) => {
+  const identification = req.body.identification;
+  const password = req.body.password;
+
+  db.query(
+    "SELECT * FROM FootballClubs WHERE Name = ? AND Active = TRUE;",
+    identification,
+    (err, result) => {
+      if (err){
+        res.send({err: err});
+      }
+      if (result.length > 0){
+        bcrypt.compare(password, result[0].Password, (error, response) => {
+          if (response){
+            req.session.user = result;
+            console.log(req.session.user);
+            res.send(result);
+          } else {
+            res.send({message: "Wrong name/password combination"});
+          }
+        });
+      } else {
+        res.send({message: "Football club doesn't exist or the profile isn't active!"});
+      }
+    }
+  );
+});
+
+app.post("/clubupdatepassword", (req, res) => {
+  const id = req.body.id;
+  const password = req.body.password;
+
+  bcrypt.hash(password, SaltRounds, (err, hash) => {
+    if (err){
+      console.log(err);
+    }
+
+    db.query(
+      "UPDATE FootballClubs SET Password = ? WHERE Name = ?;", 
+      [hash, id], 
+      (err, result) => {
+      if (err) {
+        console.log(err);
+        res.send({message: "An error occured"});
+      } else {
+        res.send(result);
+      }
+    });
+  })
+});
+
+app.post ("/adminlogin", (req, res) => {
+  const identification = req.body.identification;
+  const password = req.body.password;
+
+  db.query(
+    "SELECT * FROM Admins WHERE Username = ?",
+    identification,
+    (err, result) => {
+      if (err){
+        res.send({err: err});
+      }
+      if (result.length > 0){
+        bcrypt.compare(password, result[0].Password, (error, response) => {
+          if (response){
+            req.session.user = result;
+            console.log(req.session.user);
+            res.send(result);
+          } else {
+            res.send({message: "Wrong name/password combination"});
+          }
+        });
+      } else {
+        res.send({message: "Username doesn't exist"});
+      }
+    }
+  );
+});
+
+app.post("/adminupdatepassword", (req, res) => {
+  const id = req.body.id;
+  const password = req.body.password;
+
+  bcrypt.hash(password, SaltRounds, (err, hash) => {
+    if (err){
+      console.log(err);
+    }
+
+    db.query(
+      "UPDATE FootballClubs SET Password = ? WHERE Username = ?;", 
+      [hash, id], 
+      (err, result) => {
+      if (err) {
+        console.log(err);
+        res.send({message: "An error occured"});
+      } else {
+        res.send(result);
+      }
+    });
+  })
+});
+
+app.post("/addclub", (req, res) => {
+  const name = req.body.name;
+  const password = req.body.password;
+  const active = req.body.active;
+
+  bcrypt.hash(password, SaltRounds, (err, hash) => {
+    if (err){
+      console.log(err);
+    }
+
+    db.query(
+      "INSERT INTO FootballClubs (Name, Active, Password) VALUES (?,?,?)",
+      [name, active, hash],
+      (err, result) => {
+        console.log(err);
+      }
+    );
+  })
+});
+
+app.get ("/getclubs", (req, res) => {
+  db.query(
+    "SELECT Name FROM FootballClubs WHERE Name IS NOT NULL",
+    (err, result) => {
+      if (err) {
+        console.log(err);
+        res.send({message: "An error occured"});
+      } else {
+        res.send(result);
+      }
+    });
+});
+
+app.post("/deleteclub", (req, res) => {
+  const name = req.body.name;
+
+  db.query(
+    "DELETE FROM FootballClubs WHERE Name = ?", 
+    name,
+    (err, result) => {
+    if (err) {
+      console.log(err);
+      res.send({message: "An error occured"});
+    } else {
+      res.send(result);
+    }
+  });
+});
+
+app.get ("/getinactiveclubs", (req, res) => {
+  db.query(
+    "SELECT Name FROM FootballClubs WHERE Active IS FALSE",
+    (err, result) => {
+      if (err) {
+        console.log(err);
+        res.send({message: "An error occured"});
+      } else {
+        res.send(result);
+      }
+    });
+});
+
+app.post("/activateclub", (req, res) => {
+  const name = req.body.name;
+
+  db.query(
+    "UPDATE FootballClubs SET Active = true WHERE Name = ?;", 
+    name,
+    (err, result) => {
+    if (err) {
+      console.log(err);
+      res.send({message: "An error occured"});
+    } else {
+      res.send(result);
+    }
+  });
+});
+
+app.get ("/getactiveclubs", (req, res) => {
+  db.query(
+    "SELECT Name FROM FootballClubs WHERE Active IS TRUE",
+    (err, result) => {
+      if (err) {
+        console.log(err);
+        res.send({message: "An error occured"});
+      } else {
+        res.send(result);
+      }
+    });
+});
+
+app.post("/deactivateclub", (req, res) => {
+  const name = req.body.name;
+
+  db.query(
+    "UPDATE FootballClubs SET Active = false WHERE Name = ?;", 
+    name,
+    (err, result) => {
+    if (err) {
+      console.log(err);
+      res.send({message: "An error occured"});
+    } else {
+      res.send(result);
+    }
+  });
+});
+
+app.get ("/getinactiveusers", (req, res) => {
+  db.query(
+    "SELECT Username FROM Users WHERE Active IS FALSE",
+    (err, result) => {
+      if (err) {
+        console.log(err);
+        res.send({message: "An error occured"});
+      } else {
+        res.send(result);
+      }
+    });
+});
+
+app.post("/activateuser", (req, res) => {
+  const name = req.body.name;
+
+  db.query(
+    "UPDATE Users SET Active = true WHERE Username = ?;", 
+    name,
+    (err, result) => {
+    if (err) {
+      console.log(err);
+      res.send({message: "An error occured"});
+    } else {
+      res.send(result);
+    }
+  });
+});
+
+app.get ("/getactiveusers", (req, res) => {
+  db.query(
+    "SELECT Username FROM Users WHERE Active IS TRUE",
+    (err, result) => {
+      if (err) {
+        console.log(err);
+        res.send({message: "An error occured"});
+      } else {
+        res.send(result);
+      }
+    });
+});
+
+app.post("/deactivateuser", (req, res) => {
+  const name = req.body.name;
+
+  db.query(
+    "UPDATE Users SET Active = false WHERE Username = ?;", 
+    name,
+    (err, result) => {
+    if (err) {
+      console.log(err);
+      res.send({message: "An error occured"});
+    } else {
+      res.send(result);
+    }
+  });
 });

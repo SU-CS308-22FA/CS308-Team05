@@ -16,23 +16,22 @@ export const Sign_Up = (props) => {
 
     Axios.defaults.withCredentials = true;
     const signup = () => {
-        if (name !== "" || username !== "" || email !== "" || pass !== "") {
-        Axios.post("https://cs308sprint1.herokuapp.com/signup", {
-            fullname: name, 
-            username: username, 
-            email: email, 
-            password: pass
-        }).then((response)=> {
-            console.log(response);
-            global.fullname = response.data[0].FullName;
-            setSignupstatus("Registered");
-            history.push('/User');
-        });
+        if (name !== "" && username !== "" && email !== "" && pass !== "") {
+            Axios.post("http://localhost:3001/signup", {
+                fullname: name, 
+                username: username, 
+                email: email, 
+                password: pass
+            }).then((response)=> {
+                console.log(response);
+                global.fullname = response.data[0].FullName;
+                setSignupstatus("Registered");
+                history.push('/User');
+            });
         } else {
             setSignupstatus("Missing Required Parameter(s)");
         }
         global.fullname = name;
-  
     };
 
     let history = useHistory();
@@ -52,6 +51,7 @@ export const Sign_Up = (props) => {
                 <button onClick={signup}>Sign Up Now!</button>
             </form>
             <button className = "link-btn" onClick={() => history.push('/')}>Already have an account? Login here.</button>
+            <button className = "link-btn" onClick={() => history.push('/')}>Go back to home page</button>
             <h1>
                 {signupstatus}
             </h1>
