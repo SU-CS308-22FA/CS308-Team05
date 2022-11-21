@@ -9,6 +9,7 @@ import { AdminLogin } from "./pages/AdminLogin";
 import { ClubLogin } from "./pages/ClubLogin";
 import { Club } from "./pages/Club";
 import { Admin } from "./pages/Admin";
+import { FAQ } from "./pages/FAQ";
 import {BrowserRouter as Router, Switch, Route, Link, NavLink} from "react-router-dom";
 
 function App() {
@@ -43,6 +44,9 @@ function App() {
           </Route>
           <Route exact path="/club">
             <Club />
+          </Route>
+          <Route exact path="/FAQ">
+            <FAQ />
           </Route>
         </Switch>
         <img src="/images/rate12.png" alt=""/>
