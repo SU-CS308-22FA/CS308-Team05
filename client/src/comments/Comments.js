@@ -2,7 +2,6 @@ import { useState, useEffect } from "react";
 import CommentForm from "./CommentForm";
 import Comment from "./Comment";
 import {
-  getComments as getCommentsApi,
   createComment as createCommentApi,
   updateComment as updateCommentApi,
   deleteComment as deleteCommentApi,
@@ -51,11 +50,7 @@ const Comments = ({ commentsUrl, currentUserId }) => {
     }
   };
 
-  useEffect(() => {
-    getCommentsApi().then((data) => {
-      setBackendComments(data);
-    });
-  }, []);
+  
 
   return (
     <div className="comments">
