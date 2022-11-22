@@ -72,13 +72,7 @@ export const User = (props) => {
 
   let history = useHistory();
 
-  /*
-  const [oyuncular_sol, setoyuncular_sol] = useState("");
-  const [oyuncular_sag, setoyuncular_sag] = useState(0);
-  const [yedekler_sol, setyedekler_sol] = useState("");
-  const [yedekler_sag, setyedekler_sag] = useState("");
-  const [teknik_direktor_sol, setWage] = useState(0);
-*/
+
   const [playerList, set_playerList] = useState([]);
 
   const getPlayers = () => {
