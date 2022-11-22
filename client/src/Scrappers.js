@@ -149,7 +149,7 @@ var start = async function (url,stream) {
         var stream = fs.createWriteStream("JAW.txt");
         await start("https://www.transfermarkt.com/istanbulspor_trabzonspor/index/spielbericht/3854849",stream);
         console.log("_________________________________________________");
-        await start("https://www.transfermarkt.com/sivasspor_gaziantep-fk/index/spielbericht/3854846",stream);
+      //  await start("https://www.transfermarkt.com/sivasspor_gaziantep-fk/index/spielbericht/3854846",stream);
         stream.end();
     }
 )();
