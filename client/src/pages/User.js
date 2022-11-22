@@ -14,7 +14,7 @@ export const User = (props) => {
   }
 
   const updateusername = () => {
-    Axios.post("https://cs308sprint1.herokuapp.com/updateusername", {
+    Axios.post("http://localhost:3001/updateusername", {
         id: global.fullname,  
         username: username,
     }).then((response)=> {
@@ -28,7 +28,7 @@ export const User = (props) => {
   };
 
   const updateemail = () => {
-    Axios.post("https://cs308sprint1.herokuapp.com/updateemail", {
+    Axios.post("http://localhost:3001/updateemail", {
         id: global.fullname,  
         email: email,
     }).then((response)=> {
@@ -42,7 +42,7 @@ export const User = (props) => {
   };
 
   const updatepassword = () => {
-    Axios.post("https://cs308sprint1.herokuapp.com/updatepassword", {
+    Axios.post("http://localhost:3001/updatepassword", {
         id: global.fullname,  
         password: pass,
     }).then((response)=> {
@@ -56,7 +56,7 @@ export const User = (props) => {
   };
 
   const deleteuser = () => {
-    Axios.post("https://cs308sprint1.herokuapp.com/deleteuser", {
+    Axios.post("http://localhost:3001/deleteuser", {
         id: global.fullname,  
     }).then((response)=> {
         if (response.data.message){
@@ -71,6 +71,15 @@ export const User = (props) => {
   };
 
   let history = useHistory();
+
+  const [playerList, set_playerList] = useState([]);
+
+  const getPlayers = () => {
+    Axios.get("http://localhost:3001/PLAYERS").then((response)=>{
+        console.log(response);
+        set_playerList(response.data);
+    });
+  };
 
   return (
       <div className = "auth-form-container">
@@ -91,6 +100,15 @@ export const User = (props) => {
               <button onClick={() => history.push('/FAQ')}>Go to the FAQ Page</button>
               <button onClick={() => history.push('/Standings')}>View the League Standings</button>
               <button onClick={() => history.push('/')}>Sign Out</button>
+              <label> </label>
+              <label> </label>
+              <button onClick={updatepassword}>Change Now!</button>
+              <button className = "link-btn" onClick={() => history.push('/commentmain')}>Do you want to comment?</button>
+              <button onClick={getPlayers}> Show data</button>
+
+              {playerList.map((val, key) => {
+                return <div>left team: {val.oyuncular_sol} --- left substitute{val.yedekler_sol} --- left manager{val.teknik_direktor_sol} --- right team{val.oyuncular_sag} --- right substitute{val.yedekler_sag} --- right manager{val.teknik_direktor_sag}</div>;
+              })}
           </form>
       </div>
   );

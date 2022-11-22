@@ -9,6 +9,7 @@ import { AdminLogin } from "./pages/AdminLogin";
 import { ClubLogin } from "./pages/ClubLogin";
 import { Club } from "./pages/Club";
 import { Admin } from "./pages/Admin";
+import { CommentMain } from "./pages/CommentMain";
 import { FAQ } from "./pages/FAQ";
 import { Standings } from "./pages/Standings";
 import {BrowserRouter as Router, Switch, Route, Link, NavLink} from "react-router-dom";
@@ -45,6 +46,9 @@ function App() {
           </Route>
           <Route exact path="/club">
             <Club />
+          </Route>
+          <Route exact path="/commentmain">
+            <CommentMain />
           </Route>
           <Route exact path="/FAQ">
             <FAQ />
