@@ -1,4 +1,8 @@
 const puppeteer = require('puppeteer');
+const fs = require('fs/promises');
+const { group } = require('console');
+const { useState } = require('react');
+const { default: Axios } = require('axios');
 /******************************************************************************************************************/
 var GET_11 = async function (page,st11,st12,st3){
     var isimler_SOL = []
@@ -127,8 +131,77 @@ var start = async function (url) {
     browser.close();
 };
 /******************************************************************************************************************/
+
+const generateInputItems = (arg) =>{
+    let input = "";
+    for(let i =0; i<arg.length;i++){
+        input += `<li>${arg[i]}</li>`;
+
+    }
+
+    return input;
+
+}
+async function start2(){
+    const browser = await puppeteer.launch();
+    const page = await browser.newPage();
+    await page.goto("https://www.transfermarkt.com/super-lig/tabelle/wettbewerb/TR1/saison_id/2022");
+    var infoArray = [];
+
+    const names = await page.evaluate(() =>{
+        return Array.from(document.querySelectorAll("#yw1 > table > tbody > tr > td.no-border-links.hauptlink > a")).map(x => x.textContent);
+
+    })
+    const headers = await page.evaluate(() =>{
+        return Array.from(document.querySelectorAll("#yw1 > table > thead > tr > th")).map(x => x.textContent);
+        
+    })
+    
+    const gamesPlayed = await page.evaluate(() =>{
+        return Array.from(document.querySelectorAll("#yw1 > table > tbody > tr > td:nth-child(4)")).map(x => x.textContent);
+        
+    })
+    const gamesWon = await page.evaluate(() =>{
+        return Array.from(document.querySelectorAll("#yw1 > table > tbody > tr > td:nth-child(5)")).map(x => x.textContent);
+        
+    })
+    const gamesDrawn = await page.evaluate(() =>{
+        return Array.from(document.querySelectorAll("#yw1 > table > tbody > tr > td:nth-child(6)")).map(x => x.textContent);
+        
+    })
+    const gamesLost = await page.evaluate(() =>{
+        return Array.from(document.querySelectorAll("#yw1 > table > tbody > tr > td:nth-child(7)")).map(x => x.textContent);
+        
+    })
+    const gameGoals = await page.evaluate(() =>{
+        return Array.from(document.querySelectorAll("#yw1 > table > tbody > tr > td:nth-child(8)")).map(x => x.textContent);
+        
+    })
+    const gamePM = await page.evaluate(() =>{
+        return Array.from(document.querySelectorAll("#yw1 > table > tbody > tr > td:nth-child(9)")).map(x => x.textContent);
+        
+    })
+    const points = await page.evaluate(() =>{
+        return Array.from(document.querySelectorAll("#yw1 > table > tbody > tr > td:nth-child(10)")).map(x => x.textContent);
+        
+    })
+
+    var headerInfo = headers[0] + " " + headers[1] + " " + headers[2] + " " + headers[3] + " " + headers[4] + " " + headers[5] + " " +headers[6] + " " + headers[7] + " " + headers[8];
+    infoArray.push(headerInfo);
+    for(let i = 0; i < names.length; i++){
+        var line = names[i] + " " + gamesPlayed[i] + " " + gamesWon[i] + " " + gamesDrawn[i] + " " +gamesLost[i] + " " + gameGoals[i] + " " + gamePM[i] + " " + points[i] + "\n";
+        infoArray.push(line);
+    }   
+    await fs.writeFile("names.txt",infoArray.join("\r\n"));
+    
+    
+
+}
 (
     async () => {
+        
+        
+        
         await start("https://www.transfermarkt.com/istanbulspor_trabzonspor/index/spielbericht/3854849");
         console.log("_________________________________________________");
         await start("https://www.transfermarkt.com/sivasspor_gaziantep-fk/index/spielbericht/3854846");
@@ -136,5 +209,8 @@ var start = async function (url) {
 
         console.log("_________________________________________________");
         await start("https://www.transfermarkt.com/spielbericht/index/spielbericht/3860336");
+        
+       
+
     }
 )();
