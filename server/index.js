@@ -451,6 +451,16 @@ app.get ("/getactiveusers", (req, res) => {
     });
 });
 
+app.get('/PLAYERS', (req, res) => {
+  db.query("SELECT * FROM PLAYERS", (err, result) => {
+    if (err) {
+      console.log(err)
+    } else{
+      res.send(result)
+    }
+  })
+})
+
 app.post("/deactivateuser", (req, res) => {
   const name = req.body.name;
 
