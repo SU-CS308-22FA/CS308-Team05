@@ -72,6 +72,15 @@ export const User = (props) => {
 
   let history = useHistory();
 
+  const [playerList, set_playerList] = useState([]);
+
+  const getPlayers = () => {
+    Axios.get("http://localhost:3001/PLAYERS").then((response)=>{
+        console.log(response);
+        set_playerList(response.data);
+    });
+  };
+
   return (
       <div className = "auth-form-container">
           <h2>User Settings</h2>
@@ -88,11 +97,17 @@ export const User = (props) => {
               <label> </label>
               <button onClick={deleteuser} color = "red" >Delete User</button>
               <label> </label>
+              <button onClick={() => history.push('/FAQ')}>Go to the FAQ Page</button>
               <button onClick={() => history.push('/')}>Sign Out</button>
               <label> </label>
               <label> </label>
               <button onClick={updatepassword}>Change Now!</button>
               <button className = "link-btn" onClick={() => history.push('/commentmain')}>Do you want to comment?</button>
+              <button onClick={getPlayers}> Show data</button>
+
+              {playerList.map((val, key) => {
+                return <div>left team: {val.oyuncular_sol} --- left substitute{val.yedekler_sol} --- left manager{val.teknik_direktor_sol} --- right team{val.oyuncular_sag} --- right substitute{val.yedekler_sag} --- right manager{val.teknik_direktor_sag}</div>;
+              })}
           </form>
       </div>
   );
