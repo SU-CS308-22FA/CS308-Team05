@@ -1,9 +1,6 @@
 import React, { useState } from 'react'
 import Axios from 'axios'
-
-
-  
-
+import { useHistory, Redirect } from "react-router-dom";
 
 export const Standings = () => {
   const [Club, setClub] = useState("");
@@ -27,6 +24,8 @@ export const Standings = () => {
 
   };
 
+  let history = useHistory();
+
   return (
     <p>
       
@@ -47,6 +46,7 @@ export const Standings = () => {
         
       </div>
       })}
+      <button className = "link-btn" onClick={() => history.push('/user')}>Go back</button>
     </p>
   )
 }

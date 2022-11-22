@@ -14,7 +14,7 @@ export const CommentMain = (props) => {
             commentsUrl="http://localhost:3001/comments"
             currentUserId="1"
           />
-          <button className = "link-btn" onClick={() => history.push('/')}>Go back to home page</button>
+          <button className = "link-btn" onClick={() => history.push('/user')}>Go back</button>
         </div>
       );
 }

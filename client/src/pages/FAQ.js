@@ -1,12 +1,11 @@
 import React from 'react';
-
+import { useHistory, Redirect } from "react-router-dom";
 import { Collapse, Button } from 'antd';
 
 const { Panel } = Collapse;
 
-
-
 export const FAQ = () => {
+  let history = useHistory();
   return(
     <div id="FAQ" className="block faqBlock">
       <div className="container-fluid">
@@ -39,6 +38,7 @@ export const FAQ = () => {
           <p>Email us your spesific concern and let us try to help!</p>
           <Button type="primary" size="large"><i className="fas fa-envelope"></i> Email your question</Button>
         </div>
+        <button className = "link-btn" onClick={() => history.push('/user')}>Go back</button>
       </div>
     </div>  
   );

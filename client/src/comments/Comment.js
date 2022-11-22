@@ -29,9 +29,6 @@ const Comment = ({
   const createdAt = new Date(comment.createdAt).toLocaleDateString();
   return (
     <div key={comment.id} className="comment">
-      <div className="comment-image-container">
-        <img src="../images/user-icon.png" />
-      </div>
       <div className="comment-right-part">
         <div className="comment-content">
           <div className="comment-author">{comment.username}</div>

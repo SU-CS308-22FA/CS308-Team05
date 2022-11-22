@@ -76,7 +76,7 @@ export const Admin = (props) => {
         name: clubname,
     }).then((response)=> {
         if (response.data.message){
-            setActivateclubstatus(response.data.message);
+            setActivateclubstatus("Activated");
         } else {
             setActivateclubstatus(response.data[0].Name);
         }
@@ -88,7 +88,7 @@ export const Admin = (props) => {
         name: clubname,
     }).then((response)=> {
         if (response.data.message){
-            setDeactivateclubstatus(response.data.message);
+            setDeactivateclubstatus("Deactivated");
         } else {
             setDeactivateclubstatus(response.data[0].Name);
         }
@@ -100,7 +100,7 @@ export const Admin = (props) => {
         name: username,
     }).then((response)=> {
         if (response.data.message){
-            setActivateuserstatus(response.data.message);
+            setActivateuserstatus("Activated");
         } else {
             setActivateuserstatus(response.data[0].Username);
         }
@@ -112,7 +112,7 @@ export const Admin = (props) => {
         name: username,
     }).then((response)=> {
         if (response.data.message){
-            setDeactivateuserstatus(response.data.message);
+            setDeactivateuserstatus("Deactivated");
         } else {
             setDeactivateuserstatus(response.data[0].Username);
         }
