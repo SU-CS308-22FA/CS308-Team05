@@ -87,6 +87,7 @@ app.post("/signup", (req, res) => {
   })
 });
 
+
 app.get ("/login", (req, res) => {
   if (req.session.user){
     res.send({loggedIn: true, user: req.session.user});
@@ -95,6 +96,41 @@ app.get ("/login", (req, res) => {
   }
 });
 
+app.post("/create", (req, res) => {
+  const Club = req.body.Club;
+  const Games = req.body.Games;
+  const W = req.body.W;
+  const D = req.body.D;
+  const L = req.body.L;
+  const Goals = req.body.Goals;
+  const GD = req.body.GS;
+  const Points = req.body.Points;
+  
+
+  db.query(
+    "INSERT INTO STANDINGS (Club, Games, W, D, L, Goals, GD, Points) VALUES (?,?,?,?,?,?,?,?)",
+    [Club, Games, W, D, L, Goals, GD, Points],
+    (err, result) => {
+      if (err) {
+        console.log(err);
+      } else {
+        res.send("Values Inserted");
+      }
+    }
+  );
+});
+
+app.get ('/standings', (req, res) => {
+  db.query("SELECT * FROM STANDINGS",(err,result) =>{
+    if(err){
+      console.log(err)
+    }
+    else{
+      res.send(result)
+    }
+  })
+ 
+});
 app.post ("/login", (req, res) => {
   const identification = req.body.identification;
   const password = req.body.password;

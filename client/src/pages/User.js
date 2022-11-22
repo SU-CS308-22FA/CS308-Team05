@@ -98,6 +98,7 @@ export const User = (props) => {
               <button onClick={deleteuser} color = "red" >Delete User</button>
               <label> </label>
               <button onClick={() => history.push('/FAQ')}>Go to the FAQ Page</button>
+              <button onClick={() => history.push('/Standings')}>View the League Standings</button>
               <button onClick={() => history.push('/')}>Sign Out</button>
               <label> </label>
               <label> </label>
