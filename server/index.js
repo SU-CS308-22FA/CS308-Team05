@@ -325,7 +325,7 @@ app.post("/adminupdatepassword", (req, res) => {
     }
 
     db.query(
-      "UPDATE FootballClubs SET Password = ? WHERE Username = ?;", 
+      "UPDATE Admins SET Password = ? WHERE Username = ?;", 
       [hash, id], 
       (err, result) => {
       if (err) {
