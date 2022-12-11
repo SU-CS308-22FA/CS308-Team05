@@ -6,8 +6,7 @@ import Rating from "react-rating";
 Axios.defaults.withCredentials = true;
 
 const playerarray = [];
-const votearray = [];
-let voteexist = false;
+const votearray = [1,1,1,1,1,1,1,1,1,1,1,1];
 
 function getplayers (match) {
 
@@ -44,16 +43,19 @@ const savevote = (match) => {
     }
     let table = match.substring(0,seppos-2)+match.substring(seppos+3,match.length);
 
-    Axios.post("http://localhost:3001/savevote", {
-        name: global.fullname,
-        server: table, 
-    }).then((response)=> {
-        if (response.data.message){
-            console.log("Column succesfully added");
-        } else {
-            console.log("Error");
-        }
-    });
+    for (var i=0; i<votearray.length; i++){
+        Axios.post("http://localhost:3001/savevote", {
+            server: table,
+            id: i+1,
+            score: (votearray[i])/4,
+        }).then((response)=> {
+            if (response.data.message){
+                console.log("Vote succesfully added");
+            } else {
+                console.log("Error");
+            }
+        });
+    }
 };
 
 function RatePopup(props) {

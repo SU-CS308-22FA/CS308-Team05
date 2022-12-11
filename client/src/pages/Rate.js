@@ -3,7 +3,6 @@ import Axios from 'axios'
 import { useHistory, Redirect } from "react-router-dom";
 import RatePopup  from "./RatePopup";
 import { Collapse, } from 'antd';
-import Popup  from "./Popup";
 
 const { Panel } = Collapse;
 
@@ -13,6 +12,7 @@ export const Rate = (props) => {
     const [activatematchdisplay, setActivatematchdisplay] = useState(false);
     const [showmatches, setShowMatches] = useState(false);
     const [match, setMatch] = useState("");
+    
 
     Axios.defaults.withCredentials = true;
 

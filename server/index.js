@@ -544,9 +544,10 @@ app.post ("/displayplayers", (req, res) => {
 
 app.post ("/savevote", (req, res) => {
   const server = req.body.server;
-  const name = req.body.name;
-  
-  let table = "ALTER TABLE "+ server +" ADD COLUMN "+name+" INT(11) NULL AFTER `Position`";
+  const id = req.body.id;
+  const score = req.body.score;
+
+  let table = "UPDATE "+ server +" SET Vote = Vote + "+score+" WHERE idPlayer = "+id;
 
   db.query(
     table,
