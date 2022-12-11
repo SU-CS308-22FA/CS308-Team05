@@ -13,11 +13,13 @@ import { CommentMain } from "./pages/CommentMain";
 import { FAQ } from "./pages/FAQ";
 import { Standings } from "./pages/Standings";
 import { Rate } from "./pages/Rate";
+import { PlayerRate } from "./pages/RatePopup";
 import {BrowserRouter as Router, Switch, Route, Link, NavLink} from "react-router-dom";
 
 function App() {
 
   global.fullname = "";
+  global.match = "";
 
   return (
     <Router>
@@ -59,6 +61,9 @@ function App() {
           </Route>
           <Route exact path="/Rate">
             <Rate />
+          </Route>
+          <Route exact path="/RatePopup">
+            <PlayerRate />
           </Route>
         </Switch>
         <img src="/images/rate12.png" alt=""/>
