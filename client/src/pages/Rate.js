@@ -11,8 +11,6 @@ export const Rate = (props) => {
     const [servermatcharray, setServerMatchArray] = useState([]);
     const [activatematchdisplay, setActivatematchdisplay] = useState(false);
     const [showmatches, setShowMatches] = useState(false);
-    const [match, setMatch] = useState("");
-    
 
     Axios.defaults.withCredentials = true;
 
@@ -52,7 +50,9 @@ export const Rate = (props) => {
 
     const selectmatch = (paragraph) => {
         setShowMatches(true);
-        setMatch(paragraph);
+        global.match = paragraph;
+        console.log(global.match);
+        history.push('/RatePopup');
     };
 
     return (
@@ -66,9 +66,6 @@ export const Rate = (props) => {
                         <button onClick={() => selectmatch(paragraph)}>{
                             paragraph
                         }</button>
-                        <RatePopup trigger={showmatches} setTrigger = {setShowMatches} match = {match}>
-                        <h3>Players</h3>
-                        </RatePopup>
                     </div>)}
                 </p> 
             </form>
