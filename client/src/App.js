@@ -16,6 +16,13 @@ import { AdminAnswer } from "./pages/AdminAnswer";
 import { Answers } from "./pages/Answers";
 import { Email } from "./pages/Email";
 import { Standings } from "./pages/Standings";
+import { Week1 } from "./weekly_fixtures/Week1";
+import { Week2 } from "./weekly_fixtures/Week2";
+import { Week3 } from "./weekly_fixtures/Week3";
+import { Week4 } from "./weekly_fixtures/Week4";
+import { Week5 } from "./weekly_fixtures/Week5";
+import { Week6 } from "./weekly_fixtures/Week6";
+import { WeekPage } from "./weekly_fixtures/WeekPage";
 import {BrowserRouter as Router, Switch, Route, Link, NavLink} from "react-router-dom";
 
 function App() {
