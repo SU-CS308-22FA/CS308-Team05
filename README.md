@@ -18,12 +18,12 @@ USER DOCUMENTATION
 HOW TO INSTALL THE SOFTWARE
 In order to install the software, the user must download React.js and node.js to his/her computer. The user can use the git clone command to download the RATE12 codes.
 
-1- Download the CS308-Team05.zip from the latest release.
-2- Extract the .zip file and locate client and server folders.
-	Use the client  folder to access the front-end.
-	Use the server folder to access the back-end
-3- Copy the file of your choice into your project directory.
-4- Enjoy RATE12 :)
+- Download the CS308-Team05.zip from the latest release.
+- Extract the .zip file and locate client and server folders.
+  - Use the client  folder to access the front-end.
+  - Use the server folder to access the back-end
+- Copy the file of your choice into your project directory.
+- Enjoy RATE12 :)
 
 HOW TO REPORT A BUG
 If a bug is found, the user can report the bug by opening an issue in the github page and linking the project. Additionally, through RATE12, you can also use our question submission page which is accessible from under the FAQ page to send and inform our admins about the bugs you have found. Just enter your name, the admin name and the content of your message (in this case, a bug report).
@@ -47,11 +47,11 @@ HOW TO DEPLOY AND BUILD THE SOFTWARE
 In order to run the website locally, the user must open 2 terminals and write the following code lines.
 
 For /client:
-cd client
-npm install
-npm start
+- cd client
+- npm install
+- npm start
 
 For /server:
-cd server
-npm install
-node index.js
+- cd server
+- npm install
+- node index.js
