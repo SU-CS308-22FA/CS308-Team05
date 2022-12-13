@@ -80,7 +80,7 @@ export const PlayerRate = (props) => {
                 </div> )} </p>
             <p> <button onClick={savevote(global.match)}> Vote </button> </p> 
             </form>
-            <button className = "link-btn" onClick={() => history.push('/Rate')}> Go back to user page </button>
+            <button className = "link-btn" onClick={() => history.push('/Rate')}> Go back to choosing matches to rate </button>
         </div>
     );
 }
