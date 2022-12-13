@@ -76,7 +76,7 @@ export const Admin = (props) => {
         name: clubname,
     }).then((response)=> {
         if (response.data.message){
-            setActivateclubstatus("Activated");
+            setActivateclubstatus(response.data.message);
         } else {
             setActivateclubstatus(response.data[0].Name);
         }
@@ -88,7 +88,7 @@ export const Admin = (props) => {
         name: clubname,
     }).then((response)=> {
         if (response.data.message){
-            setDeactivateclubstatus("Deactivated");
+            setDeactivateclubstatus(response.data.message);
         } else {
             setDeactivateclubstatus(response.data[0].Name);
         }
@@ -100,7 +100,7 @@ export const Admin = (props) => {
         name: username,
     }).then((response)=> {
         if (response.data.message){
-            setActivateuserstatus("Activated");
+            setActivateuserstatus(response.data.message);
         } else {
             setActivateuserstatus(response.data[0].Username);
         }
@@ -112,7 +112,7 @@ export const Admin = (props) => {
         name: username,
     }).then((response)=> {
         if (response.data.message){
-            setDeactivateuserstatus("Deactivated");
+            setDeactivateuserstatus(response.data.message);
         } else {
             setDeactivateuserstatus(response.data[0].Username);
         }
@@ -251,6 +251,7 @@ export const Admin = (props) => {
               <button onClick={updatepassword}>Change Now!</button>
               <label> </label>
               <button onClick={() => history.push('/')}>Sign Out</button>
+              <button onClick={() => history.push('/AdminEmail')}>Go to the Asked Questions</button>
           </form>
       </div>
   );

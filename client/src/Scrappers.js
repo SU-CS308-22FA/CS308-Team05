@@ -197,6 +197,45 @@ async function start2(){
     
 
 }
+
+async function getlineup(match_url){
+    const browser = await puppeteer.launch();
+    const page = await browser.newPage();
+    await page.goto(match_url);
+
+    const team1 = await page.evaluate(() =>{
+        return Array.from(document.querySelectorAll("#main > main > div:nth-child(11) > div > div > div.large-6.columns.aufstellung-box > div.unterueberschrift.aufstellung-unterueberschrift-mannschaft > div:nth-child(2) > nobr > a")).map(x => x.textContent);
+        
+    })
+    const team2 = await page.evaluate(() =>{
+        return Array.from(document.querySelectorAll("#main > main > div:nth-child(11) > div > div > div:nth-child(3) > div.unterueberschrift.aufstellung-unterueberschrift-mannschaft.aufstellung-bordertop-small > div:nth-child(2) > nobr > a")).map(x => x.textContent);
+        
+    })
+
+    const lineup1 = await page.evaluate(() =>{
+        return Array.from(document.querySelectorAll("#main > main > div:nth-child(11) > div > div > div.large-6.columns.aufstellung-box > div.row > div.large-7.aufstellung-vereinsseite.columns.small-12.unterueberschrift.aufstellung-unterueberschrift")).map(x => x.textContent);
+        
+    }) 
+
+    const lineup2 = await page.evaluate(() =>{
+        return Array.from(document.querySelectorAll("#main > main > div:nth-child(11) > div > div > div:nth-child(3) > div.row > div.large-7.aufstellung-vereinsseite.columns.small-12.unterueberschrift.aufstellung-unterueberschrift")).map(x => x.textContent);
+        
+    })
+
+    var infoArray = [];
+
+    const line1 = team1 + " " + lineup1;
+    const line2 = team2 + " " + lineup2;
+
+    infoArray.push(line1);
+    infoArray.push(line2);
+
+    await fs.writeFile("lineups.txt",infoArray.join("\r\n"));
+    
+
+    
+
+}
 (
     async () => {
         
@@ -209,6 +248,8 @@ async function start2(){
 
         console.log("_________________________________________________");
         await start("https://www.transfermarkt.com/spielbericht/index/spielbericht/3860336");
+
+        await getlineup("https://www.transfermarkt.com/spielbericht/index/spielbericht/3860307");
         
        
 
