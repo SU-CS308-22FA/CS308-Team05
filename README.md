@@ -50,7 +50,7 @@ For /client:
 cd client
 npm install
 npm start
-—-----------------------
+
 For /server:
 cd server
 npm install
