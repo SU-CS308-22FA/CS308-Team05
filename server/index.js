@@ -497,6 +497,26 @@ app.get('/PLAYERS', (req, res) => {
   })
 })
 
+app.get('/PLAYERPAGE', (req, res) => {
+  db.query("SELECT * FROM PLAYERPAGE WHERE zmatch = 1", (err, result) => {
+    if (err) {
+      console.log(err)
+    } else{
+      res.send(result)
+    }
+  }) 
+})
+
+app.get('/PLAYERPAGE_v2', (req, res) => {
+  db.query("SELECT * FROM PLAYERPAGE WHERE zmatch = 2", (err, result) => {
+    if (err) {
+      console.log(err)
+    } else{
+      res.send(result)
+    }
+  })
+})
+
 app.post("/deactivateuser", (req, res) => {
   const name = req.body.name;
 
