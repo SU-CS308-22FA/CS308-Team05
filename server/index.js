@@ -159,6 +159,85 @@ app.post ("/login", (req, res) => {
   );
 });
 
+app.post("/sendquestion",(req,res) =>{
+  const content = req.body.content;
+  const senderName = req.body.senderName;
+  const receiverAdmin = req.body.receiverAdmin;
+
+  db.query(
+    "INSERT INTO Questions (content,senderName,receiverAdmin) VALUES (?,?,?)",
+    [content,senderName,receiverAdmin],
+    (err,result) =>{
+      if(err){
+        console.log(err);
+      }
+      else{
+        
+      }
+    }
+  )
+})
+
+app.post("/sendanswer",(req,res) =>{
+  const content = req.body.content;
+  const userSent = req.body.userSent;
+  const adminName = req.body.adminName;
+
+  db.query(
+    "INSERT INTO Answers (adminName,userSent,content) VALUES (?,?,?)",
+    [adminName,userSent,content],
+    (err,result) =>{
+      if(err){
+        console.log(err);
+      }
+      else{
+        
+      }
+    }
+  )
+})
+
+app.get("/questions",(req,res) =>{
+  db.query("SELECT * FROM Questions WHERE isResolved IS FALSE",(err,result) =>{
+    if(err){
+      console.log(err);
+    }
+    else{
+      res.send(result);
+    }
+  })
+})
+
+
+app.post("/updateresolved", (req, res) => {
+  const senderName = req.body.senderName;
+
+  db.query(
+    "UPDATE Questions SET isResolved = 1 WHERE senderName = ?;", 
+    senderName,
+    (err, result) => {
+    if (err) {
+      console.log(err);
+      res.send({message: "An error occured"});
+    } else {
+      res.send(result);
+    }
+  });
+});
+
+app.get("/answers",(req,res) =>{
+  const userSent = req.body.userSent;
+  db.query("SELECT * FROM Answers",
+    (err,result) =>{
+    if(err){
+      console.log(err);
+    }
+    else{
+      res.send(result);
+    }
+  })
+})
+
 app.post("/updateusername", (req, res) => {
   const id = req.body.id;
   const username = req.body.username;
