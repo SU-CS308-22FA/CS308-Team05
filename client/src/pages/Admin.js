@@ -343,6 +343,9 @@ export const Admin = (props) => {
               <button onClick={updatepassword}>Change Now!</button>
               <label> </label>
               <button onClick={() => history.push('/')}>Sign Out</button>
+
+              <label> </label>
+              <button onClick={() => history.push('/WeekPage')}>Open fixture page</button>
           </form>
       </div>
   );

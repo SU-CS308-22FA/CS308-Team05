@@ -497,6 +497,65 @@ app.get('/PLAYERS', (req, res) => {
   })
 })
 
+app.get('/fixtures', (req, res) => {
+  db.query("SELECT * FROM fixtures WHERE week_of_match = 1", (err, result) => {
+    if (err) {
+      console.log(err)
+    } else{
+      res.send(result)
+    }
+  })
+})
+
+app.get('/fixtures_w2', (req, res) => {
+  db.query("SELECT * FROM fixtures WHERE week_of_match = 2", (err, result) => {
+    if (err) {
+      console.log(err)
+    } else{
+      res.send(result)
+    }
+  })
+})
+
+app.get('/fixtures_w3', (req, res) => {
+  db.query("SELECT * FROM fixtures WHERE week_of_match = 3", (err, result) => {
+    if (err) {
+      console.log(err)
+    } else{
+      res.send(result)
+    }
+  })
+})
+
+app.get('/fixtures_w4', (req, res) => {
+  db.query("SELECT * FROM fixtures WHERE week_of_match = 4", (err, result) => {
+    if (err) {
+      console.log(err)
+    } else{
+      res.send(result)
+    }
+  })
+})
+
+app.get('/fixtures_w5', (req, res) => {
+  db.query("SELECT * FROM fixtures WHERE week_of_match = 5", (err, result) => {
+    if (err) {
+      console.log(err)
+    } else{
+      res.send(result)
+    }
+  })
+})
+
+app.get('/fixtures_w6', (req, res) => {
+  db.query("SELECT * FROM fixtures WHERE week_of_match = 6", (err, result) => {
+    if (err) {
+      console.log(err)
+    } else{
+      res.send(result)
+    }
+  })
+})
 app.get('/PLAYERPAGE', (req, res) => {
   db.query("SELECT * FROM PLAYERPAGE WHERE zmatch = 1", (err, result) => {
     if (err) {
