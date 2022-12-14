@@ -28,7 +28,7 @@ export const Standings = () => {
 
   return (
     <p>
-      <button onClick={getStandings}>Show Standings</button>
+      <button className='st-btn' onClick={getStandings}>Show Standings</button>
       <h1 class = "headin">Standings</h1>
       <tr class = "col">
             <th>Club</th>

@@ -104,7 +104,7 @@ export const User = (props) => {
               <label> </label>
               <label> </label>
               <button onClick={updatepassword}>Change Now!</button>
-              <button className = "link-btn" onClick={() => history.push('/commentmain')}>Do you want to comment?</button>
+              <button onClick={() => history.push('/commentmain')}>Do you want to comment?</button>
               <button onClick={getPlayers}> Show data</button>
 
               {playerList.map((val, key) => {

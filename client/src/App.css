@@ -37,10 +37,24 @@ button {
   color: #7439db;
 }
 
+button:hover{
+  background-color: #7439db;
+  color:#FFFFFF;
+  transition: all 0.3s ease;
+}
+
+
+
 .link-btn {
-  background: none;
-  color: white;
-  text-decoration: underline;
+  background-color: #FFFFFF;
+  color: red;
+  
+}
+
+.link-btn:hover {
+  background-color: red;
+  color:#FFFFFF;
+  transition: all 0.3s ease;
 }
 
 .homebuttonstyle {
@@ -58,6 +72,7 @@ img {
   margin-right: 100px;
 }
 
+
 .popup {
   position: fixed;
   top: 0;
@@ -68,6 +83,7 @@ img {
   display: flex;
   justify-content: center;
   align-items: center;
+  transition: all 5s ease-in-out;
 }
 
 .popup-inner {
@@ -132,4 +148,6 @@ table .col{
 
 .wpos:hover td{
 	color: #FFFFFF;
+  transition: all 0.678s ease;
+  
 }

@@ -65,7 +65,7 @@ export const AdminAnswer = () => {
 
         </Popup>
 
-        <button className='link-btn' onClick={() => history.push("/AdminEmail")}>Go back</button>
+        <button className="link-btn" onClick={() => history.push("/AdminEmail")}>Go back</button>
 
 
     </div>
