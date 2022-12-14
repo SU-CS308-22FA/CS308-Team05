@@ -556,6 +556,25 @@ app.get('/fixtures_w6', (req, res) => {
     }
   })
 })
+app.get('/PLAYERPAGE', (req, res) => {
+  db.query("SELECT * FROM PLAYERPAGE WHERE zmatch = 1", (err, result) => {
+    if (err) {
+      console.log(err)
+    } else{
+      res.send(result)
+    }
+  }) 
+})
+
+app.get('/PLAYERPAGE_v2', (req, res) => {
+  db.query("SELECT * FROM PLAYERPAGE WHERE zmatch = 2", (err, result) => {
+    if (err) {
+      console.log(err)
+    } else{
+      res.send(result)
+    }
+  })
+})
 
 app.post("/deactivateuser", (req, res) => {
   const name = req.body.name;
@@ -563,6 +582,99 @@ app.post("/deactivateuser", (req, res) => {
   db.query(
     "UPDATE Users SET Active = false WHERE Username = ?;", 
     name,
+    (err, result) => {
+    if (err) {
+      console.log(err);
+      res.send({message: "An error occured"});
+    } else {
+      res.send(result);
+    }
+  });
+});
+
+app.get ("/getactivematches", (req, res) => {
+  db.query(
+    "SELECT * FROM MatchScores WHERE RateAvailable IS TRUE",
+    (err, result) => {
+      if (err) {
+        console.log(err);
+        res.send({message: "An error occured"});
+      } else {
+        res.send(result);
+      }
+    });
+});
+
+app.get ("/getinactivematches", (req, res) => {
+  db.query(
+    "SELECT * FROM MatchScores WHERE RateAvailable IS FALSE",
+    (err, result) => {
+      if (err) {
+        console.log(err);
+        res.send({message: "An error occured"});
+      } else {
+        res.send(result);
+      }
+    });
+});
+
+app.post ("/displayplayers", (req, res) => {
+  const server = req.body.server;
+  let table = "SELECT PlayerName FROM "+ server +" WHERE PlayerName IS NOT NULL";
+
+  db.query(
+    table,
+    (err, result) => {
+      if (err) {
+        console.log(err);
+        res.send({message: "An error occured"});
+      } else {
+        res.send(result);
+      }
+    });
+});
+
+app.post ("/savevote", (req, res) => {
+  const server = req.body.server;
+  const id = req.body.id;
+  const score = req.body.score;
+
+  let table = "UPDATE "+ server +" SET Vote = Vote + "+score+" WHERE idPlayer = "+id;
+
+  db.query(
+    table,
+    (err, result) => {
+      if (err) {
+        console.log(err);
+        res.send({message: "An error occured"});
+      } else {
+        res.send(result);
+      }
+    });
+});
+
+app.post("/activatematch", (req, res) => {
+  const ht = req.body.ht;
+  const at = req.body.at;
+  db.query(
+    "UPDATE MatchScores SET RateAvailable = true WHERE (HomeTeam = ? AND AwayTeam = ?);", 
+    [ht, at],
+    (err, result) => {
+    if (err) {
+      console.log(err);
+      res.send({message: "An error occured"});
+    } else {
+      res.send(result);
+    }
+  });
+});
+
+app.post("/deactivatematch", (req, res) => {
+  const ht = req.body.ht;
+  const at = req.body.at;
+  db.query(
+    "UPDATE MatchScores SET RateAvailable = false WHERE (HomeTeam = ? AND AwayTeam = ?);", 
+    [ht, at],
     (err, result) => {
     if (err) {
       console.log(err);
