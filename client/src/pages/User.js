@@ -107,6 +107,8 @@ export const User = (props) => {
                 <button onClick={getPlayers}> Show data</button>
                 <label> </label>
                 <button onClick={() => history.push('/WeekPage')}>Open fixture page</button>
+                <label></label>
+                <button className = "link-btn" onClick={() => history.push('/Trabzonspor')}>Trabzon players page</button>
                {playerList.map((val, key) => {
                 return <div>left team: {val.oyuncular_sol} --- left substitute{val.yedekler_sol} --- left manager{val.teknik_direktor_sol} --- right team{val.oyuncular_sag} --- right substitute{val.yedekler_sag} --- right manager{val.teknik_direktor_sag}</div>;
                })}
