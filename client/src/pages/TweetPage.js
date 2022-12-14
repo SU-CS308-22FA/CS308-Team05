@@ -32,8 +32,6 @@ export const TweetPage = () => {
             <button className = "link-btn" onClick={() => history.push('/user')}>Go back</button>
           </p>
           <div>
-            
-            
           </div>
         </div>    
       )
