@@ -37,10 +37,24 @@ button {
   color: #7439db;
 }
 
+button:hover{
+  background-color: #7439db;
+  color:#FFFFFF;
+  transition: all 0.3s ease;
+}
+
+
+
 .link-btn {
-  background: none;
-  color: white;
-  text-decoration: underline;
+  background-color: #FFFFFF;
+  color: red;
+  
+}
+
+.link-btn:hover {
+  background-color: red;
+  color:#FFFFFF;
+  transition: all 0.3s ease;
 }
 
 .homebuttonstyle {
@@ -57,6 +71,7 @@ img {
   margin-right: 100px;
 }
 
+
 .popup {
   position: fixed;
   top: 0;
@@ -67,6 +82,7 @@ img {
   display: flex;
   justify-content: center;
   align-items: center;
+  transition: all 5s ease-in-out;
 }
 
 .popup-inner {
@@ -82,4 +98,55 @@ img {
   position: absolute;
   top: 16px;
   right: 16px;
+}
+
+.ptable table{
+	margin: 30px auto;
+	border-collapse: collapse;
+}
+
+.ptable{
+	margin: 0px 0% 30px 0%;
+}
+
+
+th, td {
+  padding: 10px;
+}
+
+th{
+background-color: black;
+color: #ffe221;
+}
+
+.headin{
+text-align: center;
+text-decoration: none;
+color: #ffe221;
+margin: 30px;
+display: block;
+}
+
+.wpos{
+text-align: center;
+}
+
+.wpos td{
+color: #77ff21;
+background-color: #000000;
+}
+
+
+table .col{
+	border-bottom: 1px solid #FFFFFF;
+}
+
+.wpos:hover{
+	background-color: #77ff21;
+}
+
+.wpos:hover td{
+	color: #FFFFFF;
+  transition: all 0.678s ease;
+  
 }

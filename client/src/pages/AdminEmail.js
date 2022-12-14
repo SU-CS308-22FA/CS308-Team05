@@ -40,7 +40,7 @@ export const AdminEmail = () => {
       </div>
       
       })}
-      <button onClick={() => history.push("/Admin")}>Go back</button>
+      <button className='link-btn' onClick={() => history.push("/Admin")}>Go back</button>
       
     </p>
 

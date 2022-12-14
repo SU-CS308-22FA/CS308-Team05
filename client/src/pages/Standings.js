@@ -28,20 +28,32 @@ export const Standings = () => {
 
   return (
     <p>
+      <button className='st-btn' onClick={getStandings}>Show Standings</button>
+      <h1 class = "headin">Standings</h1>
+      <tr class = "col">
+            <th>Club</th>
+            <th>W</th>
+            <th>D</th>
+            <th>L</th>
+            <th>Goals</th>
+            <th>GD</th>
+            <th>Points</th>
+          </tr>
       
-      <button onClick={getStandings}>Show Standings</button>
       {standingsList.map((val,key) =>{
-        return <div>
-        <h3>
-          Club: {val.Club}
-          <h3>Games: {val.Games}</h3>
-          <h3>Wins: {val.W}</h3>
-          <h3>Draws: {val.D}</h3>
-          <h3>Losses: {val.L}</h3>
-          <h3>Goals: {val.Goals}</h3>
-          <h3>GD: {val.GD}</h3>
-          <h3>Points: {val.Points}</h3>
-        </h3>
+        return <div className="ptable">
+          
+          
+          <tr class = "wpos">
+            <td>{val.Club}</td>
+            <td>{val.W}</td>
+            <td>{val.D}</td>
+            <td>{val.L}</td>
+            <td>{val.Goals}</td>
+            <td>{val.GD}</td>
+            <td>{val.Points}</td>
+          </tr>
+        
         
         
       </div>
