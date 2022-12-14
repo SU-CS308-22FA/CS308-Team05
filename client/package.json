@@ -1,5 +1,5 @@
 {
-  "name": "my-app",
+  "name": "my-app", 
   "version": "0.1.0",
   "private": true,
   "dependencies": {
@@ -12,13 +12,16 @@
     "body-parser": "^1.20.1",
     "cookie-parser": "^1.4.6",
     "express-session": "^1.17.3",
+    "fs": "0.0.1-security",
     "puppeteer": "^19.2.2",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
+    "react-rating": "^2.0.5",
     "react-router-dom": "^5.2.0",
     "react-scripts": "5.0.1",
-    "web-vitals": "^2.1.4",
-    "fs": "0.0.1-security"
+    "react-tweet-embed": "^2.0.0",
+    "react-twitter-embed": "^4.0.4",
+    "web-vitals": "^2.1.4"
   },
   "scripts": {
     "start": "react-scripts start",

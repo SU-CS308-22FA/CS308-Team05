@@ -97,21 +97,24 @@ export const User = (props) => {
                 <label> </label>
                 <button onClick={deleteuser} color = "red" >Delete User</button>
                 <label> </label>
+                <button onClick={() => history.push('/Rate')}>RATE PLAYERS !!!</button>
+                <label> </label>
                 <button onClick={() => history.push('/FAQ')}>Go to the FAQ Page</button>
+                <label> </label>
                 <button onClick={() => history.push('/Standings')}>View the League Standings</button>
+                <label> </label>
                 <button onClick={() => history.push('/')}>Sign Out</button>
                 <label> </label>
                 <label> </label>
                 <button onClick={updatepassword}>Change Now!</button>
                 <button className = "link-btn" onClick={() => history.push('/commentmain')}>Do you want to comment?</button>
-                <button onClick={getPlayers}> Show data</button>
+                <button onClick={() => history.push('/TweetPage')}>show the tweets</button>
+                <label> </label>
+                <button onClick={() => history.push('/PlayerPage')}>View the players</button>
                 <label> </label>
                 <button onClick={() => history.push('/WeekPage')}>Open fixture page</button>
                 <label></label>
                 <button className = "link-btn" onClick={() => history.push('/Trabzonspor')}>Trabzon players page</button>
-               {playerList.map((val, key) => {
-                return <div>left team: {val.oyuncular_sol} --- left substitute{val.yedekler_sol} --- left manager{val.teknik_direktor_sol} --- right team{val.oyuncular_sag} --- right substitute{val.yedekler_sag} --- right manager{val.teknik_direktor_sag}</div>;
-               })}
           </form>
       </div>
   );
