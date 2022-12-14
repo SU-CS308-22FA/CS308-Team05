@@ -526,6 +526,19 @@ app.get ("/getactivematches", (req, res) => {
     });
 });
 
+app.get ("/getinactivematches", (req, res) => {
+  db.query(
+    "SELECT * FROM MatchScores WHERE RateAvailable IS FALSE",
+    (err, result) => {
+      if (err) {
+        console.log(err);
+        res.send({message: "An error occured"});
+      } else {
+        res.send(result);
+      }
+    });
+});
+
 app.post ("/displayplayers", (req, res) => {
   const server = req.body.server;
   let table = "SELECT PlayerName FROM "+ server +" WHERE PlayerName IS NOT NULL";
@@ -559,4 +572,36 @@ app.post ("/savevote", (req, res) => {
         res.send(result);
       }
     });
+});
+
+app.post("/activatematch", (req, res) => {
+  const ht = req.body.ht;
+  const at = req.body.at;
+  db.query(
+    "UPDATE MatchScores SET RateAvailable = true WHERE (HomeTeam = ? AND AwayTeam = ?);", 
+    [ht, at],
+    (err, result) => {
+    if (err) {
+      console.log(err);
+      res.send({message: "An error occured"});
+    } else {
+      res.send(result);
+    }
+  });
+});
+
+app.post("/deactivatematch", (req, res) => {
+  const ht = req.body.ht;
+  const at = req.body.at;
+  db.query(
+    "UPDATE MatchScores SET RateAvailable = false WHERE (HomeTeam = ? AND AwayTeam = ?);", 
+    [ht, at],
+    (err, result) => {
+    if (err) {
+      console.log(err);
+      res.send({message: "An error occured"});
+    } else {
+      res.send(result);
+    }
+  });
 });
