@@ -68,7 +68,7 @@ export const PlayerRate = (props) => {
         <div className = "auth-form-container">
             <h2>Players</h2>
             <form className="rate-form" onSubmit = {handleSubmit}>
-                <button onClick={displayplayers}>Display Rateable Matches</button>
+                <button onClick={displayplayers}>Display Rateable Players</button>
                 <p> {playersarray.map(paragraph => <div> 
                     <div>{paragraph}</div> 
                     <Rating stop={10} initialRating={0} onClick={rate => savevote(rate)}/>
