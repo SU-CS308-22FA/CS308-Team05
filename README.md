@@ -26,7 +26,13 @@ In order to install the software, the user must download React.js and node.js to
 - Enjoy RATE12 :)
 
 # HOW TO REPORT A BUG
-If a bug is found, the user can report the bug by opening an issue in the github page and linking the project. Additionally, through RATE12, you can also use our question submission page which is accessible from under the FAQ page to send and inform our admins about the bugs you have found. Just enter your name, the admin name and the content of your message (in this case, a bug report).
+If a bug is found, the user can report the bug by opening an issue in the github page and linking the project. The issue format for github page should be as follows:
+- Description: What is the issue?
+- Location: Where did you get the bug from?
+- Error: Error code of photo of the issue.
+- Possible Solutions: (Optional) If user thought a possible solution you need to explain the solution here
+
+Additionally, through RATE12, you can also use our question submission page which is accessible from under the FAQ page to send and inform our admins about the bugs you have found. Just enter your name, the admin name and the content of your message (in this case, a bug report).
 
 # KNOWN BUGS
 - On the /PlayerPage page, if the user clicks on a team button and then clicks the other team, the previously opened data does not close and both data becomes visible on the page. 
