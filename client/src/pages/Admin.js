@@ -249,8 +249,6 @@ export const Admin = (props) => {
               <label htmlFor = "password">Password Change</label>
               <input onChange={(e) => setPassword(e.target.value)} type = "password" id = "password" name = "password" placeholder = "********"/>
               <button onClick={updatepassword}>Change Now!</button>
-              <label></label>
-              <button className = "link-btn" onClick={() => history.push('/Trabzonspor')}>Trabzon players page</button>
               <label> </label>
               <button onClick={() => history.push('/')}>Sign Out</button>
           </form>

@@ -23,8 +23,8 @@ export const Trabzonspor = () => {
         Centre Back
         </p>
 
-        <p>
         <img src = "https://img.a.transfermarkt.technology/portrait/header/182688-1630526199.png?lm=1" height = "70px" weight = "70px" alt=""/>
+        <p>
         Manolis Siopis:
         Defensive Midfield
         </p>
@@ -47,8 +47,8 @@ export const Trabzonspor = () => {
         Left Wing
         </p>
 
-        <p>
         <img src = "https://img.a.transfermarkt.technology/portrait/header/203412-1668183778.jpg?lm=1" height = "70px" weight = "70px" alt=""/>
+        <p>
         Andreas Cornelius:
         Centre Forward
         </p>
