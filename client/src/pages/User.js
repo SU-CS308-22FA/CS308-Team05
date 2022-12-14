@@ -85,37 +85,37 @@ export const User = (props) => {
       <div className = "auth-form-container">
           <h2>User Settings</h2>
           <form className="user-form" onSubmit = {handleSubmit}>
-              <label htmlFor = "username">Username Change</label>
-              <input onChange={(e) => setUsername(e.target.value)} type = "username" name = "username" id = "username" placeholder = "Username"/>
-              <button onClick={updateusername}>Change Now!</button>
-              <label htmlFor = "email">Email Change</label>
-              <input onChange={(e) => setEmail(e.target.value)} type = "email" id = "email" name = "email" placeholder = "email@gmail.com"/>
-              <button onClick={updateemail}>Change Now!</button>
-              <label htmlFor = "password">Password Change</label>
-              <input onChange={(e) => setPassword(e.target.value)} type = "password" id = "password" name = "password" placeholder = "********"/>
-              <button onClick={updatepassword}>Change Now!</button>
-              <label> </label>
-              <button onClick={deleteuser} color = "red" >Delete User</button>
-              <label> </label>
-              <button onClick={() => history.push('/Rate')}>RATE PLAYERS !!!</button>
-              <label> </label>
-              <button onClick={() => history.push('/FAQ')}>Go to the FAQ Page</button>
-              <label> </label>
-              <button onClick={() => history.push('/Standings')}>View the League Standings</button>
-              <label> </label>
-              <button onClick={() => history.push('/')}>Sign Out</button>
-              <label> </label>
-              <label> </label>
-              <button onClick={updatepassword}>Change Now!</button>
-              <button className = "link-btn" onClick={() => history.push('/commentmain')}>Do you want to comment?</button>
-              <button onClick={() => history.push('/TweetPage')}>show the tweets</button>    
-
-              {playerList.map((val, key) => {
-                return <div>left team: {val.oyuncular_sol} --- left substitute{val.yedekler_sol} --- left manager{val.teknik_direktor_sol} --- right team{val.oyuncular_sag} --- right substitute{val.yedekler_sag} --- right manager{val.teknik_direktor_sag}</div>;
-              })}
-              <label> </label>
-              <button onClick={() => history.push('/PlayerPage')}>View the players</button>       
-          </form> 
+                <label htmlFor = "username">Username Change</label>
+                <input onChange={(e) => setUsername(e.target.value)} type = "username" name = "username" id = "username" placeholder = "Username"/>
+                <button onClick={updateusername}>Change Now!</button>
+                <label htmlFor = "email">Email Change</label>
+                <input onChange={(e) => setEmail(e.target.value)} type = "email" id = "email" name = "email" placeholder = "email@gmail.com"/>
+                <button onClick={updateemail}>Change Now!</button>
+                <label htmlFor = "password">Password Change</label>
+                <input onChange={(e) => setPassword(e.target.value)} type = "password" id = "password" name = "password" placeholder = "********"/>
+                <button onClick={updatepassword}>Change Now!</button>
+                <label> </label>
+                <button onClick={deleteuser} color = "red" >Delete User</button>
+                <label> </label>
+                <button onClick={() => history.push('/Rate')}>RATE PLAYERS !!!</button>
+                <label> </label>
+                <button onClick={() => history.push('/FAQ')}>Go to the FAQ Page</button>
+                <label> </label>
+                <button onClick={() => history.push('/Standings')}>View the League Standings</button>
+                <label> </label>
+                <button onClick={() => history.push('/')}>Sign Out</button>
+                <label> </label>
+                <label> </label>
+                <button onClick={updatepassword}>Change Now!</button>
+                <button className = "link-btn" onClick={() => history.push('/commentmain')}>Do you want to comment?</button>
+                <button onClick={() => history.push('/TweetPage')}>show the tweets</button>
+                <label> </label>
+                <button onClick={() => history.push('/PlayerPage')}>View the players</button>
+                <label> </label>
+                <button onClick={() => history.push('/WeekPage')}>Open fixture page</button>
+                <label></label>
+                <button className = "link-btn" onClick={() => history.push('/Trabzonspor')}>Trabzon players page</button>
+          </form>
       </div>
   );
 }
