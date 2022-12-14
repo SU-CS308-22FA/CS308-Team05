@@ -29,7 +29,7 @@ export const PlayerPage = () => {
         <p>     
           <button onClick={getPlayers}> Istanbulspor vs Trabzonspor </button>
           {playerList.map((val, key) => {
-            return <div> {val.name} {val.team} {val.role} vote: {val.vote}</div>;
+            return <div> {val.name} {val.team} {val.role}</div>;
           })}
           <label> </label>
           <button onClick={getPlayers_v2}> Sivasspor vs Gaziantepspor </button>
