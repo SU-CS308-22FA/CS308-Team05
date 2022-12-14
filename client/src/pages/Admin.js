@@ -12,6 +12,8 @@ export const Admin = (props) => {
   const [deactivateclubstatus, setDeactivateclubstatus] = useState("");
   const [activateuserstatus, setActivateuserstatus] = useState("");
   const [deactivateuserstatus, setDeactivateuserstatus] = useState("");
+  const [activatematchstatus, setActivatematchstatus] = useState("");
+  const [deactivatematchstatus, setDeactivatematchstatus] = useState("");
 
   const [addclubpopup, setAddclubpopup] = useState(false);
   const [deleteclubpopup, setDeleteclubpopup] = useState(false);
@@ -19,10 +21,13 @@ export const Admin = (props) => {
   const [deactivateclubpopup, setDeactivateclubpopup] = useState(false);
   const [activateuserpopup, setActivateuserpopup] = useState(false);
   const [deactivateuserpopup, setDeactivateuserpopup] = useState(false);
+  const [activatematchpopup, setActivatematchpopup] = useState(false);
+  const [deactivatematchpopup, setDeactivatematchpopup] = useState(false);
 
   const [clubpass, setClubpassword] = useState("");
   const [clubname, setClubname] = useState("");
   const [username, setUsername] = useState("");
+  const [match, setMatch] = useState("");
 
   const handleSubmit = (e) => {
       e.preventDefault();
@@ -119,6 +124,44 @@ export const Admin = (props) => {
     });
   };
 
+  const activatematch = () => {
+    let seppos = 0;
+    while(match[seppos] !== "-"){
+        seppos++;
+    }
+    let ht = match.substring(0,seppos-2);
+    let at = match.substring(seppos+3,match.length);
+    Axios.post("http://localhost:3001/activatematch", {
+        ht: ht,
+        at: at,
+    }).then((response)=> {
+        if (response.data.message){
+            setActivatematchstatus("Activated");
+        } else {
+            setActivatematchstatus(response.data[0].idMatches);
+        }
+    });
+  };
+
+  const deactivatematch = () => {
+    let seppos = 0;
+    while(match[seppos] !== "-"){
+        seppos++;
+    }
+    let ht = match.substring(0,seppos-2);
+    let at = match.substring(seppos+3,match.length);
+    Axios.post("http://localhost:3001/deactivatematch", {
+        ht: ht,
+        at: at,
+    }).then((response)=> {
+        if (response.data.message){
+            setDeactivatematchstatus("Deactivated");
+        } else {
+            setDeactivatematchstatus(response.data[0].idMatches);
+        }
+    });
+  };
+
   const displayclubs = () => {
     Axios.get("http://localhost:3001/getclubs").then((response) => {
         if (response){
@@ -154,6 +197,32 @@ export const Admin = (props) => {
                 clubs = clubs + response.data[i].Name + "-";
             }
             setDeactivateclubstatus(clubs);
+        }
+    })
+  };
+
+  const displayrateablematches = () => {
+    Axios.get("http://localhost:3001/getactivematches").then((response) => {
+        if (response){
+            console.log(response);
+            let match = "/";
+            for (var i=0; i<response.data.length; i++){
+                match = match + response.data[i].HomeTeam + " " + response.data[i].HomeGoal + "-" + response.data[i].AwayGoal + " " + response.data[i].AwayTeam + "/";
+            }
+            setDeactivatematchstatus(match);
+        }
+    })
+  };
+
+  const displayexemptmatches = () => {
+    Axios.get("http://localhost:3001/getinactivematches").then((response) => {
+        if (response){
+            console.log(response);
+            let match = "/";
+            for (var i=0; i<response.data.length; i++){
+                match = match + response.data[i].HomeTeam + " " + response.data[i].HomeGoal + "-" + response.data[i].AwayGoal + " " + response.data[i].AwayTeam + "/";
+            }
+            setActivatematchstatus(match);
         }
     })
   };
@@ -245,6 +314,29 @@ export const Admin = (props) => {
                 <input onChange={(e) => setUsername(e.target.value)} name = "name" id = "name" placeholder = "Userame"/>
                 <p><button onClick={deactivateuser}>Deactivate the Username's Account</button></p>
               </Popup>
+              ________________________________________________________
+              <h2>Web Application Content Settings</h2>
+
+              <button onClick={() => setActivatematchpopup(true)}>Activate visibility of a match</button>
+              <Popup trigger={activatematchpopup} setTrigger = {setActivatematchpopup}>
+                <h3>Activate visibility of a match</h3>
+                <button onClick={displayexemptmatches}>Display all non-visible matches / Update</button>
+                <p>{activatematchstatus}</p>
+                <label htmlFor = "username">Match</label>
+                <input onChange={(e) => setMatch(e.target.value)} name = "name" id = "name" placeholder = "Userame"/>
+                <p><button onClick={activatematch}>Activate the match</button></p>
+              </Popup>
+
+              <button onClick={() => setDeactivatematchpopup(true)}>Deactivate visibility of a match</button>
+              <Popup trigger={deactivatematchpopup} setTrigger = {setDeactivatematchpopup}>
+                <h3>Deactivate visibility of a match</h3>
+                <button onClick={displayrateablematches}>Display all visible matches / Update</button>
+                <p>{deactivatematchstatus}</p>
+                <label htmlFor = "username">Match</label>
+                <input onChange={(e) => setMatch(e.target.value)} name = "name" id = "name" placeholder = "A 3-3 B"/>
+                <p><button onClick={deactivatematch}>Deactivate the match</button></p>
+              </Popup>
+              ________________________________________________________
               <h2>User Settings</h2>
               <label htmlFor = "password">Password Change</label>
               <input onChange={(e) => setPassword(e.target.value)} type = "password" id = "password" name = "password" placeholder = "********"/>
