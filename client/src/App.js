@@ -19,6 +19,9 @@ import { Week4 } from "./weekly_fixtures/Week4";
 import { Week5 } from "./weekly_fixtures/Week5";
 import { Week6 } from "./weekly_fixtures/Week6";
 import { WeekPage } from "./weekly_fixtures/WeekPage";
+
+import { Trabzonspor } from "./teams/Trabzonspor";
+
 import {BrowserRouter as Router, Switch, Route, Link, NavLink} from "react-router-dom";
 
 function App() {
@@ -28,7 +31,7 @@ function App() {
   return (
     <Router>
       <div className="App">
-      <img src="/images/Logo.png" alt=""/>
+      <img src="/images/Logo.png" height= "500px" alt=""/>
         <Switch>
           <Route exact path="/">
               <Home />
@@ -86,8 +89,11 @@ function App() {
               <WeekPage />
           </Route>
 
+          <Route exact path="/Trabzonspor">
+              <Trabzonspor />
+          </Route>
         </Switch>
-        <img src="/images/rate12.png" alt=""/>
+        <img src="/images/rate12.png" height= "500px" alt=""/>
       </div>
     </Router>
   );

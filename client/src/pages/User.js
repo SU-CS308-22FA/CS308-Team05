@@ -110,7 +110,6 @@ export const User = (props) => {
                {playerList.map((val, key) => {
                 return <div>left team: {val.oyuncular_sol} --- left substitute{val.yedekler_sol} --- left manager{val.teknik_direktor_sol} --- right team{val.oyuncular_sag} --- right substitute{val.yedekler_sag} --- right manager{val.teknik_direktor_sag}</div>;
                })}
-
           </form>
       </div>
   );
