@@ -24,7 +24,7 @@ export const Week2 = () => {
         </p>
         <p>
           <button className = "link-btn" onClick={() => history.push('/Week1')}>Visit previous week</button>
-          <button className = "link-btn" onClick={() => history.push('/Week3')}>Visit next week</button>
+          <button className = "btn" onClick={() => history.push('/Week3')}>Visit next week</button>
         </p>
         
         <button className = "link-btn" onClick={() => history.push('/WeekPage')}>Go back</button>

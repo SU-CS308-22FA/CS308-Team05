@@ -97,26 +97,26 @@ export const User = (props) => {
                 <label> </label>
                 <button onClick={deleteuser} color = "red" >Delete User</button>
                 <label> </label>
-                <button onClick={() => history.push('/Rate')}>RATE PLAYERS !!!</button>
+                <button onClick={() => history.push('/Rate')}>Rate Players !!!</button>
                 <label> </label>
                 <button onClick={() => history.push('/FAQ')}>Go to the FAQ Page</button>
                 <label> </label>
                 <label> </label>
                 <button onClick={() => history.push('/Standings')}>View the League Standings</button>
                 <label> </label>
-                <button onClick={() => history.push('/')}>Sign Out</button>
+                <button className = "link-btn" onClick={() => history.push('/')}>Sign Out</button>
                 <label> </label>
-                <button onClick={() => history.push('/Answers')}>View the answers to your questions</button>
+                <button onClick={() => history.push('/Answers')}>View the answers to your questions!!!</button>
                 <label> </label>
                 <button onClick={updatepassword}>Change Now!</button>
-                <button className = "link-btn" onClick={() => history.push('/commentmain')}>Do you want to comment?</button>
-                <button onClick={() => history.push('/TweetPage')}>show the tweets</button>
+                <button className = "btn" onClick={() => history.push('/commentmain')}>Do you want to comment?</button>
+                <button onClick={() => history.push('/TweetPage')}>Show Tweets</button>
                 <label> </label>
-                <button onClick={() => history.push('/PlayerPage')}>View the players</button>
+                <button onClick={() => history.push('/PlayerPage')}>View Players</button>
                 <label> </label>
-                <button onClick={() => history.push('/WeekPage')}>Open fixture page</button>
+                <button onClick={() => history.push('/WeekPage')}>Fixtures</button>
                 <label></label>
-                <button className = "link-btn" onClick={() => history.push('/Trabzonspor')}>Trabzon players page</button>
+                <button className = "btn" onClick={() => history.push('/Trabzonspor')}>Trabzon Players</button>
           </form>
       </div>
   );

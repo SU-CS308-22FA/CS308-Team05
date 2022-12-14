@@ -31,7 +31,7 @@ export const PlayerPage = () => {
           <label> </label>
           <button onClick={getPlayers_v2}> Sivasspor vs Gaziantepspor </button>
           {playerList_v2.map((val, key) => {
-            return <div> {val.name} {val.team} {val.role} vote: {val.vote}</div>;
+            return <div> {val.name} {val.team} {val.role}</div>;
           })}          
         </p>
         <button className = "link-btn" onClick={() => history.push('/user')}>Go back</button>

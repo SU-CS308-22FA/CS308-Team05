@@ -59,7 +59,7 @@ export const Email = () => {
         <Popup trigger={sendquestionpopup}  setTrigger={setSendquestionpopup}>
             <h3>Your question has been sent.</h3>
             <h3></h3>
-            <label>Thank you for your question! Our admins will look into your issue and respons from the FAQ Page!</label>
+            <label>Thank you for your question! Our admins will look into your issue and respond from the FAQ Page!</label>
 
         </Popup>
 

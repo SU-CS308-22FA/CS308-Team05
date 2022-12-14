@@ -40,7 +40,7 @@ export const Answers = () => {
       </div>
       
       })}
-      <button onClick={() => history.push("/User")}>Go back</button>
+      <button className = "link-btn" onClick={() => history.push("/User")}>Go back</button>
       
     </p>
 

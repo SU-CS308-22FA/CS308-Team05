@@ -43,8 +43,6 @@ button:hover{
   transition: all 0.3s ease;
 }
 
-
-
 .link-btn {
   background-color: #FFFFFF;
   color: red;
@@ -70,7 +68,6 @@ img {
   margin-left: 100px;
   margin-right: 100px;
 }
-
 
 .popup {
   position: fixed;
@@ -109,7 +106,6 @@ img {
 	margin: 0px 0% 30px 0%;
 }
 
-
 th, td {
   padding: 10px;
 }
@@ -135,7 +131,6 @@ text-align: center;
 color: #77ff21;
 background-color: #000000;
 }
-
 
 table .col{
 	border-bottom: 1px solid #FFFFFF;

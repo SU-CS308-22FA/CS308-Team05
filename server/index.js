@@ -582,8 +582,8 @@ app.get('/fixtures', (req, res) => {
       console.log(err)
     } else{
       res.send(result)
-    }
-  })
+    }
+  })
 })
 
 app.get('/fixtures_w2', (req, res) => {
@@ -592,8 +592,8 @@ app.get('/fixtures_w2', (req, res) => {
       console.log(err)
     } else{
       res.send(result)
-    }
-  })
+    }
+  })
 })
 
 app.get('/fixtures_w3', (req, res) => {
@@ -602,8 +602,8 @@ app.get('/fixtures_w3', (req, res) => {
       console.log(err)
     } else{
       res.send(result)
-    }
-  })
+    }
+  })
 })
 
 app.get('/fixtures_w4', (req, res) => {
@@ -612,8 +612,8 @@ app.get('/fixtures_w4', (req, res) => {
       console.log(err)
     } else{
       res.send(result)
-    }
-  })
+    }
+  })
 })
 
 app.get('/fixtures_w5', (req, res) => {
@@ -622,8 +622,8 @@ app.get('/fixtures_w5', (req, res) => {
       console.log(err)
     } else{
       res.send(result)
-    }
-  })
+    }
+  })
 })
 
 app.get('/fixtures_w6', (req, res) => {
@@ -632,8 +632,8 @@ app.get('/fixtures_w6', (req, res) => {
       console.log(err)
     } else{
       res.send(result)
-    }
-  })
+    }
+  })
 })
 app.get('/PLAYERPAGE', (req, res) => {
   db.query("SELECT * FROM PLAYERPAGE WHERE zmatch = 1", (err, result) => {

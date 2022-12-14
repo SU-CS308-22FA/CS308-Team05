@@ -77,7 +77,7 @@ export const Trabzonspor = () => {
         Technic Director
         </p>
 
-        <button onClick={() => history.push('/')}>Sign Out</button>
+        <button className = "link-btn" onClick={() => history.push('/User')}>Go Back</button>
       </div>
     )
   }
