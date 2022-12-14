@@ -11,6 +11,10 @@ import { Club } from "./pages/Club";
 import { Admin } from "./pages/Admin";
 import { CommentMain } from "./pages/CommentMain";
 import { FAQ } from "./pages/FAQ";
+import { AdminEmail } from "./pages/AdminEmail";
+import { AdminAnswer } from "./pages/AdminAnswer";
+import { Answers } from "./pages/Answers";
+import { Email } from "./pages/Email";
 import { Standings } from "./pages/Standings";
 import { WeekPage } from "./weekly_fixtures/WeekPage";
 import { PlayerPage } from "./pages/PlayerPage";
@@ -73,6 +77,18 @@ function App() {
           </Route>
           <Route exact path="/Standings">
             <Standings />
+          </Route>
+          <Route exact path="/Email">
+            <Email />
+          </Route>
+          <Route exact path="/AdminEmail">
+            <AdminEmail />
+          </Route>
+          <Route exact path="/AdminAnswer">
+            <AdminAnswer />
+          </Route>
+          <Route exact path="/Answers">
+            <Answers />
           </Route>
           <Route exact path="/Week1">
               <Week1 />

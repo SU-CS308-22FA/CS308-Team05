@@ -101,10 +101,12 @@ export const User = (props) => {
                 <label> </label>
                 <button onClick={() => history.push('/FAQ')}>Go to the FAQ Page</button>
                 <label> </label>
+                <label> </label>
                 <button onClick={() => history.push('/Standings')}>View the League Standings</button>
                 <label> </label>
                 <button onClick={() => history.push('/')}>Sign Out</button>
                 <label> </label>
+                <button onClick={() => history.push('/Answers')}>View the answers to your questions</button>
                 <label> </label>
                 <button onClick={updatepassword}>Change Now!</button>
                 <button className = "link-btn" onClick={() => history.push('/commentmain')}>Do you want to comment?</button>

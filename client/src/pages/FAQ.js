@@ -4,6 +4,8 @@ import { Collapse, Button } from 'antd';
 
 const { Panel } = Collapse;
 
+
+
 export const FAQ = () => {
   let history = useHistory();
   return(
@@ -35,10 +37,9 @@ export const FAQ = () => {
         </Collapse>
         <div className="quickSupport">
           <h3>Could not find an answer to your problem?</h3>
-          <p>Email us your spesific concern and let us try to help!</p>
-          <Button type="primary" size="large"><i className="fas fa-envelope"></i> Email your question</Button>
+          <p>Submit to us your spesific concern and let us try to help!</p>
+          <Button type="primary" onClick={() => history.push("/Email")} size="large"><i className="fas fa-envelope"></i> Send your question</Button>
         </div>
-        <button className = "link-btn" onClick={() => history.push('/user')}>Go back</button>
       </div>
     </div>  
   );
