@@ -512,3 +512,51 @@ app.post("/deactivateuser", (req, res) => {
     }
   });
 });
+
+app.get ("/getactivematches", (req, res) => {
+  db.query(
+    "SELECT * FROM MatchScores WHERE RateAvailable IS TRUE",
+    (err, result) => {
+      if (err) {
+        console.log(err);
+        res.send({message: "An error occured"});
+      } else {
+        res.send(result);
+      }
+    });
+});
+
+app.post ("/displayplayers", (req, res) => {
+  const server = req.body.server;
+  let table = "SELECT PlayerName FROM "+ server +" WHERE PlayerName IS NOT NULL";
+
+  db.query(
+    table,
+    (err, result) => {
+      if (err) {
+        console.log(err);
+        res.send({message: "An error occured"});
+      } else {
+        res.send(result);
+      }
+    });
+});
+
+app.post ("/savevote", (req, res) => {
+  const server = req.body.server;
+  const id = req.body.id;
+  const score = req.body.score;
+
+  let table = "UPDATE "+ server +" SET Vote = Vote + "+score+" WHERE idPlayer = "+id;
+
+  db.query(
+    table,
+    (err, result) => {
+      if (err) {
+        console.log(err);
+        res.send({message: "An error occured"});
+      } else {
+        res.send(result);
+      }
+    });
+});
