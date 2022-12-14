@@ -39,6 +39,7 @@ export const FAQ = () => {
           <h3>Could not find an answer to your problem?</h3>
           <p>Submit to us your spesific concern and let us try to help!</p>
           <Button type="primary" onClick={() => history.push("/Email")} size="large"><i className="fas fa-envelope"></i> Send your question</Button>
+          <button className='link-btn' onClick={() => history.push("/User")}>Go Back</button>
         </div>
       </div>
     </div>  
