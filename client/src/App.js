@@ -19,6 +19,7 @@ import { Standings } from "./pages/Standings";
 import { WeekPage } from "./weekly_fixtures/WeekPage";
 import { PlayerPage } from "./pages/PlayerPage";
 import { TweetPage } from"./pages/TweetPage";
+import { FacebookPage } from"./pages/FacebookPage";
 import { Rate } from "./pages/Rate";
 import { PlayerRate } from "./pages/PlayerRate";
 
@@ -118,6 +119,9 @@ function App() {
           </Route>
           <Route exact path="/TweetPage">
             <TweetPage />
+          </Route>
+          <Route exact path="/FacebookPage">
+            <FacebookPage />
           </Route>
           <Route exact path="/Rate">
             <Rate />

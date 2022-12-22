@@ -112,6 +112,8 @@ export const User = (props) => {
                 <button className = "btn" onClick={() => history.push('/commentmain')}>Do you want to comment?</button>
                 <button onClick={() => history.push('/TweetPage')}>Show Tweets</button>
                 <label> </label>
+                <button onClick={() => history.push('/FacebookPage')}>Show Facebook posts</button>
+                <label> </label>
                 <button onClick={() => history.push('/PlayerPage')}>View Players</button>
                 <label> </label>
                 <button onClick={() => history.push('/WeekPage')}>Fixtures</button>
