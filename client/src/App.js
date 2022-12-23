@@ -21,6 +21,7 @@ import { PlayerPage } from "./pages/PlayerPage";
 import { TweetPage } from"./pages/TweetPage";
 import { FacebookPage } from"./pages/FacebookPage";
 import { InstagramPage } from"./pages/InstagramPage";
+import { YoutubePage } from"./pages/YoutubePage";
 import { Rate } from "./pages/Rate";
 import { PlayerRate } from "./pages/PlayerRate";
 
@@ -126,6 +127,9 @@ function App() {
           </Route>
           <Route exact path="/InstagramPage">
             <InstagramPage />
+          </Route>
+          <Route exact path="/YoutubePage">
+            <YoutubePage />
           </Route>
           <Route exact path="/Rate">
             <Rate />

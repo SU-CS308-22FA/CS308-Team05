@@ -1,28 +1,28 @@
 import React, { useContext, useState } from 'react'
 import Axios from 'axios'
 import { useHistory, Redirect } from "react-router-dom";
-import { FacebookEmbed } from 'react-social-media-embed';
+import { YouTubeEmbed } from 'react-social-media-embed';
 
-export const FacebookPage = () => {
+export const YoutubePage = () => {
 
     let history = useHistory();
     return (
         <div>
-          <h2>Latest Facebook posts of TFF</h2>     
+          <h2>Latest Youtube of TFF</h2> 
           <div style={{ display: 'flex', justifyContent: 'center' }}>
-            <FacebookEmbed url="https://www.facebook.com/TFFALTLIGLER/photos/a.650431255063045/5302636329842491/" width={550} />
+            <YouTubeEmbed url="https://www.youtube.com/watch?v=8Dou65gjZsY" width={325} height={220} />
           </div>
           <h2></h2> 
           <div style={{ display: 'flex', justifyContent: 'center' }}>
-            <FacebookEmbed url="https://www.facebook.com/TFFALTLIGLER/photos/a.650431255063045/5302295019876622" width={550} />
+            <YouTubeEmbed url="https://www.youtube.com/watch?v=lAROPT6c4l0" width={325} height={220} />
           </div>
           <h2></h2> 
           <div style={{ display: 'flex', justifyContent: 'center' }}>
-            <FacebookEmbed url="https://www.facebook.com/TFFALTLIGLER/photos/a.650431255063045/5302240439882080/" width={550} />
+            <YouTubeEmbed url="https://www.youtube.com/watch?v=1oQ9M0lUjHo" width={325} height={220} />
           </div>
           <p>     
             <button className = "link-btn" onClick={() => history.push('/user')}>Go back</button>
-          </p>
+          </p>        
         </div>  
         
       )

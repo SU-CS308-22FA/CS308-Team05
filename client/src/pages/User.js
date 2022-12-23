@@ -116,6 +116,7 @@ export const User = (props) => {
                     <img src = "https://cdn-icons-png.flaticon.com/512/733/733579.png" height = "50px" weight = "50px" alt="" onClick={() => history.push('/TweetPage')} />
                     <img src = "https://cdn-icons-png.flaticon.com/512/733/733547.png" height = "50px" weight = "50px" alt="" onClick={() => history.push('/FacebookPage')} />
                     <img src = "https://cdn-icons-png.flaticon.com/512/3955/3955024.png" height = "50px" weight = "50px" alt="" onClick={() => history.push('/InstagramPage')} />
+                    <img src = "https://cdn-icons-png.flaticon.com/512/3670/3670147.png" height = "50px" weight = "50px" alt="" onClick={() => history.push('/YoutubePage')} />
                 </p>   
                 <button onClick={() => history.push('/PlayerPage')}>View Players</button>
                 <label> </label>
