@@ -110,10 +110,13 @@ export const User = (props) => {
                 <label> </label>
                 <button onClick={updatepassword}>Change Now!</button>
                 <button className = "btn" onClick={() => history.push('/commentmain')}>Do you want to comment?</button>
-                <button onClick={() => history.push('/TweetPage')}>Show Tweets</button>
                 <label> </label>
-                <button onClick={() => history.push('/FacebookPage')}>Show Facebook posts</button>
-                <label> </label>
+                <p>   
+                    <h2>Social Media Posts of TFF</h2>   
+                    <img src = "https://cdn-icons-png.flaticon.com/512/733/733579.png" height = "50px" weight = "50px" alt="" onClick={() => history.push('/TweetPage')} />
+                    <img src = "https://cdn-icons-png.flaticon.com/512/733/733547.png" height = "50px" weight = "50px" alt="" onClick={() => history.push('/FacebookPage')} />
+                    <img src = "https://cdn-icons-png.flaticon.com/512/3955/3955024.png" height = "50px" weight = "50px" alt="" onClick={() => history.push('/InstagramPage')} />
+                </p>   
                 <button onClick={() => history.push('/PlayerPage')}>View Players</button>
                 <label> </label>
                 <button onClick={() => history.push('/WeekPage')}>Fixtures</button>
