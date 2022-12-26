@@ -8,7 +8,7 @@ export const TweetPage = () => {
     let history = useHistory();
     return (
         <div className="centerContent">
-          <h2>Latest Tweets of TFF</h2>
+          <h2 className = "header">Latest Tweets of TFF</h2>
       
           <div className="selfCenter spaceBetween">
             <TwitterTweetEmbed

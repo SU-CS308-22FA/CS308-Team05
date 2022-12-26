@@ -1,6 +1,6 @@
 .App {
   text-align: center;
-  display: flex;
+  display:flex;
   min-height: 100vh;
   align-items: center;
   justify-content: center;
@@ -8,12 +8,56 @@
   background-image: linear-gradient(79deg, #cf2c7e, #506b11 48%, #1385e2);
 }
 
-.auth-form-container, .login-form, .sign_up-form, .user-form, .home-form{
+.auth-form-container, .login-form, .sign_up-form, .home-form{
   display: flex;
   align-items: center;
   text-align: center;
   flex-direction: column;
   flex: 1;
+}
+
+.panel-gnrl{
+  display:list-item;
+  background-color: #FFFFFF;
+  
+  
+
+}
+.general{
+  display: flex;
+  align-items: center;
+  text-align: center;
+  flex-direction: column;
+  flex: 1;
+  background-color: transparent;
+  
+  
+}
+.panel-gnrl:hover{
+  background-color: aliceblue;
+  color:#FFFFFF;
+  transition: all 0.3s ease;
+}
+
+.header {
+  font-family: sans-serif;
+  font-size: 1.5em;
+  font-weight: bold;
+  text-align: center;
+  color: #FFF;
+  padding: 10px;
+  position:absolute;
+  top: 40px;
+  left:50px;
+}
+.user-form{
+
+  display: flex;
+  align-items: center;
+  text-align: center;
+  flex-direction: column;
+  flex: 1;
+  width: fit-content;
 }
 
 label {
@@ -30,7 +74,7 @@ input {
 
 button {
   border: none;
-  background-color: white;
+  background-color: aliceblue;
   padding: 20px;
   border-radius: 10px;
   cursor: pointer;
@@ -46,7 +90,7 @@ button:hover{
 
 
 .link-btn {
-  background-color: #FFFFFF;
+  background-color: aliceblue;
   color: red;
   
 }
@@ -149,4 +193,35 @@ table .col{
 	color: #FFFFFF;
   transition: all 0.678s ease;
   
+}
+
+.parent-btns{
+  right: 50px;
+  bottom: 60px;
+  position: absolute;
+  display: flex;
+}
+
+.child-btns{
+  bottom: 6px;
+  right: 30px;
+  position: absolute;
+
+}
+
+.gnl-btn {
+  background: none;
+  bottom: 40px;
+  padding: 20px;
+  border-radius: 10px;
+  cursor: pointer;
+  color: white;
+  text-decoration: underline;
+  
+}
+
+.gnl-btn:hover{
+  text-decoration: underline;
+  color: black;
+  transition: all 0.3s ease;
 }

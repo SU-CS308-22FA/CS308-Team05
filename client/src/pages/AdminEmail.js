@@ -23,6 +23,8 @@ export const AdminEmail = () => {
 
   return (
     <p>
+
+      <h2 className='header'>View Questions</h2>
       
       <button onClick={getQuestions}>Show Questions</button>
       {questionsList.map((val,key) =>{

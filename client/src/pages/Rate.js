@@ -39,7 +39,7 @@ export const Rate = (props) => {
 
     return (
         <div className = "auth-form-container">
-            <h2>Rating System</h2>
+            <h2 className = "header">Rating System</h2>
             <form className="rate-form" onSubmit = {handleSubmit}>
                 <button onClick={displaymatches}>Display Rateable Matches</button>
                 <p>{matches}</p>

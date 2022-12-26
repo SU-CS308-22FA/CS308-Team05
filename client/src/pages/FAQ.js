@@ -12,7 +12,7 @@ export const FAQ = () => {
     <div id="FAQ" className="block faqBlock">
       <div className="container-fluid">
         <div className="titleHolder">
-          <h2>Frequently Asked Questions</h2>
+          <h2 className='header'>FAQ Page</h2>
           <p>Welcome to the FAQ Page of RATE12. Here you can try to find answers to your concerns about our services.</p>
         </div>
         <Collapse defaultActiveKey={['0']}>

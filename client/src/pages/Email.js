@@ -34,7 +34,8 @@ export const Email = () => {
     <div className='email-form'>
         <div className='email-header'>
             Welcome to the Question Submission Page!
-            <h2>
+            <h2 className='header'>
+                Send Questions
             </h2>
             
         </div>

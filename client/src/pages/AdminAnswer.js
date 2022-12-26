@@ -41,7 +41,9 @@ export const AdminAnswer = () => {
     };
     let history = useHistory();
   return (
+
     <div>
+        <h2 className="header">Answer Questions</h2>
         <form className='questionnaire'>
             <label>The Admin Name:</label> 
             <label></label>

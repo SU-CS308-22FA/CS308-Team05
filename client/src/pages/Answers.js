@@ -23,7 +23,8 @@ export const Answers = () => {
 
   return (
     <p>
-      
+      <h2 className='header'>Answers</h2>
+    
       <button onClick={getAnswers}>Show Answers</button>
       {answerslist.map((val,key) =>{
         return <div>
