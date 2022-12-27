@@ -51,9 +51,14 @@ export const Login = (props) => {
                 <input value={identification} onChange={(e) => setID(e.target.value)} type = "text" placeholder = "username" id = "identification" name = "identification"/>
                 <label htmlFor = "password">Password</label>
                 <input value = {pass} onChange={(e) => setPass(e.target.value)} type = "password" placeholder = "********" id = "password" name = "password"/>
+                <label></label>
                 <button onClick={login}>Log In</button>
             </form>
-            <button className = "link-btn" onClick={() => history.push('/signup')}>Don't have an account? Create new account.</button>
+            <label></label>
+            <label></label>
+            <button onClick={() => history.push('/signup')}>Don't have an account? Create new account.</button>
+            <label></label>
+            <label></label>
             <button className = "link-btn" onClick={() => history.push('/')}>Go back to home page</button>
             <h1>
                 {loginstatus}

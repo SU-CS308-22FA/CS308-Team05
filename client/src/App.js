@@ -45,6 +45,7 @@ function App() {
     <Router>
       <div className="App">
       <img src="/images/Logo.png" height= "500px" alt=""/>
+      <header className="appel">RATE12</header>
         <Switch>
           <Route exact path="/">
               <Home />
@@ -128,7 +129,7 @@ function App() {
             <PlayerRate />
           </Route>
           <Route exact path="/About">
-            <About />
+            <About history={history} />
           </Route>
         </Switch>
         <img src="/images/rate12.png" height= "500px" alt=""/>

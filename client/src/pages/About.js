@@ -3,7 +3,7 @@ import { useHistory, Redirect } from "react-router-dom";
 import { Collapse, Button } from 'antd';
 
 const { Panel } = Collapse;
-
+ 
 
 
 export const About = () => {

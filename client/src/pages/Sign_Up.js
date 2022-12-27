@@ -48,9 +48,14 @@ export const Sign_Up = (props) => {
                 <input onChange={(e) => setEmail(e.target.value)} type = "email" id = "email" name = "email" placeholder = "email@gmail.com"/>
                 <label htmlFor = "password">Password</label>
                 <input onChange={(e) => setPassword(e.target.value)} type = "password" id = "password" name = "password" placeholder = "********"/>
+                <label></label>
                 <button onClick={signup}>Sign Up Now!</button>
             </form>
-            <button className = "link-btn" onClick={() => history.push('/')}>Already have an account? Login here.</button>
+            <label></label>
+            <label></label>
+            <button onClick={() => history.push('/')}>Already have an account? Login here.</button>
+            <label></label>
+            <label></label>
             <button className = "link-btn" onClick={() => history.push('/')}>Go back to home page</button>
             <h1>
                 {signupstatus}

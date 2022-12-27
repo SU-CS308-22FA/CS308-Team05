@@ -29,7 +29,7 @@ export const Standings = () => {
   return (
     <p>
       <button className='st-btn' onClick={getStandings}>Show Standings</button>
-      <h1 class = "headin">Standings</h1>
+      <h2 class = "header-std" color='yellow'>Standings</h2>
       <tr class = "col">
             <th>Club</th>
             <th>W</th>

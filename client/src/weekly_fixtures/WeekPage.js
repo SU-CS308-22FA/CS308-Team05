@@ -7,6 +7,7 @@ export const WeekPage = () => {
     let history = useHistory();
     return (
       <div className="centerContent">
+        <h2 className='header'>Fixtures</h2>
         <p>
           <button className = "link-btn" onClick={() => history.push('/Week1')}>First week</button>
           <button className = "link-btn" onClick={() => history.push('/Week2')}>Second week</button>
