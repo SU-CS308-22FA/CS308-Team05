@@ -5,6 +5,15 @@ import { Collapse, } from 'antd';
 
 const { Panel } = Collapse;
 
+/**
+ * @function Rate
+ * @description This function displays the first page of "Rating System". It has a "Display Rateable Matches" button that connects to the server and
+ * takes the rateable matches that are available to the user and displays them as a string. When the user inputs the match that he/she wants to
+ * rate the players in it and clicks "Choose this match button" the function assigns the input to global.match and changes the page to PlayerRate.js
+ * @param {*} props 
+ * @param {global.match} global variable which keeps track of which match the user chose to rate the players played in it. It is set to NULL.
+ * @returns The first page of "Rating System" where user can choose which match they want to rate the players playing in it. 
+ */
 export const Rate = (props) => {
     const [match, setMatch] = useState("");
     const [matches, setMatches] = useState("");

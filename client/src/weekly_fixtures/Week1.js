@@ -2,6 +2,13 @@ import React, { useContext, useState } from 'react'
 import Axios from 'axios'
 import { useHistory, Redirect } from "react-router-dom";
 
+/**
+ * @function Week1
+ * @description retreieves some data (like home team, alien team, match scores, etc) from database and prints them when clicked to the button
+ * @param {function} (button onClick) - The button function to redirect
+ * @param {function} (history.push) -The function which handles which page to redirect
+ * @param {function} (getresponse) -The function that retrieves the data from database
+ */
 export const Week1 = () => {
   const [fixtureList, set_fixtures] = useState([]);
 

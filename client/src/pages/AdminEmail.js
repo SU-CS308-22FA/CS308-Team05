@@ -2,8 +2,18 @@ import React, {useState} from 'react'
 import Axios from 'axios'
 import { useHistory } from 'react-router-dom';
 
-
-
+/**
+  * @param {functionAdminEmail}
+  * @description  A function that returns a display of questions asked by users that have not been answered yet.
+  * @returns {JSX.Element} JSX element that contains the display
+  * @param {functiongetQuestions}{
+  * @description Retrieves questions that are unresolved from the database
+  * @param {String} "/questions" - path of the request
+  * @param {Object} req - request object
+  * @param {Object} res - response object
+  * @param {function} (req,res) - The callback function which handles the request
+  * @returns {Object} result - result object from the query (an array of questions which are not answered if successful, error otherwise.)
+ */
 export const AdminEmail = () => {
     const [questionsList,setQuestionsList] = useState([]);
 

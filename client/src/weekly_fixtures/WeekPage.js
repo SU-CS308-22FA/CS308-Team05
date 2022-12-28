@@ -2,6 +2,12 @@ import React, { useContext, useState } from 'react'
 import Axios from 'axios'
 import { useHistory, Redirect } from "react-router-dom";
 
+/**
+ * @function WeekPage
+ * @description gives the option to redirect to one of the first 6 weeks of 2022/2023 tff league
+ * @param {function} (button onClick) - The button function to redirect
+ * @param {function} (history.push) -The function which handles which page to redirect
+ */
 export const WeekPage = () => {
 
     let history = useHistory();

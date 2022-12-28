@@ -2,6 +2,11 @@ import React, { useContext, useState } from 'react'
 import Axios from 'axios'
 import { useHistory, Redirect } from "react-router-dom";
 
+/**
+ * @function PlayerPage
+ * @description This function displays the page in which the player names, teams, matches and roles are displayed. Go back button is also part og this function
+ * @returns {Object} result - result object from the query (which includes the names of the players, teams, matches and roles of the players)
+ */
 export const PlayerPage = () => {
   const [playerList, set_playerList] = useState([]);
   const [playerList_v2, set_playerList_v2] = useState([]);

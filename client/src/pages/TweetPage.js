@@ -3,6 +3,11 @@ import Axios from 'axios'
 import { useHistory, Redirect } from "react-router-dom";
 import { TwitterTweetEmbed} from 'react-twitter-embed';
 
+/**
+ * @function TweetPage
+ * @description This function displays the latest 3 twitter posts of TFF on website.
+ * @returns {Object} Twitter Posts - The latest 3 twitter post of TFF 
+ */
 export const TweetPage = () => {
 
     let history = useHistory();
