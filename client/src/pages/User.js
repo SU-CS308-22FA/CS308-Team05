@@ -72,23 +72,51 @@ export const User = (props) => {
 
   let history = useHistory();
 
+  const [playerList, set_playerList] = useState([]);
+
+  const getPlayers = () => {
+    Axios.get("http://localhost:3001/PLAYERS").then((response)=>{
+        console.log(response);
+        set_playerList(response.data);
+    });
+  };
+
   return (
       <div className = "auth-form-container">
           <h2>User Settings</h2>
           <form className="user-form" onSubmit = {handleSubmit}>
-              <label htmlFor = "username">Username Change</label>
-              <input onChange={(e) => setUsername(e.target.value)} type = "username" name = "username" id = "username" placeholder = "Username"/>
-              <button onClick={updateusername}>Change Now!</button>
-              <label htmlFor = "email">Email Change</label>
-              <input onChange={(e) => setEmail(e.target.value)} type = "email" id = "email" name = "email" placeholder = "email@gmail.com"/>
-              <button onClick={updateemail}>Change Now!</button>
-              <label htmlFor = "password">Password Change</label>
-              <input onChange={(e) => setPassword(e.target.value)} type = "password" id = "password" name = "password" placeholder = "********"/>
-              <button onClick={updatepassword}>Change Now!</button>
-              <label> </label>
-              <button onClick={deleteuser} color = "red" >Delete User</button>
-              <label> </label>
-              <button onClick={() => history.push('/')}>Sign Out</button>
+                <label htmlFor = "username">Username Change</label>
+                <input onChange={(e) => setUsername(e.target.value)} type = "username" name = "username" id = "username" placeholder = "Username"/>
+                <button onClick={updateusername}>Change Now!</button>
+                <label htmlFor = "email">Email Change</label>
+                <input onChange={(e) => setEmail(e.target.value)} type = "email" id = "email" name = "email" placeholder = "email@gmail.com"/>
+                <button onClick={updateemail}>Change Now!</button>
+                <label htmlFor = "password">Password Change</label>
+                <input onChange={(e) => setPassword(e.target.value)} type = "password" id = "password" name = "password" placeholder = "********"/>
+                <button onClick={updatepassword}>Change Now!</button>
+                <label> </label>
+                <button onClick={deleteuser} color = "red" >Delete User</button>
+                <label> </label>
+                <button onClick={() => history.push('/Rate')}>Rate Players !!!</button>
+                <label> </label>
+                <button onClick={() => history.push('/FAQ')}>Go to the FAQ Page</button>
+                <label> </label>
+                <label> </label>
+                <button onClick={() => history.push('/Standings')}>View the League Standings</button>
+                <label> </label>
+                <button className = "link-btn" onClick={() => history.push('/')}>Sign Out</button>
+                <label> </label>
+                <button onClick={() => history.push('/Answers')}>View the answers to your questions!!!</button>
+                <label> </label>
+                <button onClick={updatepassword}>Change Now!</button>
+                <button className = "btn" onClick={() => history.push('/commentmain')}>Do you want to comment?</button>
+                <button onClick={() => history.push('/TweetPage')}>Show Tweets</button>
+                <label> </label>
+                <button onClick={() => history.push('/PlayerPage')}>View Players</button>
+                <label> </label>
+                <button onClick={() => history.push('/WeekPage')}>Fixtures</button>
+                <label></label>
+                <button className = "btn" onClick={() => history.push('/Trabzonspor')}>Trabzon Players</button>
           </form>
       </div>
   );

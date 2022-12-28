@@ -1,0 +1,42 @@
+# Club   W D L Goals +/- Pts
+Fenerbahce 13 9 2 2 36:14 22 29
+
+Galatasaray 13 8 3 2 23:10 13 27
+
+Adana Demirspor 13 6 6 1 24:14 10 24
+
+Konyaspor 14 6 6 2 16:9 7 24
+
+Basaksehir 13 7 3 3 19:15 4 24
+
+Trabzonspor 13 6 5 2 19:16 3 23
+
+ 14 7 2 5 20:15 5 23
+
+Kayserispor 13 6 4 3 26:18 8 22
+
+Besiktas 14 4 5 5 19:24 -5 17
+
+Alanyaspor 13 4 4 5 19:19 0 16
+
+Gaziantep FK 12 5 1 6 19:21 -2 16
+
+Antalyaspor 13 4 3 6 13:20 -7 15
+
+Giresunspor 13 4 3 6 11:22 -11 15
+
+Kasimpasa 13 4 2 7 12:22 -10 14
+
+Hatayspor 13 3 4 6 24:27 -3 13
+
+Karagümrük 13 3 4 6 16:21 -5 13
+
+Ankaragücü 14 2 5 7 13:19 -6 11
+
+Sivasspor 13 2 2 9 12:26 -14 8
+
+ 13 1 4 8 15:24 -9 7
+
+Istanbulspor undefined undefined undefined undefined undefined undefined undefined
+
+Ümraniyespor undefined undefined undefined undefined undefined undefined undefined
