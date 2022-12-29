@@ -55,34 +55,47 @@ export const PlayerRate = (props) => {
             server: match,
         }).then((response)=> {
             if (response.data.message){
+                console.log("Error");
+                available = false;
+            } else {
                 for (var i=0; i<response.data.length; i++){
-                    if(response.data[i].VotedUser == global.fullname){
+                    if(response.data[i].VotedUser === global.fullname){
                         available = false;
                         console.log(global.fullname);
+                        console.log(available);
                     }
                 }
-            } else {
-                console.log("Error");
             }
-        });
-        if (available == true){
-            for (var i=0; i<votearray.length; i++){
-                Axios.post("http://localhost:3001/savevote", {
+            if (available === true){
+                Axios.post("http://localhost:3001/adduserrating", {
                     server: match,
-                    id: i,
-                    score: (votearray[i]),
+                    username: global.fullname,
                 }).then((response)=> {
-                    if (response.data.message){
-                        setMessage("Vote succesfully added");
-                    } else {
-                        setMessage("Error");
-                    }
+                if (response.data.message){
+                    console.log("Error");
+                } else {
+                    console.log("Succesfully added user to the database");
+                }
                 });
+                for (var i=0; i<votearray.length; i++){
+                    Axios.post("http://localhost:3001/savevote", {
+                        server: match,
+                        id: i,
+                        score: (votearray[i]),
+                    }).then((response)=> {
+                        if (response.data.message){
+                            setMessage("Vote succesfully added");
+                        } else {
+                            setMessage("Error");
+                        }
+                    });
+                }
             }
-        }
-        else{
-            setMessage("You have already voted! Every user can vote only once!");
-        }
+            else{
+                setMessage("You have already voted! Every user can vote only once!");
+            }
+            setVoteArray([]);
+        });
     };
 
     return (
