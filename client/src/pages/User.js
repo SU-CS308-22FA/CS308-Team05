@@ -108,7 +108,6 @@ export const User = (props) => {
                 <label> </label>
                 <button onClick={() => history.push('/Answers')}>View the answers to your questions!!!</button>
                 <label> </label>
-                <button onClick={updatepassword}>Change Now!</button>
                 <button className = "btn" onClick={() => history.push('/commentmain')}>Do you want to comment?</button>
                 <button onClick={() => history.push('/TweetPage')}>Show Tweets</button>
                 <label> </label>

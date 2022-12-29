@@ -8,6 +8,7 @@ const { Panel } = Collapse;
 
 export const PlayerRate = (props) => {
     const [match, setMatch] = useState("");
+    const [message, setMessage] = useState("");
     const [playersarray, setPlayersArray] = useState([]);
     const [votearray, setVoteArray] = useState([]);
 
@@ -56,9 +57,9 @@ export const PlayerRate = (props) => {
                 score: (votearray[i]),
             }).then((response)=> {
                 if (response.data.message){
-                    console.log("Vote succesfully added");
+                    setMessage("Vote succesfully added");
                 } else {
-                    console.log("Error");
+                    setMessage("Error");
                 }
             });
         }
@@ -74,6 +75,7 @@ export const PlayerRate = (props) => {
                     <Rating stop={10} initialRating={0} onClick={rate => savevote(rate)}/>
                 </div> )} </p>
                 <p> <button onClick={storevotes}> Vote </button> </p>
+                <p> {message} </p>
             </form>
             <button className = "link-btn" onClick={() => history.push('/Rate')}> Go back to choosing matches to rate </button>
         </div>
