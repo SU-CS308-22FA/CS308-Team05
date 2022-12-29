@@ -763,3 +763,19 @@ app.post("/deactivatematch", (req, res) => {
     }
   });
 });
+
+app.post ("/useravailable", (req, res) => {
+  const server = req.body.server;
+  let table = "SELECT VotedUser FROM "+ server +" WHERE VotedUser IS NOT NULL";
+
+  db.query(
+    table,
+    (err, result) => {
+      if (err) {
+        console.log(err);
+        res.send({message: "An error occured"});
+      } else {
+        res.send(result);
+      }
+    });
+});

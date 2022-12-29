@@ -50,18 +50,38 @@ export const PlayerRate = (props) => {
     }
 
     const storevotes = () => {
-        for (var i=0; i<votearray.length; i++){
-            Axios.post("http://localhost:3001/savevote", {
-                server: match,
-                id: i,
-                score: (votearray[i]),
-            }).then((response)=> {
-                if (response.data.message){
-                    setMessage("Vote succesfully added");
-                } else {
-                    setMessage("Error");
+        let available = true;
+        Axios.post("http://localhost:3001/useravailable", {
+            server: match,
+        }).then((response)=> {
+            if (response.data.message){
+                for (var i=0; i<response.data.length; i++){
+                    if(response.data[i].VotedUser == global.fullname){
+                        available = false;
+                        console.log(global.fullname);
+                    }
                 }
-            });
+            } else {
+                console.log("Error");
+            }
+        });
+        if (available == true){
+            for (var i=0; i<votearray.length; i++){
+                Axios.post("http://localhost:3001/savevote", {
+                    server: match,
+                    id: i,
+                    score: (votearray[i]),
+                }).then((response)=> {
+                    if (response.data.message){
+                        setMessage("Vote succesfully added");
+                    } else {
+                        setMessage("Error");
+                    }
+                });
+            }
+        }
+        else{
+            setMessage("You have already voted! Every user can vote only once!");
         }
     };
 
