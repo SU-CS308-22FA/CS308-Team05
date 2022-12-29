@@ -33,18 +33,18 @@ app.use(session({
 }));
 
 var db = mysql.createConnection({
-  user: "rCufPgLcUG",
-  host: "remotemysql.com",
-  password: "TXThb2LUsl",
-  database: "rCufPgLcUG",
+  user: "freedb_school",
+  host: "sql.freedb.tech",
+  password: "?$5YdyC9D!myzX8",
+  database: "freedb_CS308Project",
 });
 
 function handleDisconnect() {
   db = mysql.createConnection({
-    user: "rCufPgLcUG",
-    host: "remotemysql.com",
-    password: "TXThb2LUsl",
-    database: "rCufPgLcUG",
+    user: "freedb_school",
+    host: "sql.freedb.tech",
+    password: "?$5YdyC9D!myzX8",
+    database: "freedb_CS308Project",
   });
 
   db.connect(function(err) {
@@ -58,7 +58,7 @@ function handleDisconnect() {
     if(err.code === 'PROTOCOL_CONNECTION_LOST') {
       handleDisconnect();
     } else {
-      throw err;
+      handleDisconnect();
     }
   });
 }
@@ -70,7 +70,7 @@ app.post("/signup", (req, res) => {
   const username = req.body.username;
   const email = req.body.email;
   const password = req.body.password;
-  const active = "true";
+  const active = 1;
 
   bcrypt.hash(password, SaltRounds, (err, hash) => {
     if (err){

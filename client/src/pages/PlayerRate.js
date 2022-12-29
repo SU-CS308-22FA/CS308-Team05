@@ -52,7 +52,7 @@ export const PlayerRate = (props) => {
         for (var i=0; i<votearray.length; i++){
             Axios.post("http://localhost:3001/savevote", {
                 server: match,
-                id: i+1,
+                id: i,
                 score: (votearray[i]),
             }).then((response)=> {
                 if (response.data.message){
