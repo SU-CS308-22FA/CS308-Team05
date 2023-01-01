@@ -11,6 +11,7 @@ export const PlayerRate = (props) => {
     const [message, setMessage] = useState("");
     const [playersarray, setPlayersArray] = useState([]);
     const [votearray, setVoteArray] = useState([]);
+    const [avr, setAvr] = useState(0);
 
     Axios.defaults.withCredentials = true;
 
@@ -51,6 +52,7 @@ export const PlayerRate = (props) => {
 
     const storevotes = () => {
         let available = true;
+        let usernum = 0;
         Axios.post("http://localhost:3001/useravailable", {
             server: match,
         }).then((response)=> {
@@ -65,6 +67,7 @@ export const PlayerRate = (props) => {
                         console.log(available);
                     }
                 }
+                usernum = response.data.length;
             }
             if (available === true){
                 Axios.post("http://localhost:3001/adduserrating", {
@@ -90,11 +93,30 @@ export const PlayerRate = (props) => {
                         }
                     });
                 }
+                usernum = usernum+1;
             }
             else{
-                setMessage("You have already voted! Every user can vote only once!");
+                setMessage("You have already voted! Every user can vote only once! If you want to see the average rating of every player click again");
             }
             setVoteArray([]);
+
+            if (avr === 0){
+                Axios.post("http://localhost:3001/getvotes", {
+                    server: match,
+                }).then((response)=> { 
+                    console.log(response);
+                    if (response.data.message){
+                        setMessage("Error");
+                    } else {
+                        for (var i=0; i<playersarray.length; i++){
+                            let avr = response.data[i].Vote / usernum;
+                            playersarray[i] = playersarray[i] + " Avr: " + avr.toFixed(2);;
+                        }
+                        setPlayersArray(playersarray); 
+                    }
+                });
+                setAvr(1);
+            }
         });
     };
 

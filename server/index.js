@@ -779,6 +779,21 @@ app.post ("/useravailable", (req, res) => {
     });
 });
 
+app.post ("/getvotes", (req, res) => {
+  const server = req.body.server;
+  let table = "SELECT Vote FROM "+ server +" WHERE Vote IS NOT NULL";
+  db.query(
+    table,
+    (err, result) => {
+      if (err) {
+        console.log(err);
+        res.send({message: "An error occured"});
+      } else {
+        res.send(result);
+      }
+    });
+});
+
 app.post ("/adduserrating", (req, res) => {
   const server = req.body.server;
   const username = req.body.username;
