@@ -37,6 +37,10 @@ button {
   color: #7439db;
 }
 
+.blue-button {
+  background-color: rgb(150, 236, 246);
+}
+
 button:hover{
   background-color: #7439db;
   color:#FFFFFF;
@@ -98,21 +102,22 @@ img {
 }
 
 .ptable table{
-	margin: 30px auto;
 	border-collapse: collapse;
 }
 
 .ptable{
-	margin: 0px 0% 30px 0%;
+	margin: 0px 0% 0px 0%;
 }
 
 th, td {
   padding: 10px;
+  font-size: smaller;
 }
 
 th{
-background-color: black;
-color: #ffe221;
+  background-color: lightblue;
+  color: black;
+  border: 2px solid black;
 }
 
 .headin{
@@ -128,8 +133,10 @@ text-align: center;
 }
 
 .wpos td{
-color: #77ff21;
-background-color: #000000;
+  color: gray;
+  background-color: aliceblue;
+  width: fit-content;
+  height: fit-content
 }
 
 table .col{
@@ -141,7 +148,6 @@ table .col{
 }
 
 .wpos:hover td{
-	color: #FFFFFF;
+	color: Black;
   transition: all 0.678s ease;
-  
 }
