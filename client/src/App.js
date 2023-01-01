@@ -16,26 +16,30 @@ import { AdminAnswer } from "./pages/AdminAnswer";
 import { Answers } from "./pages/Answers";
 import { Email } from "./pages/Email";
 import { Standings } from "./pages/Standings";
-import { WeekPage } from "./weekly_fixtures/WeekPage";
 import { PlayerPage } from "./pages/PlayerPage";
 import { TweetPage } from"./pages/TweetPage";
 import { Rate } from "./pages/Rate";
 import { PlayerRate } from "./pages/PlayerRate";
-
+import { About } from "./pages/About";
 import { Week1 } from "./weekly_fixtures/Week1";
 import { Week2 } from "./weekly_fixtures/Week2";
 import { Week3 } from "./weekly_fixtures/Week3";
 import { Week4 } from "./weekly_fixtures/Week4";
 import { Week5 } from "./weekly_fixtures/Week5";
 import { Week6 } from "./weekly_fixtures/Week6";
+import { WeekPage } from "./weekly_fixtures/WeekPage";
 import { Trabzonspor } from "./teams/Trabzonspor";
+import { Contact } from "./pages/Contact";
 
 
+import { useHistory, Redirect } from "react-router-dom";
 import {BrowserRouter as Router, Switch, Route, Link, NavLink} from "react-router-dom";
+
+
 
 function App() {
  
-  
+  let history = useHistory(); 
   global.fullname = "";
   global.match = "";
 
@@ -43,6 +47,7 @@ function App() {
     <Router>
       <div className="App">
       <img src="/images/Logo.png" height= "500px" alt=""/>
+      <header className="appel">RATE12</header>
         <Switch>
           <Route exact path="/">
               <Home />
@@ -125,10 +130,18 @@ function App() {
           <Route exact path="/PlayerRate">
             <PlayerRate />
           </Route>
+          <Route exact path="/About">
+            <About/>
+          </Route>
+          <Route exact path="/Contact">
+            <Contact/>
+          </Route>
         </Switch>
         <img src="/images/rate12.png" height= "500px" alt=""/>
       </div>
+      
     </Router>
+    
   );
 }
 

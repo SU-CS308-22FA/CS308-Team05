@@ -6,25 +6,27 @@ export const Email = () => {
     const [senderName, setSenderName] = useState("");
     const [receiverAdmin, setReceiverAdmin] = useState("");
     const [content, setContent] = useState("");
+    const [questionStatus, setQuestionstatus] = useState("");
+
 
 
     const [sendquestionpopup, setSendquestionpopup] = useState(false);
 
     Axios.defaults.withCredentials = true;
     const sendquestion = () => {
-        if (senderName !== "" && receiverAdmin !== "" && content) {
-            Axios.post("http://localhost:3001/sendquestion", {
+      Axios.post("http://localhost:3001/sendquestion", {
                 senderName: senderName,
                 receiverAdmin: receiverAdmin, 
                 content: content
             }).then((response)=> {
-                console.log(response);
-                global.senderName = response.data[0].senderName;
+                
+                alert('Your question has been sent! It will be reviewed by our administrators as quickly as possible!');
+                
+            })
+            .catch(error =>{
+              alert('Question sending failed: Username does not exist')
             });
-        } else {
-            
-        }
-        global.senderName = senderName;
+        
     };
 
     let history = useHistory();
@@ -34,38 +36,56 @@ export const Email = () => {
     <div className='email-form'>
         <div className='email-header'>
             Welcome to the Question Submission Page!
-            <h2>
-            </h2>
+            
             
         </div>
+        <h2 className='header'>
+                Send Questions
+        </h2>
         <div className='email-text'> Here, you can ask our admins any questions that you could not find the answers to in our FAQ page. Please don't hesitate to ask. We respond in a short period of time!</div>
 
 
         <form className='questionnaire'>
-            <label>Your name:</label> 
-            <label></label>
-            <input onChange={(e) => setSenderName(e.target.value)} placeholder='Name'></input>
-            <label>The Admin you want to ask questions:</label>
-            <label></label>
-            <input onChange={(e) => setReceiverAdmin(e.target.value)} placeholder='Admin Name'></input>
-            <label>What is your question?</label>
-            <label></label>
-            <input className='email-input' onChange={(e) => setContent(e.target.value)} placeholder='Write here...'></input>
+            <tr>
+                <td>
+                    <label className='lbl-email'>Your name:</label>
+                    <input onChange={(e) => setSenderName(e.target.value)} placeholder='Name'></input>
+                    <label></label>
+                </td>
+                <td>
+                    <label className='lbl-email'>The Admin you want to ask questions:</label>
+                    <input onChange={(e) => setReceiverAdmin(e.target.value)} placeholder='Admin Name'></input>
+                </td>
+                <td>
+                    <label className='lbl-email'>What is your question?</label>
+                    <label></label>
+                    <input className='email-input' onChange={(e) => setContent(e.target.value)} placeholder='Write here...'></input>
+                </td>
+            </tr>
         </form>
-        <button className='btn-submit' onClick={() =>{
-            sendquestion();
-            setSendquestionpopup(true);
-        }}>Send Question</button>
-        <Popup trigger={sendquestionpopup}  setTrigger={setSendquestionpopup}>
-            <h3>Your question has been sent.</h3>
-            <h3></h3>
-            <label>Thank you for your question! Our admins will look into your issue and respond from the FAQ Page!</label>
-
-        </Popup>
+        <button className='btn-submit' onClick={sendquestion}>Send Question</button>
+        
 
         <button className='link-btn' onClick={() => history.push("/User")}>Go back</button>
+        <div className="parent-btns">
+        <div className="child-btns">
+          <tr>
+            <td>
+              <button className="gnl-btn" onClick={() => history.push('/FAQ')}>Help</button>
+            </td>
+            <td>
+              <button className="gnl-btn" onClick={() => history.push('/Contact')}>Contact</button>
+            </td>
+            <td>
+              <button className="gnl-btn" onClick={() => history.push('/About')}>About Us</button>
+            </td>
+          </tr>
+          
+        </div>
+      </div>
         
 
     </div>
   )
 }
+  
