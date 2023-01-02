@@ -10,19 +10,20 @@ export const FacebookPage = () => {
         <div>
           <h2>Latest Facebook posts of TFF</h2>     
           <div style={{ display: 'flex', justifyContent: 'center' }}>
-            <FacebookEmbed url="https://www.facebook.com/TFFALTLIGLER/photos/a.650431255063045/5302636329842491/" width={550} />
+            <FacebookEmbed url="https://www.facebook.com/tff.org/posts/pfbid0XeUGiEYcpvkEJYUEVxSuu1o9F6o4BW8nnRttFBLNKkAeSfEJFaSWHTMrR6tLKJWVl" width={550} />
           </div>
           <h2></h2> 
           <div style={{ display: 'flex', justifyContent: 'center' }}>
-            <FacebookEmbed url="https://www.facebook.com/TFFALTLIGLER/photos/a.650431255063045/5302295019876622" width={550} />
+            <FacebookEmbed url="https://www.facebook.com/tff.org/videos/2180449465539298" width={550} />
           </div>
           <h2></h2> 
-          <div style={{ display: 'flex', justifyContent: 'center' }}>
-            <FacebookEmbed url="https://www.facebook.com/TFFALTLIGLER/photos/a.650431255063045/5302240439882080/" width={550} />
+          <div style={{ display: 'flex', justifyContent: 'center', backgroundColor: 'white' }}>
+            <FacebookEmbed url="https://www.facebook.com/tff.org/photos/a.1436952476444497/2187611531378584/" width={550} />
           </div>
           <p>     
             <button className = "link-btn" onClick={() => history.push('/user')}>Go back</button>
           </p>
+          
         </div>  
         
       )

@@ -10,13 +10,13 @@ export const InstagramPage = () => {
         <div>
           <h2>Latest Instagram posts of TFF</h2>     
           <div style={{ display: 'flex', justifyContent: 'center' }}>
-            <InstagramEmbed url="https://www.instagram.com/p/CKG0SHqhx0E/?hl=en" width={328} captioned />
+            <InstagramEmbed url="https://www.instagram.com/p/Cm1mmy2qhMW/" width={328} captioned />
           </div>
           <div style={{ display: 'flex', justifyContent: 'center' }}>
-            <InstagramEmbed url="https://www.instagram.com/p/CKGMZKVhDj3/?hl=en" width={328} captioned />
+            <InstagramEmbed url="https://www.instagram.com/p/CmztPWnq23S/" width={328} captioned />
           </div>  
           <div style={{ display: 'flex', justifyContent: 'center' }}>
-            <InstagramEmbed url="https://www.instagram.com/p/CJ6sE6VhZ_s/?hl=en" width={328} captioned />
+            <InstagramEmbed url="https://www.instagram.com/p/CmgmCNHKVzl/" width={328} captioned />
           </div>  
           <p>     
             <button className = "link-btn" onClick={() => history.push('/user')}>Go back</button>

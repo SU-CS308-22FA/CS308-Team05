@@ -77,8 +77,7 @@ export const PlayerPage = () => {
             <td>{val.Goals}</td>
             <td>{val.Assists}</td>
             <td>{val.Saves}</td>
-            <td>{val.Vote}</td>
-            
+            <td>{val.Vote}</td>     
           </tr>
        )
       })}
@@ -97,8 +96,7 @@ export const PlayerPage = () => {
            <td>{val.Goals}</td>
            <td>{val.Assists}</td>
            <td>{val.Saves}</td>
-           <td>{val.Vote}</td>
-           
+           <td>{val.Vote}</td>        
          </tr>
        )
       })}
