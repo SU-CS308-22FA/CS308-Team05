@@ -9,6 +9,7 @@ const { Panel } = Collapse;
 export const PlayerRate = (props) => {
     const [match, setMatch] = useState("");
     const [message, setMessage] = useState("");
+    const [starplayer, setStarplayer] = useState("");
     const [playersarray, setPlayersArray] = useState([]);
     const [votearray, setVoteArray] = useState([]);
     const [avr, setAvr] = useState(0);
@@ -120,6 +121,11 @@ export const PlayerRate = (props) => {
         });
     };
 
+    const handleChange = (paragraph) => {
+        setStarplayer(paragraph);
+        console.log(paragraph);
+    };
+
     return (
         <div className = "auth-form-container">
             <h2>Players</h2>
@@ -128,6 +134,14 @@ export const PlayerRate = (props) => {
                 <p> {playersarray.map(paragraph => <div> 
                     <div>{paragraph}</div> 
                     <Rating stop={10} initialRating={0} onClick={rate => savevote(rate)}/>
+                    <div>
+                    <label> Star Player </label>   
+                    <input
+                        type="checkbox"
+                        onChange={() => handleChange(paragraph)}
+                    />
+                    </div>
+                    <p> </p>
                 </div> )} </p>
                 <p> <button onClick={storevotes}> Vote </button> </p>
                 <p> {message} </p>
