@@ -13,6 +13,8 @@ export const PlayerRate = (props) => {
     const [playersarray, setPlayersArray] = useState([]);
     const [votearray, setVoteArray] = useState([]);
     const [avr, setAvr] = useState(0);
+    const [check, setCheck] = useState(false);
+    const [playercount, setPlayercount] = useState(0);
 
     Axios.defaults.withCredentials = true;
 
@@ -39,6 +41,7 @@ export const PlayerRate = (props) => {
             } else {
                 console.log(response);
                 let allplayers = [];
+                setPlayercount(response.data.length);
                 for (var i=0; i<response.data.length; i++){
                     allplayers.push(response.data[i].PlayerName);
                 }
@@ -49,6 +52,9 @@ export const PlayerRate = (props) => {
 
     const savevote = (rate) => {
         votearray.push(rate);
+        if (votearray.length === playercount){
+            //setCheck(false);
+        }
     }
 
     const storevotes = () => {
@@ -88,7 +94,7 @@ export const PlayerRate = (props) => {
                         score: (votearray[i]),
                     }).then((response)=> {
                         if (response.data.message){
-                            setMessage("Vote succesfully added");
+                            setMessage("Vote succesfully added. If you want to see the average rating of every player click again!");
                         } else {
                             setMessage("Error");
                         }
@@ -97,7 +103,7 @@ export const PlayerRate = (props) => {
                 usernum = usernum+1;
             }
             else{
-                setMessage("You have already voted! Every user can vote only once! If you want to see the average rating of every player click again");
+                setMessage("You have already voted! Every user can vote only once! If you want to see the average rating of every player click again!");
             }
             setVoteArray([]);
 
@@ -123,7 +129,8 @@ export const PlayerRate = (props) => {
 
     const handleChange = (paragraph) => {
         setStarplayer(paragraph);
-        console.log(paragraph);
+        setCheck(true);
+        console.log(paragraph); 
     };
 
     return (
@@ -135,10 +142,11 @@ export const PlayerRate = (props) => {
                     <div>{paragraph}</div> 
                     <Rating stop={10} initialRating={0} onClick={rate => savevote(rate)}/>
                     <div>
-                    <label> Star Player </label>   
+                    <label> Man of the Match </label>   
                     <input
                         type="checkbox"
                         onChange={() => handleChange(paragraph)}
+                        disabled={check}
                     />
                     </div>
                     <p> </p>
