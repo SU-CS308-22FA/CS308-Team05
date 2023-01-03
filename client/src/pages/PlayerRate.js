@@ -152,13 +152,13 @@ export const PlayerRate = (props) => {
                             }
                             else{
                                 if (i === 0){
-                                    motm = "Men of the Match are "+ response.data[i].PlayerName +" with "+ response.data[i].Motm +" votes and ";
+                                    motm = "Men of the Match are "+ response.data[i].PlayerName +"  and ";
                                 }
-                                else if (i !== response.data.length){
+                                else if (i === response.data.length-1){
                                     motm = motm + response.data[i].PlayerName +" with "+ response.data[i].Motm +" votes!";
                                 }
                                 else{
-                                    motm = motm + response.data[i].PlayerName +" with "+ response.data[i].Motm +" votes and";
+                                    motm = motm + response.data[i].PlayerName +" and ";
                                 }
                             }
                         }
