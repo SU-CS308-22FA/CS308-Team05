@@ -8,14 +8,14 @@ import 'chart.js/auto';
 function TotalVoteppp() {
   const [match, setVotedMatch] = useState("");
 
-    Axios.defaults.withCredentials = true;
+  Axios.defaults.withCredentials = true;
 
-    let history = useHistory();
+  let history = useHistory();
 
-    const handleSubmit = (e) => {
-        e.preventDefault();
-        console.log();
-    }
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    console.log();
+  }
 
   const displaytotalvoteofplayers = () => {
     let seppos = 0;
@@ -36,11 +36,11 @@ function TotalVoteppp() {
 
         }
     });
-};
+  };
 
   return (
     <div className="TotalVoteppp">
-      <h1>GEEKSFORGEEKS BAR CHART REACTJS</h1>
+      <h1>Total Vote Chart that is divided by number of voters </h1>
       <div style={{ maxWidth: "650px" }}>
         <Bar
           data={{

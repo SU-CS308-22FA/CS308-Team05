@@ -40,7 +40,7 @@ function StarPlayer() {
 
   return (
     <div className="StarPlayer">
-      <h1>GEEKSFORGEEKS BAR CHART REACTJS</h1>
+      <h1>Star Player Chart that defines the best player</h1>
       <div style={{ maxWidth: "650px" }}>
         <Bar
           data={{

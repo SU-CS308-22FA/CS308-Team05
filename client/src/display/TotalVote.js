@@ -39,7 +39,7 @@ function TotalVote() {
 
   return (
     <div className="TotalVote">
-      <h1>GEEKSFORGEEKS BAR CHART REACTJS</h1>
+      <h1>Total Vote Chart for each football player of Fenerbahçe</h1>
       <div style={{ maxWidth: "650px" }}>
         <Bar
           data={{
