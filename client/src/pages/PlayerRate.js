@@ -12,7 +12,8 @@ export const PlayerRate = (props) => {
     const [starplayer, setStarplayer] = useState("");
     const [playersarray, setPlayersArray] = useState([]);
     const [votearray, setVoteArray] = useState([]);
-    const [avr, setAvr] = useState(0);
+    const [avr, setAvr] = useState(1);
+    const [savr, setSavr] = useState(0);
     const [check, setCheck] = useState(false);
     const [playercount, setPlayercount] = useState(0);
 
@@ -114,13 +115,15 @@ export const PlayerRate = (props) => {
             }
             else{
                 setMessage("You have already voted! Every user can vote only once! If you want to see the average rating of every player click again!");
+                setAvr(0);
             }
             setVoteArray([]);
 
             if (avr === 0){
-                Axios.post("http://localhost:3001/getvotes", {
-                    server: match,
-                }).then((response)=> { 
+                if (savr === 0){
+                    Axios.post("http://localhost:3001/getvotes", {
+                        server: match,
+                    }).then((response)=> { 
                     console.log(response);
                     if (response.data.message){
                         setMessage("Error");
@@ -132,7 +135,36 @@ export const PlayerRate = (props) => {
                         setPlayersArray(playersarray); 
                     }
                 });
+                }
+                setSavr(1);
                 setAvr(1);
+                Axios.post("http://localhost:3001/getmotm", {
+                    server: match,
+                }).then((response)=> { 
+                    console.log(response);
+                    if (response.data.message){
+                        setMessage("Error");
+                    } else {
+                        let motm = "";
+                        for (var i=0; i<response.data.length; i++){
+                            if (response.data.length === 1){
+                                motm = "Man of the Match is "+ response.data[i].PlayerName +" with "+ response.data[i].Motm +" votes!";
+                            }
+                            else{
+                                if (i === 0){
+                                    motm = "Men of the Match are "+ response.data[i].PlayerName +" with "+ response.data[i].Motm +" votes and ";
+                                }
+                                else if (i !== response.data.length){
+                                    motm = motm + response.data[i].PlayerName +" with "+ response.data[i].Motm +" votes!";
+                                }
+                                else{
+                                    motm = motm + response.data[i].PlayerName +" with "+ response.data[i].Motm +" votes and";
+                                }
+                            }
+                        }
+                        setMessage(motm);
+                    }
+                });
             }
         });
     };
