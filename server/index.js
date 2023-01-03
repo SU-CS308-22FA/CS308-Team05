@@ -636,7 +636,7 @@ app.get('/fixtures_w6', (req, res) => {
   })
 })
 app.get('/PLAYERPAGE', (req, res) => {
-  db.query("SELECT * FROM AlanyasporKayserispor", (err, result) => {
+  db.query("SELECT * FROM AlanyasporKayserispor WHERE Player IS NOT NULL", (err, result) => {
     if (err) {
       console.log(err)
     } else{
@@ -646,7 +646,7 @@ app.get('/PLAYERPAGE', (req, res) => {
 })
 
 app.get('/PLAYERPAGE_v2', (req, res) => {
-  db.query("SELECT * FROM FatihKaragümrükTrabzonspor", (err, result) => {
+  db.query("SELECT * FROM FatihKaragümrükTrabzonspor WHERE Player IS NOT NULL", (err, result) => {
     if (err) {
       console.log(err)
     } else{

@@ -52,12 +52,13 @@ export const PlayerPage = () => {
         <thead>
           <tr>
             <th>Player</th>
-            <th>Team</th>
-            <th>Logo</th>
+            <th>Citizenship</th> 
+            <th>Team</th>      
+            <th>Logo</th>         
             <th>Position</th>
             <th>Goals</th>
             <th>Assists</th>
-            <th>Saves</th>
+            <th>Saves</th>     
             <th>Vote</th>        
           </tr>
         </thead>
@@ -66,6 +67,7 @@ export const PlayerPage = () => {
         return (
          <tr class="wpos">
             <td>{val.Player}</td>
+            <td>{val.Citizenship}</td>
             <td>{val.Team}</td>
             <td>
             {val.Team === "Alanyaspor" && <img src={"https://tmssl.akamaized.net/images/wappen/tiny/11282.png?lm=1489273987"} alt="Team logo" />}
@@ -85,6 +87,7 @@ export const PlayerPage = () => {
         return (
         <tr class="wpos">
            <td>{val.Player}</td>
+           <td>{val.Citizenship}</td>
             <td>{val.Team}</td>
             <td>
             {val.Team === "Alanyaspor" && <img src={"https://tmssl.akamaized.net/images/wappen/tiny/11282.png?lm=1489273987"} alt="Team logo" />}
