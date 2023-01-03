@@ -101,6 +101,16 @@ export const PlayerRate = (props) => {
                     });
                 }
                 usernum = usernum+1;
+                Axios.post("http://localhost:3001/savemotm", {
+                        server: match,
+                        playername: starplayer,
+                    }).then((response)=> {
+                        if (response.data.message){
+                            setMessage("Vote succesfully added. If you want to see the motm and average rating of every player click again!");
+                        } else {
+                            setMessage("Error");
+                        }
+                });
             }
             else{
                 setMessage("You have already voted! Every user can vote only once! If you want to see the average rating of every player click again!");

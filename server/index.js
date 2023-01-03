@@ -803,7 +803,23 @@ app.post ("/adduserrating", (req, res) => {
     (err, result) => {
       if (err) {
         console.log(err);
-        res.send({message: "Succesfully added user to the database"});
+        res.send({message: "An error occured"});
+      } else {
+        res.send(result);
+      }
+    });
+});
+
+app.post ("/savemotm", (req, res) => {
+  const server = req.body.server;
+  const playername = req.body.playername;
+  let table = "UPDATE "+ server +" SET Motm = Motm + 1 WHERE PlayerName = '"+playername+"';";
+  db.query(
+    table,
+    (err, result) => {
+      if (err) {
+        console.log(err);
+        res.send({message: "An error occured"});
       } else {
         res.send(result);
       }
