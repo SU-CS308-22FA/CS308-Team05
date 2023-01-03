@@ -577,7 +577,7 @@ app.get('/PLAYERS', (req, res) => {
 })
 
 app.get('/fixtures', (req, res) => {
-  db.query("SELECT * FROM fixtures WHERE week_of_match = 1", (err, result) => {
+  db.query("SELECT * FROM Fixtures WHERE week_of_match = 1", (err, result) => {
     if (err) {
       console.log(err)
     } else{
@@ -587,7 +587,7 @@ app.get('/fixtures', (req, res) => {
 })
 
 app.get('/fixtures_w2', (req, res) => {
-  db.query("SELECT * FROM fixtures WHERE week_of_match = 2", (err, result) => {
+  db.query("SELECT * FROM Fixtures WHERE week_of_match = 2", (err, result) => {
     if (err) {
       console.log(err)
     } else{
@@ -597,7 +597,7 @@ app.get('/fixtures_w2', (req, res) => {
 })
 
 app.get('/fixtures_w3', (req, res) => {
-  db.query("SELECT * FROM fixtures WHERE week_of_match = 3", (err, result) => {
+  db.query("SELECT * FROM Fixtures WHERE week_of_match = 3", (err, result) => {
     if (err) {
       console.log(err)
     } else{
@@ -607,7 +607,7 @@ app.get('/fixtures_w3', (req, res) => {
 })
 
 app.get('/fixtures_w4', (req, res) => {
-  db.query("SELECT * FROM fixtures WHERE week_of_match = 4", (err, result) => {
+  db.query("SELECT * FROM Fixtures WHERE week_of_match = 4", (err, result) => {
     if (err) {
       console.log(err)
     } else{
@@ -617,7 +617,7 @@ app.get('/fixtures_w4', (req, res) => {
 })
 
 app.get('/fixtures_w5', (req, res) => {
-  db.query("SELECT * FROM fixtures WHERE week_of_match = 5", (err, result) => {
+  db.query("SELECT * FROM Fixtures WHERE week_of_match = 5", (err, result) => {
     if (err) {
       console.log(err)
     } else{
@@ -627,7 +627,7 @@ app.get('/fixtures_w5', (req, res) => {
 })
 
 app.get('/fixtures_w6', (req, res) => {
-  db.query("SELECT * FROM fixtures WHERE week_of_match = 6", (err, result) => {
+  db.query("SELECT * FROM Fixtures WHERE week_of_match = 6", (err, result) => {
     if (err) {
       console.log(err)
     } else{
@@ -635,6 +635,22 @@ app.get('/fixtures_w6', (req, res) => {
     }
   })
 })
+
+app.post ("/clubvotepage", (req, res) => {
+  const t = req.body.team;
+  let matches = "SELECT * FROM Fixtures WHERE home_team = '" + t + "' OR alien_team = '" + t + "'";
+
+  db.query(matches,  (err, result) => {
+
+      if (err) {
+        console.log(err);
+        res.send({message: "An error occured"});
+      } else {
+        res.send(result);
+      }
+    });
+});
+
 app.get('/PLAYERPAGE', (req, res) => {
   db.query("SELECT * FROM PLAYERPAGE WHERE zmatch = 1", (err, result) => {
     if (err) {
@@ -700,6 +716,54 @@ app.get ("/getinactivematches", (req, res) => {
 app.post ("/displayplayers", (req, res) => {
   const server = req.body.server;
   let table = "SELECT PlayerName FROM "+ server +" WHERE PlayerName IS NOT NULL";
+
+  db.query(
+    table,
+    (err, result) => {
+      if (err) {
+        console.log(err);
+        res.send({message: "An error occured"});
+      } else {
+        res.send(result);
+      }
+    });
+});
+
+app.post ("/dtvp", (req, res) => {
+  const server = req.body.server;
+  let table = "SELECT * FROM "+ server +" WHERE PlayerName IS NOT NULL";
+
+  db.query(
+    table,
+    (err, result) => {
+      if (err) {
+        console.log(err);
+        res.send({message: "An error occured"});
+      } else {
+        res.send(result);
+      }
+    });
+});
+
+app.post ("/dtvppp", (req, res) => {
+  const server = req.body.server;
+  let table = "SELECT * FROM "+ server +" WHERE PlayerName IS NOT NULL";
+
+  db.query(
+    table,
+    (err, result) => {
+      if (err) {
+        console.log(err);
+        res.send({message: "An error occured"});
+      } else {
+        res.send(result);
+      }
+    });
+});
+
+app.post ("/dsp", (req, res) => {
+  const server = req.body.server;
+  let table = "SELECT * FROM "+ server +" WHERE PlayerName IS NOT NULL";
 
   db.query(
     table,
