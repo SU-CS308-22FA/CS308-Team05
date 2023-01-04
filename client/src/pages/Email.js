@@ -14,20 +14,22 @@ export const Email = () => {
 
     Axios.defaults.withCredentials = true;
     const sendquestion = () => {
-      Axios.post("http://localhost:3001/sendquestion", {
-                senderName: senderName,
-                receiverAdmin: receiverAdmin, 
-                content: content
-            }).then((response)=> {
-                
-                alert('Your question has been sent! It will be reviewed by our administrators as quickly as possible!');
-                
-            })
-            .catch(error =>{
-              alert('Question sending failed: Username does not exist')
-            });
-        
-    };
+      if (senderName !== "" && receiverAdmin !== "" && content) {
+          Axios.post("http://localhost:3001/sendquestion", {
+              senderName: senderName,
+              receiverAdmin: receiverAdmin, 
+              content: content
+          }).then((response)=> {
+              if(response = "SUCCESS"){
+                alert('Thank you for your question!');
+              }
+              global.senderName = response.data[0].senderName;
+          });
+      } else {
+          
+      }
+      global.senderName = senderName;
+  };
 
     let history = useHistory();
 

@@ -30,6 +30,8 @@ import { Week6 } from "./weekly_fixtures/Week6";
 import { WeekPage } from "./weekly_fixtures/WeekPage";
 import { Trabzonspor } from "./teams/Trabzonspor";
 import { Contact } from "./pages/Contact";
+import { Forums } from "./pages/Forums";
+
 
 
 import { useHistory, Redirect } from "react-router-dom";
@@ -135,6 +137,9 @@ function App() {
           </Route>
           <Route exact path="/Contact">
             <Contact/>
+          </Route>
+          <Route exact path="/Forums">
+            <Forums/>
           </Route>
         </Switch>
         <img src="/images/rate12.png" height= "500px" alt=""/>

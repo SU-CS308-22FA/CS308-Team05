@@ -1,15 +1,28 @@
-import React, {useState} from "react"
+import React, {useEffect, useState} from "react"
 import Axios from 'axios'
 import { useHistory } from "react-router-dom";
 import { Collapse, Button } from 'antd';
-
+import Cookies from 'js-cookie'
 const { Panel } = Collapse;
 
-export const User = (props) => {
+export const User = () => {
   const [email, setEmail] = useState("");
   const [pass, setPassword] = useState("");
   const [username, setUsername] = useState("");
   const [loginstatus, setLoginstatus] = useState("");
+  const [user,setUser] = useState(null);
+
+
+
+
+
+  function getCookie(name) {
+    const value = `; ${document.cookie}`;
+    const parts = value.split(`; ${name}=`);
+    if (parts.length === 2) {
+      return parts.pop().split(';').shift();
+    }
+  }
 
   const handleSubmit = (e) => {
       e.preventDefault();
@@ -72,15 +85,6 @@ export const User = (props) => {
     });
     history.push('/');
   };
-
-  function getCookie(name) {
-    const value = `; ${document.cookie}`;
-    const parts = value.split(`; ${name}=`);
-    if (parts.length === 2) {
-      return parts.pop().split(';').shift();
-    }
-  }
-
   let history = useHistory();
 
   const [playerList, set_playerList] = useState([]);
@@ -96,7 +100,7 @@ export const User = (props) => {
 
   return (
     <div className="general">
-        <h2 className="header">Welcome Back, {getCookie({username})}</h2>
+       <h2 className="header">Welcome Back!</h2>
         <div className="user-form">
             <form className="user-form" onSubmit = {handleSubmit}>
                 <Collapse defaultActiveKey={['0']}>
@@ -141,6 +145,11 @@ export const User = (props) => {
                         <td>
 
                             <button onClick={() => history.push('/TweetPage')}>Show Tweets</button>
+                            <label> </label>
+                        </td>
+                        <td>
+                            <label> </label>
+                            <button onClick={() => history.push('/Forums')}>View Forum Page</button>
                             <label> </label>
                         </td>
                         <td>
