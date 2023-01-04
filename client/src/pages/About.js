@@ -20,8 +20,11 @@ export const About = () => {
             <h3>Ömer Can Öztürk-Junior Year Bachelor's Student</h3>
             <img src="/images/oco_2_6.jpeg" alt=''></img>
             <h3>Eren Uluç-Senior Year Bachelor's Student</h3>
+            <img src="/images/eren.jpeg" alt=''></img>
             <h3>Ersan Alp Ünlü-Senior Year Double Major Bachelor's Student</h3>
+            <img src="/images/alp2.jpeg" alt=''></img>
             <h3>Egemen Çakır-Senior Year Bachelor's Student</h3>
+            <img src="/images/Egemen.jpeg" alt=''></img>
           </Panel>
           <Panel header="Why did we create this website?" key="2" className='panel-gnrl'>
             <p>This application was a term-long project in one of our university courses. Four of us gathered to create a website where users can spend quality time and learn information about football events or football in general in an efficient, non-exhausting way </p>
