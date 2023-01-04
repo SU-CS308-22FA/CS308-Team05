@@ -195,7 +195,6 @@ export const User = () => {
               <button className="gnl-btn" onClick={() => history.push('/About')}>About Us</button>
             </td>
           </tr>
-          
         </div>
       </div>
     </div>

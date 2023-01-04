@@ -53,7 +53,7 @@ export const Admin = (props) => {
         Axios.post("http://localhost:3001/addclub", {
             name: clubname, 
             password: clubpass, 
-            active: "false"
+            active: 0
         }).then((response)=> {
             console.log(response);
             setAddclubstatus("Registered");
