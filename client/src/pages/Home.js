@@ -11,9 +11,31 @@ export const Home = (props) => {
             <h2>WELCOME TO RATE12</h2>
             <h2>LET THE FANS DECIDE!</h2>
             <button className = "homebuttonstyle" onClick={() => history.push('/adminlogin')}>If you are an admin please click here!</button>
+            <label></label>
+            <label></label>
             <button className = "homebuttonstyle" onClick={() => history.push('/clublogin')}>If you are a football club please click here!</button>
+            <label></label>
+            <label></label>
             <button className = "homebuttonstyle" onClick={() => history.push('/login')}>If you have an account please click here!</button>
+            <label></label>
+            <label></label>
             <button className = "homebuttonstyle" onClick={() => history.push('/signup')}>If you are new please click here!</button>
+            <div className="parent-btns">
+                <div className="child-btns">
+                <tr>
+                    <td>
+                    <button className="gnl-btn" onClick={() => history.push('/FAQ')}>Help</button>
+                    </td>
+                    <td>
+                    <button className="gnl-btn" onClick={() => history.push('/Contact')}>Contact</button>
+                    </td>
+                    <td>
+                    <button className="gnl-btn" onClick={() => history.push('/About')}>About Us</button>
+                    </td>
+                </tr>
+                
+                </div>
+            </div>
         </div>
     );
 }

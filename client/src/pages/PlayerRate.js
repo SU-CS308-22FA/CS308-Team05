@@ -66,7 +66,7 @@ export const PlayerRate = (props) => {
 
     return (
         <div className = "auth-form-container">
-            <h2>Players</h2>
+            <h2 className="header">Players</h2>
             <form className="rate-form" onSubmit = {handleSubmit}>
                 <button onClick={displayplayers}>Display Rateable Players</button>
                 <p> {playersarray.map(paragraph => <div> 
@@ -76,6 +76,22 @@ export const PlayerRate = (props) => {
                 <p> <button onClick={storevotes}> Vote </button> </p>
             </form>
             <button className = "link-btn" onClick={() => history.push('/Rate')}> Go back to choosing matches to rate </button>
+            <div className="parent-btns">
+                <div className="child-btns">
+                    <tr>
+                    <td>
+                        <button className="gnl-btn" onClick={() => history.push('/FAQ')}>Help</button>
+                    </td>
+                    <td>
+                        <button className="gnl-btn" onClick={() => history.push('/Contact')}>Contact</button>
+                    </td>
+                    <td>
+                        <button className="gnl-btn" onClick={() => history.push('/About')}>About Us</button>
+                    </td>
+                    </tr>
+                    
+                </div>
+            </div>
         </div>
     ); 
 }
