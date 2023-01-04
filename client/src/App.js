@@ -52,7 +52,6 @@ function App() {
     <Router>
       <div className="App">
       <img src="/images/Logo.png" height= "500px" alt=""/>
-      <header className="appel">RATE12</header>
         <Switch>
           <Route exact path="/">
               <Home />

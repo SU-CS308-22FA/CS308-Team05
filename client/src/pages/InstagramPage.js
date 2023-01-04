@@ -8,7 +8,7 @@ export const InstagramPage = () => {
     let history = useHistory();
     return (
         <div>
-          <h2>Latest Instagram posts of TFF</h2>     
+          <h2 className='header'>Latest Instagram posts of TFF</h2>     
           <div style={{ display: 'flex', justifyContent: 'center' }}>
             <InstagramEmbed url="https://www.instagram.com/p/Cm1mmy2qhMW/" width={328} captioned />
           </div>

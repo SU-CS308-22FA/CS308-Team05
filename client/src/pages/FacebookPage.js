@@ -8,7 +8,7 @@ export const FacebookPage = () => {
     let history = useHistory();
     return (
         <div>
-          <h2>Latest Facebook posts of TFF</h2>     
+          <h2 className='header'>Latest Facebook posts of TFF</h2>     
           <div style={{ display: 'flex', justifyContent: 'center' }}>
             <FacebookEmbed url="https://www.facebook.com/tff.org/posts/pfbid0XeUGiEYcpvkEJYUEVxSuu1o9F6o4BW8nnRttFBLNKkAeSfEJFaSWHTMrR6tLKJWVl" width={550} />
           </div>

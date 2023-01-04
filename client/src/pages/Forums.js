@@ -14,7 +14,7 @@ export const Forums = () => {
         </div>
         <Comments currentUserId="1"/>
 
-        <button className="link-btn" onClick={() => history.push('/')}>Go Back</button>
+        <button className="link-btn" onClick={() => history.push('/user')}>Go Back</button>
         <div className="parent-btns">
                 <div className="child-btns">
                 <tr>

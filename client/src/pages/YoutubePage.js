@@ -8,7 +8,7 @@ export const YoutubePage = () => {
     let history = useHistory();
     return (
         <div>
-          <h2>Latest Youtube of TFF</h2> 
+          <h2 className='header'>Latest Youtube of TFF</h2> 
           <div style={{ display: 'flex', justifyContent: 'center' }}>
             <YouTubeEmbed url="https://www.youtube.com/watch?v=8Dou65gjZsY" width={325} height={220} />
           </div>
