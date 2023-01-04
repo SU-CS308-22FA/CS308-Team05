@@ -173,47 +173,21 @@ app.post ("/login", (req, res) => {
   );
 });
 
+
 app.post("/sendquestion",(req,res) =>{
   const content = req.body.content;
   const senderName = req.body.senderName;
   const receiverAdmin = req.body.receiverAdmin;
-  const queryName = "'" + senderName + "'";
-  let variable = db.query("SELECT * FROM Users WHERE Username = " + queryName);
-  if(variable.length === 0){
-    db.query(
-      "INSERT INTO Questions (content,senderName,receiverAdmin) VALUES (?,?,?)",
-      [content,senderName,receiverAdmin],
-      (err,result) =>{
-        if(err){
-          console.log(err);
-        }
-        else{
-          
-        }
-      }
-    )
-
-  }
-  else{
-    res.send(error);
-  }
-
-  
-})
-
-app.post("/sendanswer",(req,res) =>{
-  const content = req.body.content;
-  const userSent = req.body.userSent;
-  const adminName = req.body.adminName;
 
   db.query(
-    "INSERT INTO Answers (content,userSent,adminName) VALUES (?,?,?)",
-    [content,userSent,adminName],
+    "INSERT INTO Questions (content,senderName,receiverAdmin) VALUES (?,?,?)",
+    [content,senderName,receiverAdmin],
     (err,result) =>{
       if(err){
         console.log(err);
       }
       else{
+        res.send("SUCCESS");
         
       }
     }
@@ -231,13 +205,65 @@ app.get("/questions",(req,res) =>{
   })
 })
 
+app.get("/getcomments",(req,res) =>{
+  db.query("SELECT * FROM Comments", (err,result) =>{
+    if(err){
+      console.log(err);
+    }
+    else{
+      res.send(result);
+    }
+  })
+})
 
-app.post("/updateresolved", (req, res) => {
-  const senderName = req.body.senderName;
+app.get("/getroots",(req,res) =>{
+  db.query("SELECT * FROM Comments WHERE parentId IS NULL",(err,result) =>{
+    if(err){
+      console.log(err);
+    }
+    else{
+      res.send(result);
+    }
+  })
+})
+
+app.post("/sendanswer",(req,res) =>{
+  const content = req.body.content;
+  const userSent = req.body.userSent;
+  const adminName = req.body.adminName;
+  const idQuestions = req.body.idQuestions;
 
   db.query(
-    "UPDATE Questions SET isResolved = 1 WHERE senderName = ?;",
-    senderName,
+    "INSERT INTO Answers (adminName,userSent,content,idQuestions) VALUES (?,?,?,?)",
+    [adminName,userSent,content,idQuestions],
+    (err,result) =>{
+      if(err){
+        console.log(err);
+      }
+      else{
+        
+      }
+    }
+  )
+})
+
+app.get("/getreplies",(req,res) =>{
+  db.query("SELECT * FROM Comments WHERE parentId = 1",(err,result)=>{
+    if(err){
+      console.log(err);
+    }
+    else{
+      res.send(result);
+    }
+  })
+})
+
+app.post("/updateresolved", (req, res) => {
+  const idQuestions = req.body.idQuestions
+
+  db.query(
+    "UPDATE Questions SET isResolved = 1 WHERE idQuestions = ?;", 
+    idQuestions,
     (err, result) => {
     if (err) {
       console.log(err);

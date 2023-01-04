@@ -19,9 +19,15 @@ export const About = () => {
           <Panel header="Our Creators" key="1" className='panel-gnrl'>
             <h3>Ömer Can Öztürk-Junior Year Bachelor's Student</h3>
             <img src="/images/oco_2_6.jpeg" alt=''></img>
+            <h3>Eren Uluç-Senior Year Bachelor's Student</h3>
+            <img src="/images/eren.jpeg" alt=''></img>
+            <h3>Ersan Alp Ünlü-Senior Year Double Major Bachelor's Student</h3>
+            <img src="/images/alp2.jpeg" alt=''></img>
+            <h3>Egemen Çakır-Senior Year Bachelor's Student</h3>
+            <img src="/images/Egemen.jpeg" alt=''></img>
           </Panel>
-          <Panel header="What is the name of the Application" key="2" className='panel-gnrl'>
-            <p>Our app is called RATE12. We let YOU, THE FANS to decide the best players,teams and coaches!</p>
+          <Panel header="Why did we create this website?" key="2" className='panel-gnrl'>
+            <p>This application was a term-long project in one of our university courses. Four of us gathered to create a website where users can spend quality time and learn information about football events or football in general in an efficient, non-exhausting way </p>
           </Panel>
           <Panel header="How to access through cloud?" key="3" className='panel-gnrl'>
             <p>Our app is deployed remotely on Heroku. So you can easily access it from your browser.</p>

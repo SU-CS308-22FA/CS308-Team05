@@ -8,13 +8,32 @@ export const AdminAnswer = () => {
     const [userSent, setUserSent] = useState("");
     const [content, setContent] = useState("");
     const [senderName, setSenderName] = useState("");
+    const[idQuestions,setIdQuestions] = useState("");
+
 
     const [sendanswerpopup, setSendanswerpopup] = useState(false);
+
+    const sendanswer = () => {
+        if (userSent !== "" && adminName !== "" && content != "" && idQuestions != "") {
+            Axios.post("http://localhost:3001/sendanswer", {
+                userSent: userSent,
+                adminName: adminName, 
+                content: content,
+                idQuestions: idQuestions
+            }).then((response)=> {
+                console.log(response);
+                global.adminName = response.data[0].adminName;
+            });
+        } else {
+            
+        }
+        global.adminName = adminName;
+    };
 
 
     const updateresolved = () => {
         Axios.post("http://localhost:3001/updateresolved", {
-            senderName: userSent,
+            idQuestions: idQuestions,
         }).then((response)=> {
             if (response.data.message){
                 setIsResolved(response.data.message);
@@ -23,21 +42,6 @@ export const AdminAnswer = () => {
             }
         });
       };
-
-      const sendanswer = () => {
-        if (userSent !== "" && adminName !== "" && content) {
-            Axios.post("http://localhost:3001/sendanswer", {
-                content: content,
-                userSent: userSent, 
-                adminName: adminName
-            }).then((response)=> {
-                global.adminName = response.data[0].adminName;
-            });
-        } else {
-            
-        }
-        global.adminName = adminName;
-    };
     let history = useHistory();
     return (
     
@@ -62,7 +66,12 @@ export const AdminAnswer = () => {
                     </td>
                     <td>
                         <label className='lbl-email'>The user's name:</label>
-                        <input onChange={(e) => setSenderName(e.target.value)} placeholder='Enter the user name'></input>
+                        <input onChange={(e) => setUserSent(e.target.value)} placeholder='Enter the user name'></input>
+                    </td>
+                    <td>
+                        <label className='lbl-email'>The Question id:</label>
+                        <label></label>
+                        <input onChange={(e) => setIdQuestions(e.target.value)} placeholder='Write here...'></input>
                     </td>
                     <td>
                         <label className='lbl-email'>The Answer:</label>
@@ -83,7 +92,7 @@ export const AdminAnswer = () => {
 
             </Popup>
     
-            <button className='link-btn' onClick={() => history.push("/Admin")}>Go back</button>
+            <button className='link-btn' onClick={() => history.push("/AdminEmail")}>Go back</button>
             <div className="parent-btns">
             <div className="child-btns">
               <tr>
