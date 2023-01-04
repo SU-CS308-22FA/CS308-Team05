@@ -38,7 +38,7 @@ export const Sign_Up = (props) => {
 
     return (
         <div className = "auth-form-container">
-            <h2>Sign Up</h2>
+            <h2 className="header">Sign Up</h2>
             <form className="sign_up-form" onSubmit = {handleSubmit}>
                 <label htmlFor = "name">Full Name</label>
                 <input onChange={(e) => setName(e.target.value)} name = "name" id = "name" placeholder = "Full Name"/>
@@ -48,13 +48,34 @@ export const Sign_Up = (props) => {
                 <input onChange={(e) => setEmail(e.target.value)} type = "email" id = "email" name = "email" placeholder = "email@gmail.com"/>
                 <label htmlFor = "password">Password</label>
                 <input onChange={(e) => setPassword(e.target.value)} type = "password" id = "password" name = "password" placeholder = "********"/>
+                <label></label>
                 <button onClick={signup}>Sign Up Now!</button>
             </form>
-            <button className = "link-btn" onClick={() => history.push('/')}>Already have an account? Login here.</button>
+            <label></label>
+            <label></label>
+            <button onClick={() => history.push('/Login')}>Already have an account? Login here.</button>
+            <label></label>
+            <label></label>
             <button className = "link-btn" onClick={() => history.push('/')}>Go back to home page</button>
             <h1>
                 {signupstatus}
             </h1>
+            <div className="parent-btns">
+        <div className="child-btns">
+          <tr>
+            <td>
+              <button className="gnl-btn" onClick={() => history.push('/FAQ')}>Help</button>
+            </td>
+            <td>
+              <button className="gnl-btn" onClick={() => history.push('/Contact')}>Contact</button>
+            </td>
+            <td>
+              <button className="gnl-btn" onClick={() => history.push('/About')}>About Us</button>
+            </td>
+          </tr>
+          
+        </div>
+      </div>
         </div>
     );
 }

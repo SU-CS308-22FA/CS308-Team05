@@ -36,7 +36,7 @@ export const AdminLogin = (props) => {
 
     return (
         <div className = "auth-form-container">
-            <h2>Admin Login</h2>
+            <h2 className="header">Admin Login</h2>
             <form className="login-form" onSubmit = {handleSubmit}>
                 <label htmlFor = "username">Username</label>
                 <input value={identification} onChange={(e) => setID(e.target.value)} type = "text" placeholder = "username" id = "identification" name = "identification"/>

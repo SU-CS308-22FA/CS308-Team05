@@ -41,6 +41,22 @@ export const Answers = () => {
       
       })}
       <button className = "link-btn" onClick={() => history.push("/User")}>Go back</button>
+      <div className="parent-btns">
+        <div className="child-btns">
+          <tr>
+            <td>
+              <button className="gnl-btn" onClick={() => history.push('/FAQ')}>Help</button>
+            </td>
+            <td>
+              <button className="gnl-btn" onClick={() => history.push('/Contact')}>Contact</button>
+            </td>
+            <td>
+              <button className="gnl-btn" onClick={() => history.push('/About')}>About Us</button>
+            </td>
+          </tr>
+          
+        </div>
+      </div>
       
     </p>
 
