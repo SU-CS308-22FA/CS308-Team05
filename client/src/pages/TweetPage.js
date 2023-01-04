@@ -13,19 +13,19 @@ export const TweetPage = () => {
           <div className="selfCenter spaceBetween">
             <TwitterTweetEmbed
               onLoad={function noRefCheck(){}}
-              tweetId="1601535882930294791"         
+              tweetId="1607333164371902464"         
             />
           </div>
           <div className="selfCenter spaceBetween">
             <TwitterTweetEmbed
               onLoad={function noRefCheck(){}}
-              tweetId="1601526809149214721"         
+              tweetId="1609812694692929536"         
             />
           </div>
           <div className="selfCenter spaceBetween">
             <TwitterTweetEmbed
               onLoad={function noRefCheck(){}}
-              tweetId="1601189764493111297"         
+              tweetId="1609135517769297920"         
             />
           </div>
           <p>     

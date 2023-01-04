@@ -119,6 +119,10 @@ button {
   color: #7439db;
 }
 
+.blue-button {
+  background-color: rgb(150, 236, 246);
+}
+
 button:hover{
   background-color: #7439db;
   color:#FFFFFF;
@@ -191,14 +195,12 @@ img {
 }
 th, td {
   padding: 10px;
-  font-size: smaller;
-  
+  font-size: smaller;  
 }
 
 th{
 background-color: lightblue;
 color: black;
-
 }
 
 .headin{
@@ -218,7 +220,6 @@ text-align: center;
   background-color: aliceblue;
   width: fit-content;
   height: fit-content;
-
 }
 
 table .col{
