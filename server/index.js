@@ -33,18 +33,18 @@ app.use(session({
 }));
 
 var db = mysql.createConnection({
-  user: "rCufPgLcUG",
-  host: "remotemysql.com",
-  password: "TXThb2LUsl",
-  database: "rCufPgLcUG",
+  user: "freedb_school",
+  host: "sql.freedb.tech",
+  password: "?$5YdyC9D!myzX8",
+  database: "freedb_CS308Project",
 });
 
 function handleDisconnect() {
   db = mysql.createConnection({
-    user: "rCufPgLcUG",
-    host: "remotemysql.com",
-    password: "TXThb2LUsl",
-    database: "rCufPgLcUG",
+    user: "freedb_school",
+    host: "sql.freedb.tech",
+    password: "?$5YdyC9D!myzX8",
+    database: "freedb_CS308Project",
   });
 
   db.connect(function(err) {
@@ -58,7 +58,7 @@ function handleDisconnect() {
     if(err.code === 'PROTOCOL_CONNECTION_LOST') {
       handleDisconnect();
     } else {
-      throw err;
+      handleDisconnect();
     }
   });
 }
@@ -70,7 +70,7 @@ app.post("/signup", (req, res) => {
   const username = req.body.username;
   const email = req.body.email;
   const password = req.body.password;
-  const active = "true";
+  const active = 1;
 
   bcrypt.hash(password, SaltRounds, (err, hash) => {
     if (err){
@@ -103,12 +103,12 @@ app.post("/create", (req, res) => {
   const D = req.body.D;
   const L = req.body.L;
   const Goals = req.body.Goals;
-  const GD = req.body.GS;
+  const GD = req.body.GD;
   const Points = req.body.Points;
   
 
   db.query(
-    "INSERT INTO STANDINGS (Club, Games, W, D, L, Goals, GD, Points) VALUES (?,?,?,?,?,?,?,?)",
+    "INSERT INTO Standings (Club, Games, W, D, L, Goals, GD, Points) VALUES (?,?,?,?,?,?,?,?)",
     [Club, Games, W, D, L, Goals, GD, Points],
     (err, result) => {
       if (err) {
@@ -121,7 +121,7 @@ app.post("/create", (req, res) => {
 });
 
 app.get ('/standings', (req, res) => {
-  db.query("SELECT * FROM STANDINGS",(err,result) =>{
+  db.query("SELECT * FROM Standings",(err,result) =>{
     if(err){
       console.log(err)
     }
@@ -131,6 +131,20 @@ app.get ('/standings', (req, res) => {
   })
  
 });
+
+app.get ('/contacts', (req, res) => {
+  db.query("SELECT * FROM Contacts",(err,result) =>{
+    if(err){
+      console.log(err)
+    }
+    else{
+      res.send(result)
+    }
+  })
+ 
+});
+
+
 app.post ("/login", (req, res) => {
   const identification = req.body.identification;
   const password = req.body.password;
@@ -163,19 +177,28 @@ app.post("/sendquestion",(req,res) =>{
   const content = req.body.content;
   const senderName = req.body.senderName;
   const receiverAdmin = req.body.receiverAdmin;
+  const queryName = "'" + senderName + "'";
+  let variable = db.query("SELECT * FROM Users WHERE Username = " + queryName);
+  if(variable.length === 0){
+    db.query(
+      "INSERT INTO Questions (content,senderName,receiverAdmin) VALUES (?,?,?)",
+      [content,senderName,receiverAdmin],
+      (err,result) =>{
+        if(err){
+          console.log(err);
+        }
+        else{
+          
+        }
+      }
+    )
 
-  db.query(
-    "INSERT INTO Questions (content,senderName,receiverAdmin) VALUES (?,?,?)",
-    [content,senderName,receiverAdmin],
-    (err,result) =>{
-      if(err){
-        console.log(err);
-      }
-      else{
-        
-      }
-    }
-  )
+  }
+  else{
+    res.send(error);
+  }
+
+  
 })
 
 app.post("/sendanswer",(req,res) =>{
@@ -184,8 +207,8 @@ app.post("/sendanswer",(req,res) =>{
   const adminName = req.body.adminName;
 
   db.query(
-    "INSERT INTO Answers (adminName,userSent,content) VALUES (?,?,?)",
-    [adminName,userSent,content],
+    "INSERT INTO Answers (content,userSent,adminName) VALUES (?,?,?)",
+    [content,userSent,adminName],
     (err,result) =>{
       if(err){
         console.log(err);
@@ -213,7 +236,7 @@ app.post("/updateresolved", (req, res) => {
   const senderName = req.body.senderName;
 
   db.query(
-    "UPDATE Questions SET isResolved = 1 WHERE senderName = ?;", 
+    "UPDATE Questions SET isResolved = 1 WHERE senderName = ?;",
     senderName,
     (err, result) => {
     if (err) {
@@ -577,7 +600,7 @@ app.get('/PLAYERS', (req, res) => {
 })
 
 app.get('/fixtures', (req, res) => {
-  db.query("SELECT * FROM fixtures WHERE week_of_match = 1", (err, result) => {
+  db.query("SELECT * FROM Fixtures WHERE week_of_match = 1", (err, result) => {
     if (err) {
       console.log(err)
     } else{
@@ -587,7 +610,7 @@ app.get('/fixtures', (req, res) => {
 })
 
 app.get('/fixtures_w2', (req, res) => {
-  db.query("SELECT * FROM fixtures WHERE week_of_match = 2", (err, result) => {
+  db.query("SELECT * FROM Fixtures WHERE week_of_match = 2", (err, result) => {
     if (err) {
       console.log(err)
     } else{
@@ -597,7 +620,7 @@ app.get('/fixtures_w2', (req, res) => {
 })
 
 app.get('/fixtures_w3', (req, res) => {
-  db.query("SELECT * FROM fixtures WHERE week_of_match = 3", (err, result) => {
+  db.query("SELECT * FROM Fixtures WHERE week_of_match = 3", (err, result) => {
     if (err) {
       console.log(err)
     } else{
@@ -607,7 +630,7 @@ app.get('/fixtures_w3', (req, res) => {
 })
 
 app.get('/fixtures_w4', (req, res) => {
-  db.query("SELECT * FROM fixtures WHERE week_of_match = 4", (err, result) => {
+  db.query("SELECT * FROM Fixtures WHERE week_of_match = 4", (err, result) => {
     if (err) {
       console.log(err)
     } else{
@@ -617,7 +640,7 @@ app.get('/fixtures_w4', (req, res) => {
 })
 
 app.get('/fixtures_w5', (req, res) => {
-  db.query("SELECT * FROM fixtures WHERE week_of_match = 5", (err, result) => {
+  db.query("SELECT * FROM Fixtures WHERE week_of_match = 5", (err, result) => {
     if (err) {
       console.log(err)
     } else{
@@ -627,7 +650,7 @@ app.get('/fixtures_w5', (req, res) => {
 })
 
 app.get('/fixtures_w6', (req, res) => {
-  db.query("SELECT * FROM fixtures WHERE week_of_match = 6", (err, result) => {
+  db.query("SELECT * FROM Fixtures WHERE week_of_match = 6", (err, result) => {
     if (err) {
       console.log(err)
     } else{

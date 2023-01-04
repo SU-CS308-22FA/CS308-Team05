@@ -1,23 +1,24 @@
-import React from 'react';
+import React from 'react'
 import { useHistory, Redirect } from "react-router-dom";
 import { Collapse, Button } from 'antd';
 
 const { Panel } = Collapse;
+ 
 
 
-
-export const FAQ = () => {
+export const About = () => {
   let history = useHistory();
   return(
-    <div id="FAQ" className="block faqBlock">
+    <div className="general">
       <div className="container-fluid">
         <div className="titleHolder">
-          <h2 className='header'>FAQ Page</h2>
-          <p>Welcome to the FAQ Page of RATE12. Here you can try to find answers to your concerns about our services.</p>
+          <h2 className='header'>About Us</h2>
+          <h1 className='about-header'>Welcome to our web page RATE12! We set our motto as "LET THE FANS DECIDE!" as we believe that you, the user should be the main decider of football events in Turkey. Below, you can find more, learn about our app, creators, format, etc. We appreciate any sort of merit and criticism about our work! Do not hesitate to give us feedback! -The RATE12 Team</h1>
         </div>
         <Collapse defaultActiveKey={['0']}>
-          <Panel header="What does our app use?" key="1" className='panel-gnrl'>
-            <p>We use React for our frontend and NodeJS along with mySQL for our backend codings.</p>
+          <Panel header="Our Creators" key="1" className='panel-gnrl'>
+            <h3>Ömer Can Öztürk-Junior Year Bachelor's Student</h3>
+            <img src="/images/oco_2_6.jpeg" alt=''></img>
           </Panel>
           <Panel header="What is the name of the Application" key="2" className='panel-gnrl'>
             <p>Our app is called RATE12. We let YOU, THE FANS to decide the best players,teams and coaches!</p>
@@ -35,14 +36,25 @@ export const FAQ = () => {
             <p>Go to your user settings and adjust your account preferences to your liking!</p>
           </Panel>
         </Collapse>
-        <div className="quickSupport">
-          <h3>Could not find an answer to your problem?</h3>
-          <p>Submit to us your spesific concern and let us try to help!</p>
-          <Button type="primary" onClick={() => history.push("/Email")} size="large"><i className="fas fa-envelope"></i> Send your question</Button>
-          <button className='link-btn' onClick={() => history.push("/User")}>Go Back</button>
+        
+      </div>
+      <button className='link-btn' onClick={() => history.push('/User')}>Go back</button>
+      <div className="parent-btns">
+        <div className="child-btns">
+          <tr>
+            <td>
+              <button className="gnl-btn" onClick={() => history.push('/FAQ')}>Help</button>
+            </td>
+            <td>
+              <button className="gnl-btn" onClick={() => history.push('/Contact')}>Contact</button>
+            </td>
+            <td>
+              <button className="gnl-btn" onClick={() => history.push('/About')}>About Us</button>
+            </td>
+          </tr>
+          
         </div>
       </div>
-    </div> 
-    
+    </div>  
   );
 }

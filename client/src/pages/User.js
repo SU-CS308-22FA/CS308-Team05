@@ -1,6 +1,9 @@
 import React, {useState} from "react"
 import Axios from 'axios'
 import { useHistory } from "react-router-dom";
+import { Collapse, Button } from 'antd';
+
+const { Panel } = Collapse;
 
 export const User = (props) => {
   const [email, setEmail] = useState("");
@@ -70,6 +73,14 @@ export const User = (props) => {
     history.push('/');
   };
 
+  function getCookie(name) {
+    const value = `; ${document.cookie}`;
+    const parts = value.split(`; ${name}=`);
+    if (parts.length === 2) {
+      return parts.pop().split(';').shift();
+    }
+  }
+
   let history = useHistory();
 
   const [playerList, set_playerList] = useState([]);
@@ -80,44 +91,103 @@ export const User = (props) => {
         set_playerList(response.data);
     });
   };
+  const userCookie = getCookie(username);
+
 
   return (
-      <div className = "auth-form-container">
-          <h2>User Settings</h2>
-          <form className="user-form" onSubmit = {handleSubmit}>
-                <label htmlFor = "username">Username Change</label>
-                <input onChange={(e) => setUsername(e.target.value)} type = "username" name = "username" id = "username" placeholder = "Username"/>
-                <button onClick={updateusername}>Change Now!</button>
-                <label htmlFor = "email">Email Change</label>
-                <input onChange={(e) => setEmail(e.target.value)} type = "email" id = "email" name = "email" placeholder = "email@gmail.com"/>
-                <button onClick={updateemail}>Change Now!</button>
-                <label htmlFor = "password">Password Change</label>
-                <input onChange={(e) => setPassword(e.target.value)} type = "password" id = "password" name = "password" placeholder = "********"/>
-                <button onClick={updatepassword}>Change Now!</button>
-                <label> </label>
-                <button onClick={deleteuser} color = "red" >Delete User</button>
-                <label> </label>
-                <button onClick={() => history.push('/Rate')}>Rate Players !!!</button>
-                <label> </label>
-                <button onClick={() => history.push('/FAQ')}>Go to the FAQ Page</button>
-                <label> </label>
-                <label> </label>
-                <button onClick={() => history.push('/Standings')}>View the League Standings</button>
-                <label> </label>
-                <button className = "link-btn" onClick={() => history.push('/')}>Sign Out</button>
-                <label> </label>
-                <button onClick={() => history.push('/Answers')}>View the answers to your questions!!!</button>
-                <label> </label>
-                <button onClick={updatepassword}>Change Now!</button>
-                <button className = "btn" onClick={() => history.push('/commentmain')}>Do you want to comment?</button>
-                <button onClick={() => history.push('/TweetPage')}>Show Tweets</button>
-                <label> </label>
-                <button onClick={() => history.push('/PlayerPage')}>View Players</button>
-                <label> </label>
-                <button onClick={() => history.push('/WeekPage')}>Fixtures</button>
-                <label></label>
-                <button className = "btn" onClick={() => history.push('/Trabzonspor')}>Trabzon Players</button>
-          </form>
+    <div className="general">
+        <h2 className="header">Welcome Back, {getCookie({username})}</h2>
+        <div className="user-form">
+            <form className="user-form" onSubmit = {handleSubmit}>
+                <Collapse defaultActiveKey={['0']}>
+                    <Panel header = "User Operations" key = '1' className="panel-gnrl">
+                        <td>
+                            <label htmlFor = "username">Username Change</label>
+                            <input onChange={(e) => setUsername(e.target.value)} type = "username" name = "username" id = "username" placeholder = "Username"/>
+                            <button onClick={updateusername}>Change Now!</button>
+
+                        </td>
+                        
+                        <td>
+                            <label htmlFor = "email">Email Change</label>
+                            <input onChange={(e) => setEmail(e.target.value)} type = "email" id = "email" name = "email" placeholder = "email@gmail.com"/>
+                            <button onClick={updateemail}>Change Now!</button>
+                        </td>
+                        <td>
+                            <label htmlFor = "password">Password Change</label>
+                            <input onChange={(e) => setPassword(e.target.value)} type = "password" id = "password" name = "password" placeholder = "****"/>
+                            <button onClick={updatepassword}>Change Now!</button>
+                        </td>
+                        <td>
+                            <button onClick={deleteuser} className = "link-btn" >Delete User</button>
+
+                        </td>
+                        <td>
+                            <button className = "link-btn" onClick={() => history.push('/')}>Sign Out</button>
+                            <label> </label>
+                        </td>
+                    </Panel>
+                    <Panel header = "Contents about the League" key = '2' className="panel-gnrl">
+                        <td>
+                            <button onClick={() => history.push('/WeekPage')}>Open fixture page</button>
+                            <label></label>
+
+                        </td>
+                        <td>
+                            <label> </label>
+                            <button onClick={() => history.push('/Standings')}>League Standings</button>
+                            <label> </label>
+                        </td>
+                        <td>
+
+                            <button onClick={() => history.push('/TweetPage')}>Show Tweets</button>
+                            <label> </label>
+                        </td>
+                        <td>
+                            <button onClick={() => history.push('/PlayerPage')}>View the players</button>
+                            <label> </label>
+                        </td>
+                        <td>
+                            <button onClick={() => history.push('/Rate')}>RATE PLAYERS !!!</button>
+                            <label> </label>
+                        </td>
+                    </Panel>
+                    <Panel header = "For Help" key = '3' className="panel-gnrl">
+                        <td>
+                            <button onClick={() => history.push('/FAQ')}>FAQ Page</button>
+                            <label> </label>
+                        </td>
+                        <td>
+                            <button onClick={() => history.push('/Answers')}>View answers to your questions</button>
+                            <label></label>
+                        </td>
+                        <td>
+                            <button onClick={() => history.push('/About')}>About Us</button>
+                        </td>
+                    </Panel>
+                </Collapse>
+           
+                    
+            </form>
+            <button className="link-btn" onClick={() => history.push('/')}>Go Back</button>
+        </div>
+        <div className="parent-btns">
+        <div className="child-btns">
+          <tr>
+            <td>
+              <button className="gnl-btn" onClick={() => history.push('/FAQ')}>Help</button>
+            </td>
+            <td>
+              <button className="gnl-btn" onClick={() => history.push('/Contact')}>Contact</button>
+            </td>
+            <td>
+              <button className="gnl-btn" onClick={() => history.push('/About')}>About Us</button>
+            </td>
+          </tr>
+          
+        </div>
       </div>
+    </div>
+    
   );
 }

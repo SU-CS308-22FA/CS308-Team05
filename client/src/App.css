@@ -1,19 +1,101 @@
 .App {
   text-align: center;
-  display: flex;
+  display:flex;
   min-height: 100vh;
   align-items: center;
   justify-content: center;
   color: white;
-  background-image: linear-gradient(79deg, #cf2c7e, #506b11 48%, #1385e2);
+  background: rgb(233, 228, 229);
+    background: -moz-linear-gradient(79deg, #cf2c7e, #506b11 48%, #1385e2);
+    background: -webkit-gradient(left bottom, right top, color-stop(0%, #bf3c50), color-stop(100%,  #4924cd));
+    background: -webkit-linear-gradient(79deg, #da2656, #148e83 48%, #4010d1);
+    background: -o-linear-gradient(79deg, #cf2c7e, #506b11 48%, #1385e2);
+    background: -ms-linear-gradient(79deg, #cf2c7e, #506b11 48%, #1385e2);
+    background: linear-gradient(79deg, #de4575, #8a9d23 48%, #5022ce);
+    background-size: 400% 400%;
+    -webkit-animation: errorBg 3.564s ease infinite;
+    -moz-animation: errorBg 3.564s ease infinite;
+    animation: errorBg 3.564s ease infinite;
+  
 }
 
-.auth-form-container, .login-form, .sign_up-form, .user-form, .home-form{
+.auth-form-container, .login-form, .sign_up-form, .home-form{
   display: flex;
   align-items: center;
   text-align: center;
   flex-direction: column;
   flex: 1;
+}
+
+.panel-gnrl{
+  display:list-item;
+  background-color: aquamarine;
+  
+  
+
+}
+.general{
+  display: flex;
+  align-items: center;
+  text-align: center;
+  flex-direction: column;
+  flex: 1;
+  background-color: transparent;
+  
+  
+}
+.panel-gnrl:hover{
+  background-color: aliceblue;
+  color:#FFFFFF;
+  transition: all 0.6s ease;
+}
+
+.header {
+  font-family: sans-serif;
+  position: absolute;
+  left: 2.5rem;
+  top: 5rem;
+  animation: fadeIn 2s;
+  color: white;
+  font-size: 1.5em;
+  font-weight: bold;
+  text-align: center;
+  color: #FFF;
+  padding: 10px;
+  position:absolute;
+  top: 40px;
+  left:50px;
+  
+}
+.header-std{
+  font-size: 1.5em;
+  font-family: sans-serif; 
+  padding: 10px;
+  position:absolute;
+  top: 40px;
+  left:50px;
+  color: yellow;
+}
+
+.appel{
+  align-self: center;
+  top: 50px;
+  align-self: center;
+  position: absolute;
+  font-family: sans-serif;
+  font-style: italic;
+  font-size:xx-large;
+  
+}
+
+.user-form{
+
+  display: flex;
+  align-items: center;
+  text-align: center;
+  flex-direction: column;
+  flex: 1;
+  width: fit-content;
 }
 
 label {
@@ -30,7 +112,7 @@ input {
 
 button {
   border: none;
-  background-color: white;
+  background-color: aliceblue;
   padding: 20px;
   border-radius: 10px;
   cursor: pointer;
@@ -43,8 +125,10 @@ button:hover{
   transition: all 0.3s ease;
 }
 
+
+
 .link-btn {
-  background-color: #FFFFFF;
+  background-color: aliceblue;
   color: red;
   
 }
@@ -68,6 +152,7 @@ img {
   margin-left: 100px;
   margin-right: 100px;
 }
+
 
 .popup {
   position: fixed;
@@ -98,21 +183,22 @@ img {
 }
 
 .ptable table{
-	margin: 30px auto;
 	border-collapse: collapse;
 }
 
 .ptable{
-	margin: 0px 0% 30px 0%;
+	margin: 0px 0% 0px 0%;
 }
-
 th, td {
   padding: 10px;
+  font-size: smaller;
+  
 }
 
 th{
-background-color: black;
-color: #ffe221;
+background-color: lightblue;
+color: black;
+
 }
 
 .headin{
@@ -128,8 +214,11 @@ text-align: center;
 }
 
 .wpos td{
-color: #77ff21;
-background-color: #000000;
+  color: gray;
+  background-color: aliceblue;
+  width: fit-content;
+  height: fit-content;
+
 }
 
 table .col{
@@ -141,7 +230,103 @@ table .col{
 }
 
 .wpos:hover td{
-	color: #FFFFFF;
+	color: black;
   transition: all 0.678s ease;
   
+}
+
+.parent-btns{
+  right: 50px;
+  bottom: 60px;
+  position: absolute;
+  display: flex;
+}
+
+.child-btns{
+  bottom: 6px;
+  right: 30px;
+  position: absolute;
+
+}
+
+.gnl-btn {
+  background: none;
+  bottom: 40px;
+  padding: 20px;
+  border-radius: 10px;
+  cursor: pointer;
+  color: white;
+  text-decoration: underline;
+  
+  
+}
+
+.gnl-btn:hover{
+  text-decoration: underline;
+  color: black;
+  transition: all 0.3s ease;
+}
+
+@-webkit-keyframes errorBg {
+  0% {
+      background-position: 93% 0%
+  }
+  50% {
+      background-position: 0% 100%
+  }
+  100% {
+      background-position: 93% 0%
+  }
+}
+
+@-moz-keyframes errorBg {
+  0% {
+      background-position: 93% 0%
+  }
+  50% {
+      background-position: 0% 100%
+  }
+  100% {
+      background-position: 93% 0%
+  }
+}
+
+@keyframes errorBg {
+  0% {
+      background-position: 93% 0%
+  }
+  50% {
+      background-position: 0% 100%
+  }
+  100% {
+      background-position: 93% 0%
+  }
+}
+
+.img{
+  position: absolute;
+}
+
+.about-header{
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: small;
+
+}
+
+
+@keyframes fadeIn { from { opacity:0; } to { opacity:1; } }
+
+
+
+.email-text{
+  
+  bottom: 100px;
+  text-align: center;
+  position:relative;
+}
+
+.email-header{
+  bottom:150px;
+  position: relative;
+  text-align: center;
 }
