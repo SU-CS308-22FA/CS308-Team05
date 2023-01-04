@@ -98,6 +98,11 @@
   width: fit-content;
 }
 
+input[type=checkbox] {
+  transform: scale(2);
+  margin-left: .5rem;
+}
+
 label {
   text-align: left;
   padding: 0.25rem 0;
