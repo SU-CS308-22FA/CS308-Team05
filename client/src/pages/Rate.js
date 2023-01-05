@@ -51,7 +51,7 @@ export const Rate = (props) => {
 
     return (
         <div className = "auth-form-container">
-            <h2>Rating System</h2>
+            <h2 className="header">Rating System</h2>
             <form className="rate-form" onSubmit = {handleSubmit}>
                 <button onClick={displaymatches}>Display Rateable Matches</button>
                 <p>{matches}</p>
@@ -62,6 +62,22 @@ export const Rate = (props) => {
                 <p> {message} </p>
             </form>
             <button className = "link-btn" onClick={() => history.push('/User')}> Go back to user page </button>
+            <div className="parent-btns">
+                <div className="child-btns">
+                    <tr>
+                    <td>
+                        <button className="gnl-btn" onClick={() => history.push('/FAQ')}>Help</button>
+                    </td>
+                    <td>
+                        <button className="gnl-btn" onClick={() => history.push('/Contact')}>Contact</button>
+                    </td>
+                    <td>
+                        <button className="gnl-btn" onClick={() => history.push('/About')}>About Us</button>
+                    </td>
+                    </tr>
+                    
+                </div>
+            </div>
         </div>
     );
 }
