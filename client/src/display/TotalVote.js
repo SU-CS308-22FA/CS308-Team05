@@ -7,6 +7,8 @@ import 'chart.js/auto';
   
 function TotalVote() {
   const [match, setVotedMatch] = useState("");
+  const [match1, setVotedMatch1] = useState("");
+  const [match2, setVotedMatch2] = useState("");
 
   Axios.defaults.withCredentials = true;
 
@@ -15,7 +17,8 @@ function TotalVote() {
     e.preventDefault();
     console.log();
 }
-
+let planam = [];
+let plavot = [];
   const displaytotalvoteppp = () => {
     let seppos = 0;
     while(global.match[seppos] !== "-"){
@@ -25,63 +28,66 @@ function TotalVote() {
     let table = global.match.substring(0,seppos-2)+global.match.substring(seppos+3,global.match.length);
     setVotedMatch(table);
 
+
+
     Axios.post("http://localhost:3001/dtvppp", {
         server: table, 
     }).then((response)=> {
         if (response.data.message){
-            console.log(response.data.message);
+          
         } 
         else {
-
+          console.log(response.data.message);
+          for (var j=0; j<response.data.length; j++){
+            planam.push(response.data[j].PlayerName);
+            plavot.push(parseInt(response.data[j].Vote));
+          }
+          setVotedMatch2(planam);
+          setVotedMatch1(plavot);
+          
         }
-    });
+    })
+    .catch(err =>{
+      console.log(err);
+  });
 };
-
+  useEffect(() => {
+    displaytotalvoteppp();
+  }, []);
   return (
-    <div className="TotalVote">
-      <h1>Total Vote Chart for each football player of Fenerbahçe</h1>
-      <div style={{ maxWidth: "650px" }}>
-        <Bar
-          data={{
-            // Name of the variables on x-axies for each bar
-            labels: ["1st bar", "2nd bar", "3rd bar", "4th bar"],
-            datasets: [
-              {
-                // Label for bars
-                label: "total count/value",
-                // Data or value of your each variable
-                data: [1552, 1319, 613, 1400],
-                // Color of each bar
-                backgroundColor: ["aqua", "green", "red", "yellow"],
-                // Border color of each bar
-                borderColor: ["aqua", "green", "red", "yellow"],
-                borderWidth: 0.5,
-              },
-            ],
-          }}
-          // Height of graph
-          height={400}
-          options={{
-            maintainAspectRatio: false,
-            scales: {
-              yAxes: [
-                {
-                  ticks: {
-                    // The y-axis value will start from zero
-                    beginAtZero: true,
-                  },
-                },
-              ],
-            },
-            legend: {
-              labels: {
-                fontSize: 15,
-              },
-            },
-          }}
-        />
-      </div>
+    <div className = "auth-form-container">
+      <form className="rate-form" onSubmit = {handleSubmit}></form> 
+        <h1>Total Votes Players Got</h1>
+              <div>
+                  <Bar
+                    data={{
+                      labels: match2,
+                      datasets: [{
+                        label: 'total votes players got',
+                        data: match1,
+                        backgroundColor: ["aqua", "green", "red", "yellow"],
+                        borderColor: ["aqua", "green", "red", "yellow"],
+                        borderWidth: 0.5,
+                      }]
+                    }}
+                    height={400}
+                    options={{
+                      maintainAspectRatio: false,
+                        responsive:true,
+                        title: { text: "total votes players got", display: true },
+                        
+                        legend: {
+                          labels: {
+                            fontColor: "purple",
+                            fontSize: 30,
+                          },
+                        },
+                    }}
+                  />
+              </div>
+          
     </div>
+    
   );
 }
   
