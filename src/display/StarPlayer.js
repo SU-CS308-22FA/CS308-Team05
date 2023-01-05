@@ -30,7 +30,7 @@ let plavot = [];
 
 
 
-    Axios.post("http://localhost:3001/dtvppp", {
+    Axios.post("https://cs308-renderserver.onrender.com/dtvppp", {
         server: table, 
     }).then((response)=> {
         if (response.data.message){

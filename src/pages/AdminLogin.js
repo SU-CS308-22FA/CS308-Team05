@@ -2,7 +2,7 @@ import React, {useEffect, useState} from "react"
 import Axios from 'axios'
 import { useHistory, Redirect } from "react-router-dom";
 
-export const ClubLogin = (props) => {
+export const AdminLogin = (props) => {
     const [identification, setID] = useState("");
     const [pass, setPass] = useState("");
     const [loginstatus, setLoginstatus] = useState("");
@@ -16,18 +16,17 @@ export const ClubLogin = (props) => {
 
     const login = () => {
         if (identification !== "" && pass !== "") {
-            Axios.post("http://localhost:3001/clublogin", {
+            Axios.post("https://cs308-renderserver.onrender.com/adminlogin", {
                 identification: identification,  
                 password: pass,
             }).then((response)=> {
                 if (response.data.message){
                     setLoginstatus(response.data.message);
                 } else {
-                    global.fullname = response.data[0].Name;
-                    history.push('/Club');
+                    global.fullname = response.data[0].Username;
+                    history.push('/Admin');
                 }
             });
-
         } else {
             setLoginstatus("Missing Required Parameter(s)");
         }
@@ -37,7 +36,7 @@ export const ClubLogin = (props) => {
 
     return (
         <div className = "auth-form-container">
-            <h2>Club Login</h2>
+            <h2 className="header">Admin Login</h2>
             <form className="login-form" onSubmit = {handleSubmit}>
                 <label htmlFor = "username">Username</label>
                 <input value={identification} onChange={(e) => setID(e.target.value)} type = "text" placeholder = "username" id = "identification" name = "identification"/>
