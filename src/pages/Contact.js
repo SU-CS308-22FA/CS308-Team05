@@ -13,7 +13,7 @@ export const Contact = () => {
     let history = useHistory();
 
     const getContacts = () =>{
-        Axios.get("http://localhost:3001/contacts").then((response) => {
+        Axios.get("https://cs308-renderserver.onrender.com/contacts").then((response) => {
           console.log(response);
           setContactsList(response.data);
     

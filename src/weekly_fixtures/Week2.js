@@ -6,7 +6,7 @@ export const Week2 = () => {
   const [fixtureList, set_fixtures] = useState([]);
 
     const getfixtures = () => {
-        Axios.get("http://localhost:3001/fixtures_w2").then((response)=>{
+        Axios.get("https://cs308-renderserver.onrender.com/fixtures_w2").then((response)=>{
           console.log(response);
           set_fixtures(response.data);
       });

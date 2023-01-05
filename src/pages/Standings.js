@@ -14,7 +14,7 @@ export const Standings = () => {
   const [standingsList,setStandingsList] = useState([]);
 
   const getStandings = () =>{
-    Axios.get("http://localhost:3001/standings").then((response) => {
+    Axios.get("https://cs308-renderserver.onrender.com/standings").then((response) => {
       console.log(response);
       setStandingsList(response.data);
 

@@ -8,7 +8,7 @@ export const AdminEmail = () => {
     const [questionsList,setQuestionsList] = useState([]);
 
     const getQuestions = () =>{
-        Axios.get("http://localhost:3001/questions").then((response) => {
+        Axios.get("https://cs308-renderserver.onrender.com/questions").then((response) => {
           console.log(response);
           setQuestionsList(response.data);
     

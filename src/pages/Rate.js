@@ -21,7 +21,7 @@ export const Rate = (props) => {
     }
 
     const displaymatches = () => {
-        Axios.get("http://localhost:3001/getactivematches").then((response) => {
+        Axios.get("https://cs308-renderserver.onrender.com/getactivematches").then((response) => {
             if (response){
                 console.log(response);
                 let possiblematches = "/";

@@ -16,7 +16,7 @@ export const PlayerPage = () => {
   const [button2Color, setButton2Color] = useState("");
 
   const getPlayers = () => {
-    Axios.get("http://localhost:3001/PLAYERPAGE").then((response)=>{
+    Axios.get("https://cs308-renderserver.onrender.com/PLAYERPAGE").then((response)=>{
         console.log(response);
         set_playerList(response.data);
         set_displayTable({
@@ -29,7 +29,7 @@ export const PlayerPage = () => {
   };
 
   const getPlayers_v2 = () => {
-    Axios.get("http://localhost:3001/PLAYERPAGE_v2").then((response)=>{
+    Axios.get("https://cs308-renderserver.onrender.com/PLAYERPAGE_v2").then((response)=>{
         console.log(response);
         set_playerList_v2(response.data);
         set_displayTable({

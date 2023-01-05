@@ -8,7 +8,7 @@ export const Answers = () => {
     const [answerslist,setAnswersList] = useState([]);
 
     const getAnswers = () =>{
-        Axios.get("http://localhost:3001/answers").then((response) => {
+        Axios.get("https://cs308-renderserver.onrender.com/answers").then((response) => {
           console.log(response);
           setAnswersList(response.data);
     

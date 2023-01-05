@@ -15,7 +15,7 @@ export const Email = () => {
     Axios.defaults.withCredentials = true;
     const sendquestion = () => {
       if (senderName !== "" && receiverAdmin !== "" && content) {
-          Axios.post("http://localhost:3001/sendquestion", {
+          Axios.post("https://cs308-renderserver.onrender.com/sendquestion", {
               senderName: senderName,
               receiverAdmin: receiverAdmin, 
               content: content

@@ -20,7 +20,7 @@ export const Club = (props) => {
     
     const displayvotedmatches = () => {
 
-        Axios.post("http://localhost:3001/clubvotepage", {team : global.fullname}).then((response) => {
+        Axios.post("https://cs308-renderserver.onrender.com/clubvotepage", {team : global.fullname}).then((response) => {
             if (response){
                 console.log(response);
                 let possiblematches = "/";

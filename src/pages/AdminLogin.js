@@ -16,7 +16,7 @@ export const AdminLogin = (props) => {
 
     const login = () => {
         if (identification !== "" && pass !== "") {
-            Axios.post("http://localhost:3001/adminlogin", {
+            Axios.post("https://cs308-renderserver.onrender.com/adminlogin", {
                 identification: identification,  
                 password: pass,
             }).then((response)=> {

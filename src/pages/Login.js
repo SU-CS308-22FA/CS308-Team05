@@ -17,7 +17,7 @@ export const Login = (props) => {
 
     const login = () => {
         if (identification !== "" && pass !== "") {
-            Axios.post("http://localhost:3001/login", {
+            Axios.post("https://cs308-renderserver.onrender.com/login", {
                 identification: identification,  
                 password: pass,
             }).then((response)=> {
@@ -36,7 +36,7 @@ export const Login = (props) => {
     let history = useHistory();
 
     useEffect (() => {
-        Axios.get("http://localhost:3001/login").then((response) => {
+        Axios.get("https://cs308-renderserver.onrender.com/login").then((response) => {
             if (response.data.loggedIn === true){
                 setLoginstatus("");
             }
