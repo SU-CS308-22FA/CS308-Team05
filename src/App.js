@@ -30,7 +30,10 @@ import { Week5 } from "./weekly_fixtures/Week5";
 import { Week6 } from "./weekly_fixtures/Week6";
 import { Trabzonspor } from "./teams/Trabzonspor";
 
-
+import { MatchDisplay } from "./display/MatchDisplay";
+import  TotalVote  from "./display/TotalVote";
+import  TotalVoteppp  from "./display/TotalVoteppp";
+import  StarPlayer  from "./display/StarPlayer";
 import {BrowserRouter as Router, Switch, Route, Link, NavLink} from "react-router-dom";
 
 function App() {
@@ -124,6 +127,18 @@ function App() {
           </Route>
           <Route exact path="/PlayerRate">
             <PlayerRate />
+          </Route>
+          <Route exact path="/MatchDisplay">
+            <MatchDisplay />
+          </Route>
+          <Route exact path="/TotalVote">
+            <TotalVote />
+          </Route>
+          <Route exact path="/TotalVoteppp">
+            <TotalVoteppp />
+          </Route>
+          <Route exact path="/StarPlayer">
+            <StarPlayer />
           </Route>
         </Switch>
         <img src="/images/rate12.png" height= "500px" alt=""/>
