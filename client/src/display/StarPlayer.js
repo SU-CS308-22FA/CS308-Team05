@@ -57,7 +57,7 @@ let plavot = [];
   return (
     <div className = "auth-form-container">
       <form className="rate-form" onSubmit = {handleSubmit}></form> 
-        <h1>Total Votes Players Got Divided by voter amount</h1>
+        <h1>Man of the Match Votes</h1>
               <div>
                   <Bar
                     data={{
