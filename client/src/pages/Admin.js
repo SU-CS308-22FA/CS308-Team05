@@ -53,7 +53,7 @@ export const Admin = (props) => {
         Axios.post("http://localhost:3001/addclub", {
             name: clubname, 
             password: clubpass, 
-            active: "false"
+            active: 0
         }).then((response)=> {
             console.log(response);
             setAddclubstatus("Registered");
@@ -257,7 +257,7 @@ export const Admin = (props) => {
 
   return (
       <div className = "auth-form-container">
-          <h2>Administrative Tasks</h2>
+          <h2 className="header">Administrative Tasks</h2>
           <form className="user-form" onSubmit = {handleSubmit}>
               <button onClick={() => setAddclubpopup(true)}>Add a football club</button>
               <Popup trigger={addclubpopup} setTrigger = {setAddclubpopup}>

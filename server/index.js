@@ -103,12 +103,12 @@ app.post("/create", (req, res) => {
   const D = req.body.D;
   const L = req.body.L;
   const Goals = req.body.Goals;
-  const GD = req.body.GS;
+  const GD = req.body.GD;
   const Points = req.body.Points;
   
 
   db.query(
-    "INSERT INTO STANDINGS (Club, Games, W, D, L, Goals, GD, Points) VALUES (?,?,?,?,?,?,?,?)",
+    "INSERT INTO Standings (Club, Games, W, D, L, Goals, GD, Points) VALUES (?,?,?,?,?,?,?,?)",
     [Club, Games, W, D, L, Goals, GD, Points],
     (err, result) => {
       if (err) {
@@ -121,7 +121,7 @@ app.post("/create", (req, res) => {
 });
 
 app.get ('/standings', (req, res) => {
-  db.query("SELECT * FROM STANDINGS",(err,result) =>{
+  db.query("SELECT * FROM Standings",(err,result) =>{
     if(err){
       console.log(err)
     }
@@ -131,6 +131,20 @@ app.get ('/standings', (req, res) => {
   })
  
 });
+
+app.get ('/contacts', (req, res) => {
+  db.query("SELECT * FROM Contacts",(err,result) =>{
+    if(err){
+      console.log(err)
+    }
+    else{
+      res.send(result)
+    }
+  })
+ 
+});
+
+
 app.post ("/login", (req, res) => {
   const identification = req.body.identification;
   const password = req.body.password;
@@ -159,6 +173,7 @@ app.post ("/login", (req, res) => {
   );
 });
 
+
 app.post("/sendquestion",(req,res) =>{
   const content = req.body.content;
   const senderName = req.body.senderName;
@@ -172,25 +187,7 @@ app.post("/sendquestion",(req,res) =>{
         console.log(err);
       }
       else{
-        
-      }
-    }
-  )
-})
-
-app.post("/sendanswer",(req,res) =>{
-  const content = req.body.content;
-  const userSent = req.body.userSent;
-  const adminName = req.body.adminName;
-
-  db.query(
-    "INSERT INTO Answers (adminName,userSent,content) VALUES (?,?,?)",
-    [adminName,userSent,content],
-    (err,result) =>{
-      if(err){
-        console.log(err);
-      }
-      else{
+        res.send("SUCCESS");
         
       }
     }
@@ -208,13 +205,65 @@ app.get("/questions",(req,res) =>{
   })
 })
 
+app.get("/getcomments",(req,res) =>{
+  db.query("SELECT * FROM Comments", (err,result) =>{
+    if(err){
+      console.log(err);
+    }
+    else{
+      res.send(result);
+    }
+  })
+})
 
-app.post("/updateresolved", (req, res) => {
-  const senderName = req.body.senderName;
+app.get("/getroots",(req,res) =>{
+  db.query("SELECT * FROM Comments WHERE parentId IS NULL",(err,result) =>{
+    if(err){
+      console.log(err);
+    }
+    else{
+      res.send(result);
+    }
+  })
+})
+
+app.post("/sendanswer",(req,res) =>{
+  const content = req.body.content;
+  const userSent = req.body.userSent;
+  const adminName = req.body.adminName;
+  const idQuestions = req.body.idQuestions;
 
   db.query(
-    "UPDATE Questions SET isResolved = 1 WHERE senderName = ?;", 
-    senderName,
+    "INSERT INTO Answers (adminName,userSent,content,idQuestions) VALUES (?,?,?,?)",
+    [adminName,userSent,content,idQuestions],
+    (err,result) =>{
+      if(err){
+        console.log(err);
+      }
+      else{
+        
+      }
+    }
+  )
+})
+
+app.get("/getreplies",(req,res) =>{
+  db.query("SELECT * FROM Comments WHERE parentId = 1",(err,result)=>{
+    if(err){
+      console.log(err);
+    }
+    else{
+      res.send(result);
+    }
+  })
+})
+
+app.post("/updateresolved", (req, res) => {
+  const idQuestions = req.body.idQuestions
+
+  db.query(
+    "UPDATE Questions SET isResolved = 1 WHERE idQuestions = ?;", 
+    idQuestions,
     (err, result) => {
     if (err) {
       console.log(err);
@@ -652,7 +701,7 @@ app.post ("/clubvotepage", (req, res) => {
 });
 
 app.get('/PLAYERPAGE', (req, res) => {
-  db.query("SELECT * FROM PLAYERPAGE WHERE zmatch = 1", (err, result) => {
+  db.query("SELECT * FROM AlanyasporKayserispor WHERE Player IS NOT NULL", (err, result) => {
     if (err) {
       console.log(err)
     } else{
@@ -662,7 +711,7 @@ app.get('/PLAYERPAGE', (req, res) => {
 })
 
 app.get('/PLAYERPAGE_v2', (req, res) => {
-  db.query("SELECT * FROM PLAYERPAGE WHERE zmatch = 2", (err, result) => {
+  db.query("SELECT * FROM FatihKaragümrükTrabzonspor WHERE Player IS NOT NULL", (err, result) => {
     if (err) {
       console.log(err)
     } else{
@@ -826,4 +875,81 @@ app.post("/deactivatematch", (req, res) => {
       res.send(result);
     }
   });
+});
+
+app.post ("/useravailable", (req, res) => {
+  const server = req.body.server;
+  let table = "SELECT VotedUser FROM "+ server +" WHERE VotedUser IS NOT NULL";
+  db.query(
+    table,
+    (err, result) => {
+      if (err) {
+        console.log(err);
+        res.send({message: "An error occured"});
+      } else {
+        res.send(result);
+      }
+    });
+});
+
+app.post ("/getvotes", (req, res) => {
+  const server = req.body.server;
+  let table = "SELECT Vote FROM "+ server +" WHERE Vote IS NOT NULL";
+  db.query(
+    table,
+    (err, result) => {
+      if (err) {
+        console.log(err);
+        res.send({message: "An error occured"});
+      } else {
+        res.send(result);
+      }
+    });
+});
+
+app.post ("/adduserrating", (req, res) => {
+  const server = req.body.server;
+  const username = req.body.username;
+  let table = "INSERT INTO "+server+" (VotedUser) VALUES ('"+username+"');";
+  db.query(
+    table,
+    (err, result) => {
+      if (err) {
+        console.log(err);
+        res.send({message: "An error occured"});
+      } else {
+        res.send(result);
+      }
+    });
+});
+
+app.post ("/savemotm", (req, res) => {
+  const server = req.body.server;
+  const playername = req.body.playername;
+  let table = "UPDATE "+ server +" SET Motm = Motm + 1 WHERE PlayerName = '"+playername+"';";
+  db.query(
+    table,
+    (err, result) => {
+      if (err) {
+        console.log(err);
+        res.send({message: "An error occured"});
+      } else {
+        res.send(result);
+      }
+    });
+});
+
+app.post ("/getmotm", (req, res) => {
+  const server = req.body.server;
+  let table = "SELECT PlayerName, Motm FROM "+server+" WHERE Motm = (SELECT MAX(Motm) FROM "+server+");";
+  db.query(
+    table,
+    (err, result) => {
+      if (err) {
+        console.log(err);
+        res.send({message: "An error occured"});
+      } else {
+        res.send(result);
+      }
+    });
 });

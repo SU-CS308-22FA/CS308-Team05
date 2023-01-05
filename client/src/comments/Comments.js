@@ -2,12 +2,13 @@ import { useState, useEffect } from "react";
 import CommentForm from "./CommentForm";
 import Comment from "./Comment";
 import {
+  getComments as getCommentsApi,
   createComment as createCommentApi,
   updateComment as updateCommentApi,
   deleteComment as deleteCommentApi,
 } from "../api";
 
-const Comments = ({ commentsUrl, currentUserId }) => {
+export const Comments = ({ commentsUrl, currentUserId }) => {
   const [backendComments, setBackendComments] = useState([]);
   const [activeComment, setActiveComment] = useState(null);
   const rootComments = backendComments.filter(
@@ -50,12 +51,15 @@ const Comments = ({ commentsUrl, currentUserId }) => {
     }
   };
 
-  
-
+  useEffect(() => {
+    getCommentsApi().then((data) => {
+      setBackendComments(data);
+    });
+  }, []);
   return (
     <div className="comments">
       <h3 className="comments-title">Comments</h3>
-      <div className="comment-form-title">Write comment</div>
+      <div className="comment-form-title">Write what you think (politely)!</div>
       <CommentForm submitLabel="Write" handleSubmit={addComment} />
       <div className="comments-container">
         {rootComments.map((rootComment) => (
@@ -73,7 +77,6 @@ const Comments = ({ commentsUrl, currentUserId }) => {
         ))}
       </div>
     </div>
-  );
-};
+  )
+}
 
-export default Comments;
