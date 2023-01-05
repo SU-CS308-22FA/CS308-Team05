@@ -34,9 +34,10 @@ import { WeekPage } from "./weekly_fixtures/WeekPage";
 import { Trabzonspor } from "./teams/Trabzonspor";
 import { Contact } from "./pages/Contact";
 import { Forums } from "./pages/Forums";
-
-
-
+import { MatchDisplay } from "./display/MatchDisplay";
+import  TotalVote  from "./display/TotalVote";
+import  TotalVoteppp  from "./display/TotalVoteppp";
+import  StarPlayer  from "./display/StarPlayer";
 import { useHistory, Redirect } from "react-router-dom";
 import {BrowserRouter as Router, Switch, Route, Link, NavLink} from "react-router-dom";
 
@@ -142,6 +143,18 @@ function App() {
           </Route>
           <Route exact path="/PlayerRate">
             <PlayerRate />
+          </Route>
+          <Route exact path="/MatchDisplay">
+            <MatchDisplay />
+          </Route>
+          <Route exact path="/TotalVote">
+            <TotalVote />
+          </Route>
+          <Route exact path="/TotalVoteppp">
+            <TotalVoteppp />
+          </Route>
+          <Route exact path="/StarPlayer">
+            <StarPlayer />
           </Route>
           <Route exact path="/About">
             <About/>

@@ -684,6 +684,22 @@ app.get('/fixtures_w6', (req, res) => {
     }
   })
 })
+
+app.post ("/clubvotepage", (req, res) => {
+  const t = req.body.team;
+  let matches = "SELECT * FROM Fixtures WHERE home_team = '" + t + "' OR alien_team = '" + t + "'";
+
+  db.query(matches,  (err, result) => {
+
+      if (err) {
+        console.log(err);
+        res.send({message: "An error occured"});
+      } else {
+        res.send(result);
+      }
+    });
+});
+
 app.get('/PLAYERPAGE', (req, res) => {
   db.query("SELECT * FROM AlanyasporKayserispor WHERE Player IS NOT NULL", (err, result) => {
     if (err) {
@@ -749,6 +765,54 @@ app.get ("/getinactivematches", (req, res) => {
 app.post ("/displayplayers", (req, res) => {
   const server = req.body.server;
   let table = "SELECT PlayerName FROM "+ server +" WHERE PlayerName IS NOT NULL";
+
+  db.query(
+    table,
+    (err, result) => {
+      if (err) {
+        console.log(err);
+        res.send({message: "An error occured"});
+      } else {
+        res.send(result);
+      }
+    });
+});
+
+app.post ("/dtvp", (req, res) => {
+  const server = req.body.server;
+  let table = "SELECT * FROM "+ server +" WHERE PlayerName IS NOT NULL";
+
+  db.query(
+    table,
+    (err, result) => {
+      if (err) {
+        console.log(err);
+        res.send({message: "An error occured"});
+      } else {
+        res.send(result);
+      }
+    });
+});
+
+app.post ("/dtvppp", (req, res) => {
+  const server = req.body.server;
+  let table = "SELECT * FROM "+ server +" WHERE PlayerName IS NOT NULL";
+
+  db.query(
+    table,
+    (err, result) => {
+      if (err) {
+        console.log(err);
+        res.send({message: "An error occured"});
+      } else {
+        res.send(result);
+      }
+    });
+});
+
+app.post ("/dsp", (req, res) => {
+  const server = req.body.server;
+  let table = "SELECT * FROM "+ server +" WHERE PlayerName IS NOT NULL";
 
   db.query(
     table,

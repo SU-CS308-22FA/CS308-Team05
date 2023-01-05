@@ -27,6 +27,7 @@ export const ClubLogin = (props) => {
                     history.push('/Club');
                 }
             });
+
         } else {
             setLoginstatus("Missing Required Parameter(s)");
         }

@@ -1,42 +1,56 @@
-import React, {useState} from "react"
+import React, {useEffect, useState} from "react"
 import Axios from 'axios'
-import { useHistory } from "react-router-dom";
+import { useHistory, Redirect } from "react-router-dom";
+import { Collapse, } from 'antd';
+
+const { Panel } = Collapse;
 
 export const Club = (props) => {
-  const [pass, setPassword] = useState("");
-  const [loginstatus, setLoginstatus] = useState("");
+    const [match, setVotedMatch] = useState("");
+    const [matches, setVotedMatches] = useState("");
 
-  const handleSubmit = (e) => {
-      e.preventDefault();
-      console.log(loginstatus);
-  }
+    Axios.defaults.withCredentials = true;
 
-  const updatepassword = () => {
-    Axios.post("http://localhost:3001/clubupdatepassword", {
-        id: global.fullname,  
-        password: pass,
-    }).then((response)=> {
-        if (response.data.message){
-            setLoginstatus(response.data.message);
-        } else {
-            setLoginstatus(response.data[0].Name);
-            global.fullname = response.data[0].Name;
-        }
-    });
-  };
+    let history = useHistory();
 
-  let history = useHistory();
+    const handleSubmit = (e) => {
+        e.preventDefault();
+        console.log();
+    }
+    
+    const displayvotedmatches = () => {
 
-  return (
-      <div className = "auth-form-container">
-          <h2>User Settings</h2>
-          <form className="user-form" onSubmit = {handleSubmit}>
-              <label htmlFor = "password">Password Change</label>
-              <input onChange={(e) => setPassword(e.target.value)} type = "password" id = "password" name = "password" placeholder = "********"/>
-              <button onClick={updatepassword}>Change Now!</button>
-              <label> </label>
-              <button className = "link-btn" onClick={() => history.push('/')}>Sign Out</button>
-          </form>
-      </div>
-  );
+        Axios.post("http://localhost:3001/clubvotepage", {team : global.fullname}).then((response) => {
+            if (response){
+                console.log(response);
+                let possiblematches = "/";
+                
+                for (var i=0; i<response.data.length; i++){
+                    possiblematches = possiblematches + response.data[i].home_team + " " + response.data[i].ht_score + "-" + response.data[i].at_score + " " + response.data[i].alien_team + "/";
+                }
+                setVotedMatches(possiblematches);
+            }
+        })
+    };
+
+    const selectvotedmatch = () => {
+        global.match = match;
+        console.log(global.match);
+        history.push('/MatchDisplay');
+    };
+
+    return (
+        <div className = "auth-form-container">
+            <h2>Rating Graphics</h2>
+            <form onSubmit = {handleSubmit}>
+                <button onClick={displayvotedmatches}>Display Voted Matches</button>
+                <p>{matches}</p>
+                <label htmlFor = "match">Match</label>
+                <div></div>
+                <input onChange={(e) => setVotedMatch(e.target.value)} name = "name" id = "name" placeholder = "X 0-0 Y"/>
+                <p><button onClick={selectvotedmatch}>Choose this match</button></p>
+            </form>
+            <button className = "link-btn" onClick={() => history.push('/')}> Go back </button>
+        </div>
+    );
 }
