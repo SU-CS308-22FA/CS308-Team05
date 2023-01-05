@@ -34,7 +34,7 @@ export const PlayerRate = (props) => {
         let table = global.match.substring(0,seppos-2)+global.match.substring(seppos+3,global.match.length);
         setMatch(table);
 
-        Axios.post("http://localhost:3001/displayplayers", {
+        Axios.post("https://cs308-renderserver.onrender.com/displayplayers", {
             server: table,  
         }).then((response)=> {
             if (response.data.message){
@@ -61,7 +61,7 @@ export const PlayerRate = (props) => {
     const storevotes = () => {
         let available = true;
         let usernum = 0;
-        Axios.post("http://localhost:3001/useravailable", {
+        Axios.post("https://cs308-renderserver.onrender.com/useravailable", {
             server: match,
         }).then((response)=> {
             if (response.data.message){
@@ -78,7 +78,7 @@ export const PlayerRate = (props) => {
                 usernum = response.data.length;
             }
             if (available === true){
-                Axios.post("http://localhost:3001/adduserrating", {
+                Axios.post("https://cs308-renderserver.onrender.com/adduserrating", {
                     server: match,
                     username: global.fullname,
                 }).then((response)=> {
@@ -89,7 +89,7 @@ export const PlayerRate = (props) => {
                 }
                 });
                 for (var i=0; i<votearray.length; i++){
-                    Axios.post("http://localhost:3001/savevote", {
+                    Axios.post("https://cs308-renderserver.onrender.com/savevote", {
                         server: match,
                         id: i,
                         score: (votearray[i]),
@@ -102,7 +102,7 @@ export const PlayerRate = (props) => {
                     });
                 }
                 usernum = usernum+1;
-                Axios.post("http://localhost:3001/savemotm", {
+                Axios.post("https://cs308-renderserver.onrender.com/savemotm", {
                         server: match,
                         playername: starplayer,
                     }).then((response)=> {
@@ -121,7 +121,7 @@ export const PlayerRate = (props) => {
 
             if (avr === 0){
                 if (savr === 0){
-                    Axios.post("http://localhost:3001/getvotes", {
+                    Axios.post("https://cs308-renderserver.onrender.com/getvotes", {
                         server: match,
                     }).then((response)=> { 
                     console.log(response);
@@ -138,7 +138,7 @@ export const PlayerRate = (props) => {
                 }
                 setSavr(1);
                 setAvr(1);
-                Axios.post("http://localhost:3001/getmotm", {
+                Axios.post("https://cs308-renderserver.onrender.com/getmotm", {
                     server: match,
                 }).then((response)=> { 
                     console.log(response);

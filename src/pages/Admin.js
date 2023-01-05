@@ -35,7 +35,7 @@ export const Admin = (props) => {
   }
 
   const updatepassword = () => {
-    Axios.post("http://localhost:3001/adminupdatepassword", {
+    Axios.post("https://cs308-renderserver.onrender.com/adminupdatepassword", {
         id: global.fullname,  
         password: pass,
     }).then((response)=> {
@@ -50,7 +50,7 @@ export const Admin = (props) => {
 
   const addclub = () => {
     if (clubname !== "" && clubpass !== "") {
-        Axios.post("http://localhost:3001/addclub", {
+        Axios.post("https://cs308-renderserver.onrender.com/addclub", {
             name: clubname, 
             password: clubpass, 
             active: 0
@@ -65,7 +65,7 @@ export const Admin = (props) => {
   };  
 
   const deleteclub = () => {
-    Axios.post("http://localhost:3001/deleteclub", {
+    Axios.post("https://cs308-renderserver.onrender.com/deleteclub", {
         name: clubname,  
     }).then((response)=> {
         if (response.data.message){
@@ -77,7 +77,7 @@ export const Admin = (props) => {
   };
 
   const activateclub = () => {
-    Axios.post("http://localhost:3001/activateclub", {
+    Axios.post("https://cs308-renderserver.onrender.com/activateclub", {
         name: clubname,
     }).then((response)=> {
         if (response.data.message){
@@ -89,7 +89,7 @@ export const Admin = (props) => {
   };
 
   const deactivateclub = () => {
-    Axios.post("http://localhost:3001/deactivateclub", {
+    Axios.post("https://cs308-renderserver.onrender.com/deactivateclub", {
         name: clubname,
     }).then((response)=> {
         if (response.data.message){
@@ -101,7 +101,7 @@ export const Admin = (props) => {
   };
 
   const activateuser = () => {
-    Axios.post("http://localhost:3001/activateuser", {
+    Axios.post("https://cs308-renderserver.onrender.com/activateuser", {
         name: username,
     }).then((response)=> {
         if (response.data.message){
@@ -113,7 +113,7 @@ export const Admin = (props) => {
   };
 
   const deactivateuser = () => {
-    Axios.post("http://localhost:3001/deactivateuser", {
+    Axios.post("https://cs308-renderserver.onrender.com/deactivateuser", {
         name: username,
     }).then((response)=> {
         if (response.data.message){
@@ -131,7 +131,7 @@ export const Admin = (props) => {
     }
     let ht = match.substring(0,seppos-2);
     let at = match.substring(seppos+3,match.length);
-    Axios.post("http://localhost:3001/activatematch", {
+    Axios.post("https://cs308-renderserver.onrender.com/activatematch", {
         ht: ht,
         at: at,
     }).then((response)=> {
@@ -150,7 +150,7 @@ export const Admin = (props) => {
     }
     let ht = match.substring(0,seppos-2);
     let at = match.substring(seppos+3,match.length);
-    Axios.post("http://localhost:3001/deactivatematch", {
+    Axios.post("https://cs308-renderserver.onrender.com/deactivatematch", {
         ht: ht,
         at: at,
     }).then((response)=> {
@@ -163,7 +163,7 @@ export const Admin = (props) => {
   };
 
   const displayclubs = () => {
-    Axios.get("http://localhost:3001/getclubs").then((response) => {
+    Axios.get("https://cs308-renderserver.onrender.com/getclubs").then((response) => {
         if (response){
             console.log(response);
             let clubs = "-";
@@ -176,7 +176,7 @@ export const Admin = (props) => {
   };
 
   const displayinactiveclubs = () => {
-    Axios.get("http://localhost:3001/getinactiveclubs").then((response) => {
+    Axios.get("https://cs308-renderserver.onrender.com/getinactiveclubs").then((response) => {
         if (response){
             console.log(response);
             let clubs = "-";
@@ -189,7 +189,7 @@ export const Admin = (props) => {
   };
 
   const displayactiveclubs = () => {
-    Axios.get("http://localhost:3001/getactiveclubs").then((response) => {
+    Axios.get("https://cs308-renderserver.onrender.com/getactiveclubs").then((response) => {
         if (response){
             console.log(response);
             let clubs = "-";
@@ -202,7 +202,7 @@ export const Admin = (props) => {
   };
 
   const displayrateablematches = () => {
-    Axios.get("http://localhost:3001/getactivematches").then((response) => {
+    Axios.get("https://cs308-renderserver.onrender.com/getactivematches").then((response) => {
         if (response){
             console.log(response);
             let match = "/";
@@ -215,7 +215,7 @@ export const Admin = (props) => {
   };
 
   const displayexemptmatches = () => {
-    Axios.get("http://localhost:3001/getinactivematches").then((response) => {
+    Axios.get("https://cs308-renderserver.onrender.com/getinactivematches").then((response) => {
         if (response){
             console.log(response);
             let match = "/";
@@ -228,7 +228,7 @@ export const Admin = (props) => {
   };
 
   const displayinactiveusers = () => {
-    Axios.get("http://localhost:3001/getinactiveusers").then((response) => {
+    Axios.get("https://cs308-renderserver.onrender.com/getinactiveusers").then((response) => {
         if (response){
             console.log(response);
             let users = "-";
@@ -241,7 +241,7 @@ export const Admin = (props) => {
   };
 
   const displayactiveusers = () => {
-    Axios.get("http://localhost:3001/getactiveusers").then((response) => {
+    Axios.get("https://cs308-renderserver.onrender.com/getactiveusers").then((response) => {
         if (response){
             console.log(response);
             let users = "-";

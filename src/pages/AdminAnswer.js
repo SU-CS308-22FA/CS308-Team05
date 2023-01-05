@@ -13,7 +13,7 @@ export const AdminAnswer = () => {
 
 
     const updateresolved = () => {
-        Axios.post("http://localhost:3001/updateresolved", {
+        Axios.post("https://cs308-renderserver.onrender.com/updateresolved", {
             senderName: userSent,
         }).then((response)=> {
             if (response.data.message){
@@ -26,7 +26,7 @@ export const AdminAnswer = () => {
 
       const sendanswer = () => {
         if (userSent !== "" && adminName !== "" && content) {
-            Axios.post("http://localhost:3001/sendanswer", {
+            Axios.post("https://cs308-renderserver.onrender.com/sendanswer", {
                 userSent: userSent,
                 adminName: adminName, 
                 content: content

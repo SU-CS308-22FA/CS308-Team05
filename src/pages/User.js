@@ -14,7 +14,7 @@ export const User = (props) => {
   }
 
   const updateusername = () => {
-    Axios.post("http://localhost:3001/updateusername", {
+    Axios.post("https://cs308-renderserver.onrender.com/updateusername", {
         id: global.fullname,  
         username: username,
     }).then((response)=> {
@@ -28,7 +28,7 @@ export const User = (props) => {
   };
 
   const updateemail = () => {
-    Axios.post("http://localhost:3001/updateemail", {
+    Axios.post("https://cs308-renderserver.onrender.com/updateemail", {
         id: global.fullname,  
         email: email,
     }).then((response)=> {
@@ -42,7 +42,7 @@ export const User = (props) => {
   };
 
   const updatepassword = () => {
-    Axios.post("http://localhost:3001/updatepassword", {
+    Axios.post("https://cs308-renderserver.onrender.com/updatepassword", {
         id: global.fullname,  
         password: pass,
     }).then((response)=> {
@@ -56,7 +56,7 @@ export const User = (props) => {
   };
 
   const deleteuser = () => {
-    Axios.post("http://localhost:3001/deleteuser", {
+    Axios.post("https://cs308-renderserver.onrender.com/deleteuser", {
         id: global.fullname,  
     }).then((response)=> {
         if (response.data.message){
@@ -75,7 +75,7 @@ export const User = (props) => {
   const [playerList, set_playerList] = useState([]);
 
   const getPlayers = () => {
-    Axios.get("http://localhost:3001/PLAYERS").then((response)=>{
+    Axios.get("https://cs308-renderserver.onrender.com/PLAYERS").then((response)=>{
         console.log(response);
         set_playerList(response.data);
     });

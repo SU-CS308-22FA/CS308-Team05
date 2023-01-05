@@ -12,7 +12,7 @@ export const Club = (props) => {
   }
 
   const updatepassword = () => {
-    Axios.post("http://localhost:3001/clubupdatepassword", {
+    Axios.post("https://cs308-renderserver.onrender.com/clubupdatepassword", {
         id: global.fullname,  
         password: pass,
     }).then((response)=> {
