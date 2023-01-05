@@ -85,7 +85,7 @@ let plavot = [];
                     }}
                   />
               </div>
-          
+          <button className = "link-btn" onClick={() => history.push('/MatchDisplay')}> Go Back!!! </button>
     </div>
     
   );
